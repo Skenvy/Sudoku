@@ -1,6 +1,6 @@
-cd application
+cd sudoku
 mvn clean package
-cd ../desktop-gui
+cd ../sudoku-gui
 mvn clean package
 cd ..
 

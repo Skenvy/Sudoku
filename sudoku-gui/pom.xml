@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.github.skenvy</groupId>
-  <artifactId>sudoku-desktop-gui</artifactId>
+  <artifactId>sudoku-gui</artifactId>
   <version>0.0.1</version>
 
   <name>Sudoku Desktop GUI</name>
@@ -55,7 +55,7 @@
       <artifactId>sudoku</artifactId>
       <version>1.0-SNAPSHOT</version>
       <scope>system</scope>
-      <systemPath>${project.basedir}/../application/target/sudoku-1.0-SNAPSHOT.jar</systemPath>
+      <systemPath>${project.basedir}/../sudoku/target/sudoku-1.0-SNAPSHOT.jar</systemPath>
     </dependency>
   </dependencies>
 
@@ -117,7 +117,7 @@
           <configuration>
               <mainClass>io.github.skenvy.SudokuGUI</mainClass>
               <additionalClasspathElements>
-                <additionalClasspathElement>${project.basedir}/../application/target/sudoku-1.0-SNAPSHOT.jar</additionalClasspathElement>
+                <additionalClasspathElement>${project.basedir}/../sudoku/target/sudoku-1.0-SNAPSHOT.jar</additionalClasspathElement>
             </additionalClasspathElements>
           </configuration>
       </plugin>
