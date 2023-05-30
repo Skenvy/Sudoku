@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.swing.text.Utilities;
 
-import com.skenvy.sudoku.CellCollection;
-import com.skenvy.sudoku.Utility;
+import io.github.skenvy.CellCollection;
+import io.github.skenvy.Utility;
 
 import java.util.ArrayList;
 

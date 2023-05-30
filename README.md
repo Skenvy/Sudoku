@@ -7,4 +7,4 @@ The goal of this is to eventually create something similar to [opensudoku](https
 \[[JDK](https://openjdk.java.net/)\] 
 \[[VS Code](https://code.visualstudio.com/docs/languages/java)\] 
 ## Run on Desktop
-The underlying java application and its GUI can be created and run by using the `~/Sudoku/_build.bat` and `~/Sudoku/_gui.bat` to create the maven packages for `~/Sudoku/APP/` and `~/Sudoku/GUI/` which sits on top of the application code (such that when the application code is published, it can be consumed by the Android app build which prohibits the AWT/Swing in the desktop gui code). This is using Maven 3.6.1 currently.
+The underlying java application and its GUI can be created and run by using the `~/sudoku/_build.bat` and `~/sudoku/_gui.bat` to create the maven packages for `~/sudoku/application/` and `~/sudoku/desktop-gui/` which sits on top of the application code (such that when the application code is published, it can be consumed by the Android app build which prohibits the AWT/Swing in the desktop gui code). This is using Maven 3.6.1 currently.

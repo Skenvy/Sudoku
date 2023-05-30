@@ -1,5 +1,5 @@
-cd APP
+cd application
 call mvn clean package
-cd ../GUI
+cd ../desktop-gui
 call mvn clean package
 cd ..
