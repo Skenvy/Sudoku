@@ -1,4 +1,4 @@
-# Sudoku
+# [Sudoku](https://github.com/Skenvy/Sudoku)
 ## What it is at the moment
 An implementation of a Sudoku solver (currently with Java JFrame), that I made during uni, as the first project I really enjoyed, with the intent of formalising how easy a particlar sudoku puzzle would be to solve by determining what moves can be made deterministically, rather than just iterating guesses.
 ## What I'd like to make it
