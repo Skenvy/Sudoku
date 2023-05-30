@@ -6,7 +6,7 @@
 
   <groupId>io.github.skenvy</groupId>
   <artifactId>sudoku-gui</artifactId>
-  <version>0.0.1</version>
+  <version>${elicious.version}</version>
 
   <name>Sudoku Desktop GUI</name>
   <description>
@@ -41,6 +41,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
+    <elicious.version>input, read from ../sudoku/pom.xml's project.version</elicious.version>
   </properties>
   
   <dependencies>
@@ -53,9 +54,9 @@
     <dependency>
       <groupId>io.github.skenvy</groupId>
       <artifactId>sudoku</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>${elicious.version}</version>
       <scope>system</scope>
-      <systemPath>${project.basedir}/../sudoku/target/sudoku-1.0-SNAPSHOT.jar</systemPath>
+      <systemPath>${project.basedir}/../sudoku/target/sudoku-${elicious.version}.jar</systemPath>
     </dependency>
   </dependencies>
 
@@ -117,7 +118,7 @@
           <configuration>
               <mainClass>io.github.skenvy.SudokuGUI</mainClass>
               <additionalClasspathElements>
-                <additionalClasspathElement>${project.basedir}/../sudoku/target/sudoku-1.0-SNAPSHOT.jar</additionalClasspathElement>
+                <additionalClasspathElement>${project.basedir}/../sudoku/target/sudoku-${elicious.version}.jar</additionalClasspathElement>
             </additionalClasspathElements>
           </configuration>
       </plugin>

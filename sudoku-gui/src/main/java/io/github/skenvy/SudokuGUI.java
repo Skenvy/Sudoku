@@ -278,10 +278,8 @@ public class SudokuGUI extends JFrame{
 		});
 		add(mainPanel);
 	}
-	
-	
-	public static void main(String[] args) {
-		sudokuGUI a = new SudokuGUI(3);
-	}
 
+	public static void main(String[] args) {
+		SudokuGUI a = new SudokuGUI(3);
+	}
 }
