@@ -4,19 +4,45 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.skenvy.sudoku</groupId>
-  <artifactId>APP</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <groupId>io.github.skenvy</groupId>
+  <artifactId>sudoku</artifactId>
+  <version>0.0.1</version>
 
-  <name>APP</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <name>Sudoku</name>
+  <description>
+    An implementation of a Sudoku solver, with the intent of formalising how easy a particlar sudoku puzzle would
+    be to solve by determining what moves can be made deterministically, rather than just iterating guesses.
+  </description>
+  <url>https://github.com/Skenvy/Sudoku</url>
+
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>https://github.com/Skenvy/Sudoku/blob/main/LICENSE</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>Nathan Levett</name>
+      <email>nathan.a.z.levett@gmail.com</email>
+      <organization>Skenvy</organization>
+      <organizationUrl>http://github.com/Skenvy</organizationUrl>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:git://github.com/Skenvy/Sudoku.git</connection>
+    <developerConnection>scm:git:ssh://github.com:Skenvy/Sudoku.git</developerConnection>
+    <url>http://github.com/Skenvy/Sudoku/tree/master</url>
+  </scm>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
   </properties>
+  <!-- FIXME -->
 
   <dependencies>
     <dependency>
@@ -25,6 +51,13 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>com.skenvy.sudoku</groupId>
+      <artifactId>APP</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../APP/target/APP-1.0-SNAPSHOT.jar</systemPath>
+  </dependency>
   </dependencies>
 
   <build>
@@ -69,6 +102,17 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>3.0.0</version>
+          <configuration>
+              <mainClass>io.github.skenvy.SudokuGUI</mainClass>
+              <additionalClasspathElements>
+                <additionalClasspathElement>${project.basedir}/../APP/target/APP-1.0-SNAPSHOT.jar</additionalClasspathElement>
+            </additionalClasspathElements>
+          </configuration>
+      </plugin>
       </plugins>
     </pluginManagement>
   </build>
