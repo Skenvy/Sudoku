@@ -19,12 +19,13 @@ build:
 	$(MVN) package
 
 # Something like the actual java invocation; (for the default gen'd)
-# java -cp target/Collatz-1.0-SNAPSHOT.jar org.skenvy.collatz.App
+# java -cp ./target/sudoku-0.0.1.jar io.github.skenvy.Sudoku
+# (OR) java -jar ./target/sudoku-0.0.1.jar
 # would be usable if it could discover the jar by name. Instead use
 # https://www.mojohaus.org/exec-maven-plugin/java-mojo.html
 # But this will only be relevant when the main class has main(String[] args)
 __run:
-	$(MVN) compile exec:java -Dexec.mainClass="io.github.skenvy.Collatz"
+	$(MVN) compile exec:java -Dexec.mainClass="io.github.skenvy.Sudoku"
 
 # The use of maven in GitHub Actions benefits from the batch mode options in
 # $(MVN_NONINTERACTIVE) and removing the "downloading" info output via $(HUSH)

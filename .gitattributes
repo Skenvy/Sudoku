@@ -1,0 +1,3 @@
+# Without this, the shell scripts will yell
+# /usr/bin/env: ‘bash\r’: Permission denied
+*.sh text eol=lf

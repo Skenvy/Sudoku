@@ -46,7 +46,7 @@ public class SudokuGUI extends JFrame{
 	JButton candidate = new JButton("Show Candidates!");
 	JTextField address = new JTextField("File Name (.extension)", 12);
 	JTextField[][][][] grid;
-	sudoku sudokuBoard;
+	Sudoku sudokuBoard;
 	
 	
 	SudokuGUI(final int size){
@@ -67,7 +67,7 @@ public class SudokuGUI extends JFrame{
 			left2.add(selections[1][k]);
 		}
 		grid = new JTextField[size][size][size][size];
-		sudokuBoard = new sudoku(size);
+		sudokuBoard = new Sudoku(size);
 		board.setLayout(new GridLayout(size,size));
 		subBoards = new JPanel[size][size];
 		for(int j0 = 0; j0 < size; j0++){

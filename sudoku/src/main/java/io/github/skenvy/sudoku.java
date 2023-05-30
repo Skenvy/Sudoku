@@ -3,7 +3,7 @@ package io.github.skenvy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class sudoku {
+public class Sudoku {
 	
 	/***
 	 * The individual cell width/length of a single inner grid. For a normal
@@ -43,19 +43,19 @@ public class sudoku {
 	ArrayList<String> operations = new ArrayList<String>();
 	
 	//Default is to make the board with the standard 3*3*3*3
-	public sudoku(){
+	public Sudoku(){
 		this.boardSize = 3;
 		initialiseBoardVariables();
 	}
 	
 	//Specify some size k to make a k*k*k*k size board!
-	public sudoku(int size){
+	public Sudoku(int size){
 		this.boardSize = size;
 		initialiseBoardVariables();
 	}
 	
 	//You set up a new instance using an already setup board
-	public sudoku(int[][][][] boardIn) throws InvlalidSudokuCongiguration{
+	public Sudoku(int[][][][] boardIn) throws InvlalidSudokuCongiguration{
 		this.boardSize = boardIn.length;
 		if(boardIn.length == boardIn[0].length & boardIn.length == boardIn[0][0].length & boardIn.length == boardIn[0][0][0].length){
 			initialiseBoardVariables();
@@ -87,7 +87,7 @@ public class sudoku {
 	}
 
 	public static void main(String[] args) {
-		sudoku puzzle = new sudoku(2);
+		Sudoku puzzle = new Sudoku(2);
 		String[] boardContents = new String[4];
 		//Zero Refill "S_0_0_0_0_0_0_0_0_0_E"
 		////XY				 000102101112202122
