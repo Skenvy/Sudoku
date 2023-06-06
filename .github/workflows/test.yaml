@@ -33,6 +33,10 @@ jobs:
         cache: maven
     - name: 🦂 Test
       run: make test_noninteractive
+    - name: 🦏 Build the GUI's "local" dependency
+      run: make build_noninteractive
+    - name: 🙈 Export the main package's version
+      run: export VER=$(mvn help:evaluate -Dexpression="project.version" -q -DforceStdout)
     - name: 🦂 Test (GUI)
       run: make test_noninteractive
       working-directory: sudoku-gui

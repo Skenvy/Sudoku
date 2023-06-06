@@ -6,5 +6,5 @@ REM it's possible to just run it with a maven command.
 cd sudoku
 FOR /F "delims=" %%i IN ('mvn help:evaluate -Dexpression^="project.version" -q -DforceStdout') DO set VER=%%i
 cd ../sudoku-gui
-call mvn exec:java -Delicious.version=%VER%
+call mvn exec:java -Delicious.version=%VER% -P target-adjacent-local-build
 cd ..

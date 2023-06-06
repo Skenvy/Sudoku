@@ -5,5 +5,5 @@ cd sudoku
 mvn clean package
 export VER=$(mvn help:evaluate -Dexpression="project.version" -q -DforceStdout)
 cd ../sudoku-gui
-mvn clean package -Delicious.version=$VER
+mvn clean package -Delicious.version=$VER -P target-adjacent-local-build
 cd ..

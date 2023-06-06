@@ -9,5 +9,5 @@ set -euxo pipefail
 cd sudoku
 export VER=$(mvn help:evaluate -Dexpression="project.version" -q -DforceStdout)
 cd ../sudoku-gui
-mvn exec:java -Delicious.version=$VER
+mvn exec:java -Delicious.version=$VER -P target-adjacent-local-build
 cd ..

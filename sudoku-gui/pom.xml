@@ -51,13 +51,6 @@
       <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>io.github.skenvy</groupId>
-      <artifactId>sudoku</artifactId>
-      <version>${elicious.version}</version>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/../sudoku/target/sudoku-${elicious.version}.jar</systemPath>
-    </dependency>
   </dependencies>
 
   <build>
@@ -111,17 +104,6 @@
             <subDirectory>java</subDirectory>
           </configuration>
         </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>exec-maven-plugin</artifactId>
-          <version>3.0.0</version>
-          <configuration>
-              <mainClass>io.github.skenvy.SudokuGUI</mainClass>
-              <additionalClasspathElements>
-                <additionalClasspathElement>${project.basedir}/../sudoku/target/sudoku-${elicious.version}.jar</additionalClasspathElement>
-            </additionalClasspathElements>
-          </configuration>
-      </plugin>
       </plugins>
     </pluginManagement>
   </build>
@@ -236,6 +218,43 @@
           </plugin>
         </plugins>
       </build>
+    </profile>
+    <profile>
+      <id>target-adjacent-local-build</id>
+      <dependencies>
+        <dependency>
+          <groupId>io.github.skenvy</groupId>
+          <artifactId>sudoku</artifactId>
+          <version>${elicious.version}</version>
+          <scope>system</scope>
+          <systemPath>${project.basedir}/../sudoku/target/sudoku-${elicious.version}.jar</systemPath>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>3.0.0</version>
+            <configuration>
+                <mainClass>io.github.skenvy.SudokuGUI</mainClass>
+                <additionalClasspathElements>
+                  <additionalClasspathElement>${project.basedir}/../sudoku/target/sudoku-${elicious.version}.jar</additionalClasspathElement>
+              </additionalClasspathElements>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>publishable-build</id>
+      <dependencies>
+        <dependency>
+          <groupId>io.github.skenvy</groupId>
+          <artifactId>sudoku</artifactId>
+          <version>${elicious.version}</version>
+        </dependency>
+      </dependencies>
     </profile>
   </profiles>
 </project>
