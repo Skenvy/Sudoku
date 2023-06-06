@@ -12,9 +12,6 @@ defaults:
     shell: bash
     working-directory: .
 jobs:
-  context:
-    name: GitHub 🐱‍👤 Context 📑
-    uses: ./.github/workflows/github-context.yaml
   test:
     name: Test 🦂
     permissions:
