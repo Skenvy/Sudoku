@@ -1,7 +1,11 @@
 HUSH=-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
 MVN=mvn clean
 MVN_NONINTERACTIVE=mvn -B -U clean
-.PHONY: clean docs docs_noninteractive docs_deploy test test_noninteractive build build_noninteractive run deploy_noninteractive_ossrh deploy_noninteractive_github
+# Version needs to be passed in on Windows
+VERSION:=$$(cd ../sudoku && mvn help:evaluate -Dexpression="project.version" -q -DforceStdout)
+LOCALLY=-P target-adjacent-local-build -Delicious.version=$(VERSION)
+
+.PHONY: clean docs test build run
 SHELL:=/bin/bash
 
 clean:
@@ -24,25 +28,46 @@ build:
 # would be usable if it could discover the jar by name. Instead use
 # https://www.mojohaus.org/exec-maven-plugin/java-mojo.html
 # But this will only be relevant when the main class has main(String[] args)
-__run:
-	$(MVN) compile exec:java -Dexec.mainClass="io.github.skenvy.SudokuGUI"
+run:
+	make -C ../sudoku build
+	$(MVN) compile exec:java -Dexec.mainClass="io.github.skenvy.SudokuGUI" $(LOCALLY)
 
 # The use of maven in GitHub Actions benefits from the batch mode options in
 # $(MVN_NONINTERACTIVE) and removing the "downloading" info output via $(HUSH)
+.PHONY: docs_noninteractive
 docs_noninteractive:
 	$(MVN_NONINTERACTIVE) site:site site:stage scm-publish:publish-scm -P deploy-ossrh -Dscmpublish.checkinComment="build based on $(SHORTSHA)" $(HUSH) -Dscmpublish.dryRun=true
 
+.PHONY: docs_deploy
 docs_deploy:
 	$(MVN_NONINTERACTIVE) site:site site:stage scm-publish:publish-scm -P deploy-ossrh -Dscmpublish.checkinComment="build based on $(SHORTSHA)" $(HUSH) -Dpassword=$(PASSWORD)
 
+.PHONY: test_noninteractive
 test_noninteractive:
 	$(MVN_NONINTERACTIVE) test $(HUSH)
 
+.PHONY: build_noninteractive
 build_noninteractive:
 	$(MVN_NONINTERACTIVE) package $(HUSH)
 
+.PHONY: deploy_noninteractive_ossrh
 deploy_noninteractive_ossrh:
 	$(MVN_NONINTERACTIVE) deploy -P deploy-ossrh,release,gpg $(HUSH)
 
+.PHONY: deploy_noninteractive_github
 deploy_noninteractive_github:
 	$(MVN_NONINTERACTIVE) deploy -P deploy-github,release,gpg $(HUSH)
+
+# "Locally": After building the sudoku jar.
+
+.PHONY: docs_noninteractive_locally
+docs_noninteractive_locally:
+	$(MVN_NONINTERACTIVE) site:site site:stage scm-publish:publish-scm -P deploy-ossrh -Dscmpublish.checkinComment="build based on $(SHORTSHA)" $(HUSH) -Dscmpublish.dryRun=true $(LOCALLY)
+
+.PHONY: test_noninteractive_locally
+test_noninteractive_locally:
+	$(MVN_NONINTERACTIVE) test $(HUSH) $(LOCALLY)
+
+.PHONY: build_noninteractive_locally
+build_noninteractive_locally:
+	$(MVN_NONINTERACTIVE) package $(HUSH) $(LOCALLY)
