@@ -6,7 +6,7 @@
 
   <groupId>io.github.skenvy</groupId>
   <artifactId>sudoku</artifactId>
-  <version>0.0.1</version>
+  <version>0.1.0</version>
 
   <name>Sudoku</name>
   <description>
