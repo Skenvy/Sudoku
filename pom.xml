@@ -5,10 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.github.skenvy</groupId>
-  <artifactId>sudoku-gui</artifactId>
-  <version>${elicious.version}</version>
+  <artifactId>sudoku</artifactId>
+  <version>0.1.0</version>
 
-  <name>Sudoku Desktop GUI</name>
+  <name>Sudoku</name>
   <description>
     An implementation of a Sudoku solver, with the intent of formalising how easy a particlar sudoku puzzle would
     be to solve by determining what moves can be made deterministically, rather than just iterating guesses.
@@ -41,7 +41,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
-    <elicious.version>input, read from ../sudoku/pom.xml's project.version</elicious.version>
   </properties>
   
   <dependencies>
@@ -50,13 +49,6 @@
       <artifactId>junit</artifactId>
       <version>4.13.2</version>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.github.skenvy</groupId>
-      <artifactId>sudoku</artifactId>
-      <version>${elicious.version}</version>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/../sudoku/target/sudoku-${elicious.version}.jar</systemPath>
     </dependency>
   </dependencies>
 
@@ -107,8 +99,7 @@
           <artifactId>maven-scm-publish-plugin</artifactId>
           <version>3.2.1</version>
           <configuration>
-            <scmBranch>gh-pages-java</scmBranch>
-            <subDirectory>java</subDirectory>
+            <scmBranch>gh-pages</scmBranch>
           </configuration>
         </plugin>
         <plugin>
@@ -116,12 +107,9 @@
           <artifactId>exec-maven-plugin</artifactId>
           <version>3.0.0</version>
           <configuration>
-              <mainClass>io.github.skenvy.SudokuGUI</mainClass>
-              <additionalClasspathElements>
-                <additionalClasspathElement>${project.basedir}/../sudoku/target/sudoku-${elicious.version}.jar</additionalClasspathElement>
-            </additionalClasspathElements>
+            <mainClass>io.github.skenvy.SudokuGUI</mainClass>
           </configuration>
-      </plugin>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>
