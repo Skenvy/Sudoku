@@ -15,7 +15,7 @@ permissions: {}
 defaults:
   run:
     shell: bash
-    working-directory: sudoku
+    working-directory: .
 jobs:
   quick-test:
     name: Quick Test 🦂
@@ -33,13 +33,6 @@ jobs:
         cache: maven
     - name: 🦂 Test
       run: make test_noninteractive
-    - name: 🦏 Build the GUI's "local" dependency
-      run: make build_noninteractive
-    - name: 🙈 Export the main package's version
-      run: export VER=$(mvn help:evaluate -Dexpression="project.version" -q -DforceStdout)
-    - name: 🦂 Test (GUI)
-      run: make test_noninteractive
-      working-directory: sudoku-gui
   full-test:
     name: Full Test 🦂
     if: >- 
@@ -65,9 +58,6 @@ jobs:
         cache: maven
     - name: 🦂 Test
       run: make test_noninteractive
-    - name: 🦂 Test (GUI)
-      run: make test_noninteractive
-      working-directory: sudoku-gui
   # codeql-java:
   #   name: CodeQL 🛡👨‍💻🛡
   #   if: >- 
@@ -107,6 +97,3 @@ jobs:
         cache: maven
     - name: 📄 Docs
       run: make docs_noninteractive SHORTSHA=$(git rev-parse --short HEAD)
-    - name: 📄 Docs (GUI)
-      run: make docs_noninteractive SHORTSHA=$(git rev-parse --short HEAD)
-      working-directory: sudoku-gui

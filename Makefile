@@ -1,10 +1,6 @@
 HUSH=-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
 MVN=mvn clean
 MVN_NONINTERACTIVE=mvn -B -U clean
-# Version needs to be passed in on Windows
-VERSION:=$$(cd ../sudoku && mvn help:evaluate -Dexpression="project.version" -q -DforceStdout)
-LOCALLY=-P target-adjacent-local-build -Delicious.version=$(VERSION)
-
 .PHONY: clean docs test build run
 SHELL:=/bin/bash
 
@@ -23,14 +19,13 @@ build:
 	$(MVN) package
 
 # Something like the actual java invocation; (for the default gen'd)
-# java -cp ./target/sudoku-gui-0.0.1.jar io.github.skenvy.SudokuGUI
-# (OR) java -jar ./target/sudoku-gui-0.0.1.jar
+# java -cp ./target/sudoku-0.0.1.jar io.github.skenvy.SudokuGUI
+# (OR) java -jar ./target/sudoku-0.0.1.jar
 # would be usable if it could discover the jar by name. Instead use
 # https://www.mojohaus.org/exec-maven-plugin/java-mojo.html
 # But this will only be relevant when the main class has main(String[] args)
 run:
-	make -C ../sudoku build
-	$(MVN) compile exec:java -Dexec.mainClass="io.github.skenvy.SudokuGUI" $(LOCALLY)
+	$(MVN) compile exec:java
 
 # The use of maven in GitHub Actions benefits from the batch mode options in
 # $(MVN_NONINTERACTIVE) and removing the "downloading" info output via $(HUSH)
@@ -57,17 +52,3 @@ deploy_noninteractive_ossrh:
 .PHONY: deploy_noninteractive_github
 deploy_noninteractive_github:
 	$(MVN_NONINTERACTIVE) deploy -P deploy-github,release,gpg $(HUSH)
-
-# "Locally": After building the sudoku jar.
-
-.PHONY: docs_noninteractive_locally
-docs_noninteractive_locally:
-	$(MVN_NONINTERACTIVE) site:site site:stage scm-publish:publish-scm -P deploy-ossrh -Dscmpublish.checkinComment="build based on $(SHORTSHA)" $(HUSH) -Dscmpublish.dryRun=true $(LOCALLY)
-
-.PHONY: test_noninteractive_locally
-test_noninteractive_locally:
-	$(MVN_NONINTERACTIVE) test $(HUSH) $(LOCALLY)
-
-.PHONY: build_noninteractive_locally
-build_noninteractive_locally:
-	$(MVN_NONINTERACTIVE) package $(HUSH) $(LOCALLY)
