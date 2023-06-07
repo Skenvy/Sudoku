@@ -49,7 +49,7 @@ public class SudokuGUI extends JFrame{
 	Sudoku sudokuBoard;
 	
 	
-	SudokuGUI(final int size){
+	SudokuGUI(final int size) {
 		setTitle("Sudoku Solver");
 		mainPanel.setLayout(new BorderLayout());
 		top.setLayout(new FlowLayout());
@@ -60,9 +60,9 @@ public class SudokuGUI extends JFrame{
 		digestView = new JScrollPane(digest);
 		right.add(digestView);
 		selections = new JButton[2][size*size];
-		for(int k = 0; k < size*size; k++){
-			selections[0][k] = new JButton(""+(k+1));
-			selections[1][k] = new JButton(""+(k+1));
+		for (int k = 0; k < size*size; k++) {
+			selections[0][k] = new JButton("" + (k + 1));
+			selections[1][k] = new JButton("" + (k + 1));
 			left1.add(selections[0][k]);
 			left2.add(selections[1][k]);
 		}
@@ -70,24 +70,24 @@ public class SudokuGUI extends JFrame{
 		sudokuBoard = new Sudoku(size);
 		board.setLayout(new GridLayout(size,size));
 		subBoards = new JPanel[size][size];
-		for(int j0 = 0; j0 < size; j0++){
-			for(int j1 = 0; j1 < size; j1++){
+		for (int j0 = 0; j0 < size; j0++) {
+			for (int j1 = 0; j1 < size; j1++) {
 				subBoards[j0][j1] = new JPanel(new GridLayout(size,size));
 			}
 		}
-		for(int j0 = 0; j0 < size; j0++){
-			for(int j1 = 0; j1 < size; j1++){
-				for(int k0 = 0; k0 < size; k0++){
-					for(int k1 = 0; k1 < size; k1++){
+		for (int j0 = 0; j0 < size; j0++) {
+			for (int j1 = 0; j1 < size; j1++) {
+				for (int k0 = 0; k0 < size; k0++) {
+					for (int k1 = 0; k1 < size; k1++) {
 						grid[j0][j1][k0][k1] = new JTextField("0",1);
-						/*grid[j0][j1][k0][k1].addActionListener(new ActionListener(){
-							public void actionPerformed(ActionEvent e){
-								for(int j0 = 0; j0 < size; j0++){
-									for(int j1 = 0; j1 < size; j1++){
-										for(int k0 = 0; k0 < size; k0++){
-											for(int k1 = 0; k1 < size; k1++){
-												if(grid[j0][j1][k0][k1].getBackground() == Color.white){
-													if(Integer.parseInt(grid[j0][j1][k0][k1].getText()) != 0){
+						/*grid[j0][j1][k0][k1].addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								for (int j0 = 0; j0 < size; j0++) {
+									for (int j1 = 0; j1 < size; j1++) {
+										for (int k0 = 0; k0 < size; k0++) {
+											for (int k1 = 0; k1 < size; k1++) {
+												if(grid[j0][j1][k0][k1].getBackground() == Color.white) {
+													if(Integer.parseInt(grid[j0][j1][k0][k1].getText()) != 0) {
 														grid[j0][j1][k0][k1].setBackground(Color.cyan);
 													}
 												}
@@ -109,8 +109,8 @@ public class SudokuGUI extends JFrame{
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		double width = screenSize.getWidth();
 		double height = screenSize.getHeight();
-		double windowWidth = size*size*30+400;
-		double windowHeight = size*size*30+200;
+		double windowWidth = size*size*30 + 400;
+		double windowHeight = size*size*30 + 200;
 		double localWidth = (width-windowWidth)/2;
 		double localHeight = (height-windowHeight)/2;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -125,17 +125,17 @@ public class SudokuGUI extends JFrame{
 		mainPanel.add(bottom, BorderLayout.SOUTH);
 		mainPanel.add(left, BorderLayout.WEST);
 		mainPanel.add(right, BorderLayout.EAST);
-		candidate.addActionListener(new ActionListener(){
+		candidate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				for(int j0 = 0; j0 < size; j0++){
-					for(int j1 = 0; j1 < size; j1++){
-						for(int k0 = 0; k0 < size; k0++){
-							for(int k1 = 0; k1 < size; k1++){
+				for (int j0 = 0; j0 < size; j0++) {
+					for (int j1 = 0; j1 < size; j1++) {
+						for (int k0 = 0; k0 < size; k0++) {
+							for (int k1 = 0; k1 < size; k1++) {
 								sudokuBoard.board[j0][j1][k0][k1] = Integer.parseInt(grid[j0][j1][k0][k1].getText());
-								if(Integer.parseInt(grid[j0][j1][k0][k1].getText()) > 0 && Integer.parseInt(grid[j0][j1][k0][k1].getText()) <= size*size){
+								if(Integer.parseInt(grid[j0][j1][k0][k1].getText()) > 0 && Integer.parseInt(grid[j0][j1][k0][k1].getText()) <= size*size) {
 									grid[j0][j1][k0][k1].setBackground(Color.GREEN);
 								} else {
-									if(grid[j0][j1][k0][k1].getBackground() == Color.GREEN){
+									if(grid[j0][j1][k0][k1].getBackground() == Color.GREEN) {
 										grid[j0][j1][k0][k1].setBackground(Color.white);
 									}
 								}
@@ -144,19 +144,19 @@ public class SudokuGUI extends JFrame{
 					}
 				}
 				sudokuBoard.initialiseBoard();
-				if(!sudokuBoard.errorExists()){
+				if(!sudokuBoard.errorExists()) {
 					sudokuBoard.solveBoard();
-					for(int j0 = 0; j0 < size; j0++){
-						for(int j1 = 0; j1 < size; j1++){
-							for(int k0 = 0; k0 < size; k0++){
-								for(int k1 = 0; k1 < size; k1++){
-									grid[j0][j1][k0][k1].setText(""+sudokuBoard.board[j0][j1][k0][k1]);
-									if(grid[j0][j1][k0][k1].getBackground() != Color.GREEN){
-										if(sudokuBoard.board[j0][j1][k0][k1] != 0){
+					for (int j0 = 0; j0 < size; j0++) {
+						for (int j1 = 0; j1 < size; j1++) {
+							for (int k0 = 0; k0 < size; k0++) {
+								for (int k1 = 0; k1 < size; k1++) {
+									grid[j0][j1][k0][k1].setText("" + sudokuBoard.board[j0][j1][k0][k1]);
+									if(grid[j0][j1][k0][k1].getBackground() != Color.GREEN) {
+										if(sudokuBoard.board[j0][j1][k0][k1] != 0) {
 											grid[j0][j1][k0][k1].setBackground(Color.YELLOW);
 										}
 									}
-									if(!sudokuBoard.cellFilled[j0][j1][k0][k1]){
+									if(!sudokuBoard.cellFilled[j0][j1][k0][k1]) {
 										
 									}
 								}
@@ -164,11 +164,11 @@ public class SudokuGUI extends JFrame{
 						}
 					}
 				} else {
-					for(int j0 = 0; j0 < size; j0++){
-						for(int j1 = 0; j1 < size; j1++){
-							for(int k0 = 0; k0 < size; k0++){
-								for(int k1 = 0; k1 < size; k1++){
-									if(sudokuBoard.errorInSquare[j0][j1][k0][k1]){
+					for (int j0 = 0; j0 < size; j0++) {
+						for (int j1 = 0; j1 < size; j1++) {
+							for (int k0 = 0; k0 < size; k0++) {
+								for (int k1 = 0; k1 < size; k1++) {
+									if(sudokuBoard.errorInSquare[j0][j1][k0][k1]) {
 										grid[j0][j1][k0][k1].setBackground(Color.RED);
 									}
 								}
@@ -178,12 +178,12 @@ public class SudokuGUI extends JFrame{
 				}
 			}
 		});
-		new1.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				for(int j0 = 0; j0 < size; j0++){
-					for(int j1 = 0; j1 < size; j1++){
-						for(int k0 = 0; k0 < size; k0++){
-							for(int k1 = 0; k1 < size; k1++){
+		new1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				for (int j0 = 0; j0 < size; j0++) {
+					for (int j1 = 0; j1 < size; j1++) {
+						for (int k0 = 0; k0 < size; k0++) {
+							for (int k1 = 0; k1 < size; k1++) {
 								grid[j0][j1][k0][k1].setText("0");
 								grid[j0][j1][k0][k1].setBackground(Color.white);
 							}
@@ -192,19 +192,19 @@ public class SudokuGUI extends JFrame{
 				}
 			}
 		});
-		load.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){/*
-				for(int j0 = 0; j0 < size; j0++){
-					for(int j1 = 0; j1 < size; j1++){
-						for(int k0 = 0; k0 < size; k0++){
-							for(int k1 = 0; k1 < size; k1++){
+		load.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {/*
+				for (int j0 = 0; j0 < size; j0++) {
+					for (int j1 = 0; j1 < size; j1++) {
+						for (int k0 = 0; k0 < size; k0++) {
+							for (int k1 = 0; k1 < size; k1++) {
 								grid[j0][j1][k0][k1].setText("0");
 								grid[j0][j1][k0][k1].setBackground(Color.white);
 							}
 						}
 					}
 				}
-				String input = System.getProperty("user.dir")+"/"+address.getText();
+				String input = System.getProperty("user.dir") + "/" + address.getText();
 				sudokuImageExtract a = new sudokuImageExtract();
 				try {
 					a.theImage = ImageIO.read(new File(input));
@@ -212,13 +212,13 @@ public class SudokuGUI extends JFrame{
 					e1.printStackTrace();
 				}
 				sudokuBoard.board = a.solveWebdoku();
-				for(int j0 = 0; j0 < size; j0++){
-					for(int j1 = 0; j1 < size; j1++){
-						for(int k0 = 0; k0 < size; k0++){
-							for(int k1 = 0; k1 < size; k1++){
-								if(sudokuBoard.board[j0][j1][k0][k1] > 0 && sudokuBoard.board[j0][j1][k0][k1] <= size*size){
+				for (int j0 = 0; j0 < size; j0++) {
+					for (int j1 = 0; j1 < size; j1++) {
+						for (int k0 = 0; k0 < size; k0++) {
+							for (int k1 = 0; k1 < size; k1++) {
+								if(sudokuBoard.board[j0][j1][k0][k1] > 0 && sudokuBoard.board[j0][j1][k0][k1] <= size*size) {
 									grid[j0][j1][k0][k1].setBackground(Color.CYAN);
-									grid[j0][j1][k0][k1].setText(sudokuBoard.board[j0][j1][k0][k1]+"");
+									grid[j0][j1][k0][k1].setText(sudokuBoard.board[j0][j1][k0][k1] + "");
 								} 
 							}
 						}
@@ -226,17 +226,17 @@ public class SudokuGUI extends JFrame{
 				}
 			*/}
 		});
-		solve.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				for(int j0 = 0; j0 < size; j0++){
-					for(int j1 = 0; j1 < size; j1++){
-						for(int k0 = 0; k0 < size; k0++){
-							for(int k1 = 0; k1 < size; k1++){
+		solve.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				for (int j0 = 0; j0 < size; j0++) {
+					for (int j1 = 0; j1 < size; j1++) {
+						for (int k0 = 0; k0 < size; k0++) {
+							for (int k1 = 0; k1 < size; k1++) {
 								sudokuBoard.board[j0][j1][k0][k1] = Integer.parseInt(grid[j0][j1][k0][k1].getText());
-								if(Integer.parseInt(grid[j0][j1][k0][k1].getText()) > 0 && Integer.parseInt(grid[j0][j1][k0][k1].getText()) <= size*size){
+								if(Integer.parseInt(grid[j0][j1][k0][k1].getText()) > 0 && Integer.parseInt(grid[j0][j1][k0][k1].getText()) <= size*size) {
 									grid[j0][j1][k0][k1].setBackground(Color.GREEN);
 								} else {
-									if(grid[j0][j1][k0][k1].getBackground() == Color.GREEN){
+									if(grid[j0][j1][k0][k1].getBackground() == Color.GREEN) {
 										grid[j0][j1][k0][k1].setBackground(Color.white);
 									}
 								}
@@ -245,15 +245,15 @@ public class SudokuGUI extends JFrame{
 					}
 				}
 				sudokuBoard.initialiseBoard();
-				if(!sudokuBoard.errorExists()){
+				if(!sudokuBoard.errorExists()) {
 					sudokuBoard.solveBoard();
-					for(int j0 = 0; j0 < size; j0++){
-						for(int j1 = 0; j1 < size; j1++){
-							for(int k0 = 0; k0 < size; k0++){
-								for(int k1 = 0; k1 < size; k1++){
-									grid[j0][j1][k0][k1].setText(""+sudokuBoard.board[j0][j1][k0][k1]);
-									if(grid[j0][j1][k0][k1].getBackground() != Color.GREEN){
-										if(sudokuBoard.board[j0][j1][k0][k1] != 0){
+					for (int j0 = 0; j0 < size; j0++) {
+						for (int j1 = 0; j1 < size; j1++) {
+							for (int k0 = 0; k0 < size; k0++) {
+								for (int k1 = 0; k1 < size; k1++) {
+									grid[j0][j1][k0][k1].setText("" + sudokuBoard.board[j0][j1][k0][k1]);
+									if(grid[j0][j1][k0][k1].getBackground() != Color.GREEN) {
+										if(sudokuBoard.board[j0][j1][k0][k1] != 0) {
 											grid[j0][j1][k0][k1].setBackground(Color.YELLOW);
 										}
 									}
@@ -262,11 +262,11 @@ public class SudokuGUI extends JFrame{
 						}
 					}
 				} else {
-					for(int j0 = 0; j0 < size; j0++){
-						for(int j1 = 0; j1 < size; j1++){
-							for(int k0 = 0; k0 < size; k0++){
-								for(int k1 = 0; k1 < size; k1++){
-									if(sudokuBoard.errorInSquare[j0][j1][k0][k1]){
+					for (int j0 = 0; j0 < size; j0++) {
+						for (int j1 = 0; j1 < size; j1++) {
+							for (int k0 = 0; k0 < size; k0++) {
+								for (int k1 = 0; k1 < size; k1++) {
+									if(sudokuBoard.errorInSquare[j0][j1][k0][k1]) {
 										grid[j0][j1][k0][k1].setBackground(Color.RED);
 									}
 								}

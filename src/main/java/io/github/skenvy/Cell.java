@@ -92,12 +92,12 @@ public class Cell {
 		this.box = box;
 	}
 
-	public int getValue(){
+	public int getValue() {
 		return this.value;
 	}
 
 	public void setValue(int value) throws SudokuCellCantSetValueOfPredeterminedCellException {
-		if(this.wasCellPredetermined()){
+		if(this.wasCellPredetermined()) {
 			throw new SudokuCellCantSetValueOfPredeterminedCellException();
 		}
 		this.value = value;
@@ -119,7 +119,7 @@ public class Cell {
 	
 	boolean[] initialisePossibleValues(int boardSize) {
 		boolean[] possibilities = new boolean[boardSize*boardSize];
-		for(int i = 0; i < boardSize*boardSize; i++) {
+		for (int i = 0; i < boardSize*boardSize; i++) {
 			possibilities[i] = true;
 		}
 		return possibilities;
@@ -129,27 +129,20 @@ public class Cell {
 	 * Used for cell related exceptions.
 	 */
 	public class SudokuCellException extends Exception {
-
 		public SudokuCellException(String string) {
 			super(string);
 		}
-		
 	}
 	
 	public final class SudokuCellInvalidInitialValueException extends SudokuCellException {
-
 		public SudokuCellInvalidInitialValueException(int initialValue, int boardSize) {
-			super("Invalid initial value. Board size of "+boardSize+" allows for values from 1 to "+(boardSize*boardSize)+"; was given initial value of "+initialValue);
+			super("Invalid initial value. Board size of " + boardSize + " allows for values from 1 to " + (boardSize*boardSize) + "; was given initial value of " + initialValue);
 		}
-		
 	}
 
 	public class SudokuCellCantSetValueOfPredeterminedCellException extends SudokuCellException {
-
 		public SudokuCellCantSetValueOfPredeterminedCellException() {
 			super("You cannot change the value of a predetermined cell.");
 		}
-		
 	}
-
 }

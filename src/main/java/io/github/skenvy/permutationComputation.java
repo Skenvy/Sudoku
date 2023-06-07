@@ -7,7 +7,7 @@ public class permutationComputation {
 	
 	ArrayList<int[]> permutations;
 	
-	public permutationComputation(){
+	public permutationComputation() {
 		permutations = new ArrayList<int[]>();
 	}
 	
@@ -16,47 +16,47 @@ public class permutationComputation {
 		pc.permutationCompute(1, 5);
 		pc.clear();
 		pc.permutationCompute(2, 5);
-		for(int k = 0; k < pc.permutations.size(); k++){
+		for (int k = 0; k < pc.permutations.size(); k++) {
 			System.out.println(Arrays.toString(pc.permutations.get(k)));
 		}
 	}
 	
-	public void permutationCompute(int subsetSize, int overHowMany){
+	public void permutationCompute(int subsetSize, int overHowMany) {
 		int[] carry = new int[subsetSize];
 		permutationComputationRoll(subsetSize,overHowMany,0, carry);
 	}
 	
-	public void permutationComputationRoll(int subsetSize, int overHowMany, int level, int[] carry){
-		if(level == subsetSize){
+	public void permutationComputationRoll(int subsetSize, int overHowMany, int level, int[] carry) {
+		if(level == subsetSize) {
 			permutations.add(carry.clone());
 		} else {
-			for(int k = level; k < overHowMany; k++){
-				if(level == 0){
+			for (int k = level; k < overHowMany; k++) {
+				if(level == 0) {
 					carry[0] = k;
 					permutationComputationRoll(subsetSize,overHowMany,1, carry);
 				} else {
-					if(k > carry[level-1]){
+					if(k > carry[level-1]) {
 						carry[level] = k;
-						permutationComputationRoll(subsetSize,overHowMany,level+1, carry);
+						permutationComputationRoll(subsetSize,overHowMany,level + 1, carry);
 					}
 				}
 			}
 		}
 	}
 	
-	public void clear(){
+	public void clear() {
 		permutations.clear();
 	}
 	
-	public int size(){
+	public int size() {
 		return permutations.size();
 	}
 	
-	public int[] get(int index){
+	public int[] get(int index) {
 		return permutations.get(index);
 	}
 	
-	public int getget(int index1, int index2){
+	public int getget(int index1, int index2) {
 		return permutations.get(index1)[index2];
 	}
 }

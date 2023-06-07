@@ -67,18 +67,18 @@ public class SudokuGrid {
     }
 
     private Cell[][][][] createCellGrid(int[][] valuesGrid) throws SudokuCellGridInvalidGridShapeException, Cell.SudokuCellInvalidInitialValueException{
-        if(valuesGrid.length != valuesGrid[0].length){
+        if(valuesGrid.length != valuesGrid[0].length) {
             throw new SudokuCellGridInvalidGridShapeException(valuesGrid.length, valuesGrid[0].length);
         } else if (!Utility.isIntegerSquared(valuesGrid.length)) {
             throw new SudokuCellGridInvalidGridShapeException(valuesGrid.length);
         }
         int boardSize = Utility.integerSquareRoot(valuesGrid.length);
         int[][][][] newValuesGrid = new int[boardSize][boardSize][boardSize][boardSize];
-        for(int bR = 0; bR < boardSize; bR++){ // iterate the boardRow ~ "000111222"
-            for(int bC = 0; bC < boardSize; bC++){ // iterate the boardColumn ~ "000111222"
-                for(int biR = 0; biR < boardSize; biR++){ // iterate the boxInternalRow ~ "012012012"
-                    for(int biC = 0; biC < boardSize; biC++){ // iterate the boxInternalColumn ~ "012012012
-                        newValuesGrid[bR][bC][biR][biC] = valuesGrid[boardSize*bR+biR][boardSize*bC+biC];
+        for (int bR = 0; bR < boardSize; bR++) { // iterate the boardRow ~ "000111222"
+            for (int bC = 0; bC < boardSize; bC++) { // iterate the boardColumn ~ "000111222"
+                for (int biR = 0; biR < boardSize; biR++) { // iterate the boxInternalRow ~ "012012012"
+                    for (int biC = 0; biC < boardSize; biC++) { // iterate the boxInternalColumn ~ "012012012
+                        newValuesGrid[bR][bC][biR][biC] = valuesGrid[boardSize*bR + biR][boardSize*bC + biC];
                     }
                 }
             }
@@ -87,7 +87,7 @@ public class SudokuGrid {
     }
 
     private Cell[][][][] createCellGrid(int[][][][] valuesGrid) throws SudokuCellGridInvalidGridShapeException, Cell.SudokuCellInvalidInitialValueException{
-        if((valuesGrid.length != valuesGrid[0].length) || (valuesGrid.length != valuesGrid[0][0].length) || (valuesGrid.length != valuesGrid[0][0][0].length)){
+        if((valuesGrid.length != valuesGrid[0].length) || (valuesGrid.length != valuesGrid[0][0].length) || (valuesGrid.length != valuesGrid[0][0][0].length)) {
             throw new SudokuCellGridInvalidGridShapeException(valuesGrid.length, valuesGrid[0].length, valuesGrid[0][0].length, valuesGrid[0][0][0].length);
         }
         int boardSize = valuesGrid.length;
@@ -95,10 +95,10 @@ public class SudokuGrid {
         List<CellCollection> rows = initialiseEmptyCellCollections(boardSize);
         List<CellCollection> columns = initialiseEmptyCellCollections(boardSize);
         List<CellCollection> boxes = initialiseEmptyCellCollections(boardSize);
-        for(int bR = 0; bR < boardSize; bR++){ // iterate the boardRow ~ "000111222"
-            for(int bC = 0; bC < boardSize; bC++){ // iterate the boardColumn ~ "000111222"
-                for(int biR = 0; biR < boardSize; biR++){ // iterate the boxInternalRow ~ "012012012"
-                    for(int biC = 0; biC < boardSize; biC++){ // iterate the boxInternalColumn ~ "012012012
+        for (int bR = 0; bR < boardSize; bR++) { // iterate the boardRow ~ "000111222"
+            for (int bC = 0; bC < boardSize; bC++) { // iterate the boardColumn ~ "000111222"
+                for (int biR = 0; biR < boardSize; biR++) { // iterate the boxInternalRow ~ "012012012"
+                    for (int biC = 0; biC < boardSize; biC++) { // iterate the boxInternalColumn ~ "012012012
                         // We must first create the cell with a reference to its row, column, and box
                         int rowIndex = boardSize*bR + biR;
                         int colIndex = boardSize*bC + biC;
@@ -115,23 +115,23 @@ public class SudokuGrid {
         return tempCells;
     }
 
-    List<CellCollection> initialiseEmptyCellCollections(int boardSize){
+    List<CellCollection> initialiseEmptyCellCollections(int boardSize) {
         List<CellCollection> tempCollections = new ArrayList<CellCollection>(boardSize*boardSize);
-        for(int k = 0; k < boardSize*boardSize; k++){
+        for (int k = 0; k < boardSize*boardSize; k++) {
             tempCollections.add(new CellCollection(boardSize));
         }
         return tempCollections;
     }
 
-    public List<CellCollection> getRows(){
+    public List<CellCollection> getRows() {
         return this.rows;
     }
 
-    public List<CellCollection> getColumns(){
+    public List<CellCollection> getColumns() {
         return this.columns;
     }
 
-    public List<CellCollection> getBoxes(){
+    public List<CellCollection> getBoxes() {
         return this.boxes;
     }
 
