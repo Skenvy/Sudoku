@@ -8,7 +8,7 @@ public class Cell {
   /**
    * The initial value that a cell starts with. 0 for empty cells.
    */
-  final private int initialValue;
+  private final int initialValue;
 
   /**
    * The current value of a cell, whether assigned at the start, or
@@ -19,7 +19,7 @@ public class Cell {
   /**
    * An array to track the possibilities for an individual cell. 
    */
-  final private boolean[] possibleValues;
+  private final boolean[] possibleValues;
 
   /**
    * The row that this cell is a member of.

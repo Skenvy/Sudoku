@@ -17,23 +17,23 @@ public class SudokuGrid {
   /**
    * A list of the rows ~ from top to bottom
    */
-  final private List<CellCollection> rows;
+  private final List<CellCollection> rows;
 
   /**
    * A list of the columns ~ from left to right
    */
-  final private List<CellCollection> columns;
+  private final List<CellCollection> columns;
 
   /**
    * A list of the boxes [or blocks|regions] ~
    * from top left across and then down to bottom right.
    */
-  final private List<CellCollection> boxes;
+  private final List<CellCollection> boxes;
 
   /**
    * A 2d array of the cells, first indexing by row, then by column
    */
-  final private Cell[][][][] cells;
+  private final Cell[][][][] cells;
 
   /**
    * Initialise an empty sudoku grid for a standard Sudoku board
@@ -74,11 +74,11 @@ public class SudokuGrid {
     }
     int boardSize = Utility.integerSquareRoot(valuesGrid.length);
     int[][][][] newValuesGrid = new int[boardSize][boardSize][boardSize][boardSize];
-    for (int bR = 0; bR < boardSize; bR++) { // iterate the boardRow ~ "000111222"
-      for (int bC = 0; bC < boardSize; bC++) { // iterate the boardColumn ~ "000111222"
-        for (int biR = 0; biR < boardSize; biR++) { // iterate the boxInternalRow ~ "012012012"
-          for (int biC = 0; biC < boardSize; biC++) { // iterate the boxInternalColumn ~ "012012012
-            newValuesGrid[bR][bC][biR][biC] = valuesGrid[boardSize * bR + biR][boardSize * bC + biC];
+    for (int boardRow = 0; boardRow < boardSize; boardRow++) { // iterate the boardRow ~ "000111222"
+      for (int boardColumn = 0; boardColumn < boardSize; boardColumn++) { // iterate the boardColumn ~ "000111222"
+        for (int boxInternalRow = 0; boxInternalRow < boardSize; boxInternalRow++) { // iterate the boxInternalRow ~ "012012012"
+          for (int boxInternalColumn = 0; boxInternalColumn < boardSize; boxInternalColumn++) { // iterate the boxInternalColumn ~ "012012012
+            newValuesGrid[boardRow][boardColumn][boxInternalRow][boxInternalColumn] = valuesGrid[boardSize * boardRow + boxInternalRow][boardSize * boardColumn + boxInternalColumn];
           }
         }
       }
@@ -95,19 +95,19 @@ public class SudokuGrid {
     List<CellCollection> rows = initialiseEmptyCellCollections(boardSize);
     List<CellCollection> columns = initialiseEmptyCellCollections(boardSize);
     List<CellCollection> boxes = initialiseEmptyCellCollections(boardSize);
-    for (int bR = 0; bR < boardSize; bR++) { // iterate the boardRow ~ "000111222"
-      for (int bC = 0; bC < boardSize; bC++) { // iterate the boardColumn ~ "000111222"
-        for (int biR = 0; biR < boardSize; biR++) { // iterate the boxInternalRow ~ "012012012"
-          for (int biC = 0; biC < boardSize; biC++) { // iterate the boxInternalColumn ~ "012012012
+    for (int boardRow = 0; boardRow < boardSize; boardRow++) { // iterate the boardRow ~ "000111222"
+      for (int boardColumn = 0; boardColumn < boardSize; boardColumn++) { // iterate the boardColumn ~ "000111222"
+        for (int boxInternalRow = 0; boxInternalRow < boardSize; boxInternalRow++) { // iterate the boxInternalRow ~ "012012012"
+          for (int boxInternalColumn = 0; boxInternalColumn < boardSize; boxInternalColumn++) { // iterate the boxInternalColumn ~ "012012012
             // We must first create the cell with a reference to its row, column, and box
-            int rowIndex = boardSize * bR + biR;
-            int colIndex = boardSize * bC + biC;
-            int boxIndex = boardSize * bR + bC;
-            tempCells[bR][bC][biR][biC] = new Cell(valuesGrid[bR][bC][biR][biC], boardSize, rows.get(rowIndex), columns.get(colIndex), boxes.get(boxIndex));
+            int rowIndex = boardSize * boardRow + boxInternalRow;
+            int colIndex = boardSize * boardColumn + boxInternalColumn;
+            int boxIndex = boardSize * boardRow + boardColumn;
+            tempCells[boardRow][boardColumn][boxInternalRow][boxInternalColumn] = new Cell(valuesGrid[boardRow][boardColumn][boxInternalRow][boxInternalColumn], boardSize, rows.get(rowIndex), columns.get(colIndex), boxes.get(boxIndex));
             // then add the created cell to that same row, column, and box.
-            rows.get(rowIndex).addCellToCollection(tempCells[bR][bC][biR][biC]);
-            columns.get(colIndex).addCellToCollection(tempCells[bR][bC][biR][biC]);
-            boxes.get(boxIndex).addCellToCollection(tempCells[bR][bC][biR][biC]);
+            rows.get(rowIndex).addCellToCollection(tempCells[boardRow][boardColumn][boxInternalRow][boxInternalColumn]);
+            columns.get(colIndex).addCellToCollection(tempCells[boardRow][boardColumn][boxInternalRow][boxInternalColumn]);
+            boxes.get(boxIndex).addCellToCollection(tempCells[boardRow][boardColumn][boxInternalRow][boxInternalColumn]);
           }
         }
       }

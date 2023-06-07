@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class CellCollection {
 
-  final private List<Cell> cells;
+  private final List<Cell> cells;
 
   /**
    * Initialise an empty collection to reference 9 cells in a row, column, or box

@@ -10,7 +10,7 @@ public class Sudoku {
    * sudoku board, this is 3. A grid/row/column has "boardSize^2" many cells,
    * and the overall board has "(boardSize^2)^2" ~ "boardSize^4" many cells.
    */
-  final private int boardSize;
+  private final int boardSize;
 
   /**
    * The known and determined values that populate the grid. Is initialised
