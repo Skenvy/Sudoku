@@ -1,7 +1,7 @@
 HUSH=-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
 MVN=mvn clean
 MVN_NONINTERACTIVE=mvn -B -U clean
-DOCS_PUBLISH_GOALS=site:site site:stage scm-publish:publish-scm -P deploy-ossrh -Dscmpublish.checkinComment=
+DOCS_PUBLISH_GOALS=jxr:jxr site:site site:stage scm-publish:publish-scm -P deploy-ossrh -Dscmpublish.checkinComment=
 .PHONY: clean docs test lint build run
 SHELL:=/bin/bash
 
@@ -12,7 +12,7 @@ clean:
 # http://localhost:8080/apidocs/io/github/skenvy/package-summary.html
 # http://localhost:8080/checkstyle.html
 docs:
-	$(MVN) site:site site:run -P deploy-ossrh
+	$(MVN) jxr:jxr site:site site:run -P deploy-ossrh
 
 # the clean phase can be included in a single invocation
 test:
