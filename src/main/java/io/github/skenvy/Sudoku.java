@@ -55,7 +55,7 @@ public class Sudoku {
   }
 
   //You set up a new instance using an already setup board
-  public Sudoku(int[][][][] boardIn) throws InvlalidSudokuCongiguration{
+  public Sudoku(int[][][][] boardIn) throws InvlalidSudokuCongiguration {
     this.boardSize = boardIn.length;
     if (boardIn.length == boardIn[0].length & boardIn.length == boardIn[0][0].length & boardIn.length == boardIn[0][0][0].length) {
       initialiseBoardVariables();
@@ -150,7 +150,7 @@ public class Sudoku {
       // i.e. "0 then 1 then 2 then 0 then 1 then 2 then 0 then 1 then 2"
       gridRow = j0 % boardSize;
       // i.e. "0 then 0 then 0 then 1 then 1 then 1 then 2 then 2 then 2" < thanks to java always rounding down.
-      boardRow = (j0 - gridRow)/boardSize;
+      boardRow = (j0 - gridRow) / boardSize;
       //Keep track of index where we found the last delimiter
       previousIndex = 0;
       //Iterate the columns
@@ -158,7 +158,7 @@ public class Sudoku {
         // i.e. "0 then 1 then 2 then 0 then 1 then 2 then 0 then 1 then 2"
         gridColumn = j1 % boardSize;
         // i.e. "0 then 0 then 0 then 1 then 1 then 1 then 2 then 2 then 2" < thanks to java always rounding down.
-        boardColumn = (j1 - gridColumn)/boardSize;
+        boardColumn = (j1 - gridColumn) / boardSize;
         //Find the next value between two instances of the delimiter
         int stringIntStartIndex = boardRows[j0].indexOf('_', previousIndex) + 1;
         int stringIntEndIndex   = boardRows[j0].indexOf('_', stringIntStartIndex);
@@ -184,13 +184,13 @@ public class Sudoku {
     for (int j0 = 0; j0 < (boardSize * boardSize); j0++) {
       mess = "Row " + (j0) + ": S_";
       gridRow = j0 % boardSize;
-      boardRow = (j0 - gridRow)/boardSize;
+      boardRow = (j0 - gridRow) / boardSize;
       for (int j1 = 0; j1 < (boardSize * boardSize); j1++) {
         gridColumn = j1 % boardSize;
-        boardColumn = (j1 - gridColumn)/boardSize;
-        mess=mess.concat("" + board[boardRow][boardColumn][gridRow][gridColumn] + "_");
+        boardColumn = (j1 - gridColumn) / boardSize;
+        mess = mess.concat("" + board[boardRow][boardColumn][gridRow][gridColumn] + "_");
       }
-      mess=mess.concat("E");
+      mess = mess.concat("E");
       textFieldAdd(mess);
     }
   }
@@ -211,8 +211,8 @@ public class Sudoku {
   public void initialisePlaceFilled() {
     for (int k0 = 0; k0 < boardSize; k0++) { //grid row iterate
       for (int k1 = 0; k1 < boardSize; k1++) { //grid column iterate
-        for (int k2 = 0; k2 < boardSize; k2++) {//small grid row iterate
-          for (int k3 = 0; k3 < boardSize; k3++) {//small grid column iterate
+        for (int k2 = 0; k2 < boardSize; k2++) { //small grid row iterate
+          for (int k3 = 0; k3 < boardSize; k3++) { //small grid column iterate
             if ((board[k0][k1][k2][k3] >= 1) && (board[k0][k1][k2][k3] <= (boardSize * boardSize))) {
               cellFilled[k0][k1][k2][k3] = true;
               operations.add("Place " + k0 + ", " + k1 + ", " + k2 + ", " + k3 + " filled with " + board[k0][k1][k2][k3]);
@@ -253,7 +253,7 @@ public class Sudoku {
           for (int k3 = 0; k3 < boardSize; k3++) {
             if (!cellFilled[k0][k1][k2][k3]) {
               for (int k4 = 0; k4 < (boardSize * boardSize); k4++) {
-                if (numberPresentRC[0][k4][k2 + k0*board.length] || numberPresentRC[1][k4][k3 + k1*board.length] || numberPresentG[k4][k0][k1]) {
+                if (numberPresentRC[0][k4][k2 + k0 * board.length] || numberPresentRC[1][k4][k3 + k1 * board.length] || numberPresentG[k4][k0][k1]) {
                   placeCanContain[k0][k1][k2][k3][k4] = false;
                 }
               }
@@ -291,8 +291,8 @@ public class Sudoku {
         for (int k2 = 0; k2 < boardSize; k2++) {
           for (int k3 = 0; k3 < boardSize; k3++) {
             if (cellFilled[k0][k1][k2][k3]) {
-              numberPresentRC[0][board[k0][k1][k2][k3] - 1][k2 + k0*board.length] = true;
-              numberPresentRC[1][board[k0][k1][k2][k3] - 1][k3 + k1*board.length] = true;
+              numberPresentRC[0][board[k0][k1][k2][k3] - 1][k2 + k0 * board.length] = true;
+              numberPresentRC[1][board[k0][k1][k2][k3] - 1][k3 + k1 * board.length] = true;
               numberPresentG[board[k0][k1][k2][k3] - 1][k0][k1] = true;
             }
           }
@@ -306,21 +306,21 @@ public class Sudoku {
     initialiseNumberPresentGRC(true);
     for (int k0 = 0; k0 < boardSize; k0++) { //grid row iterate
       for (int k1 = 0; k1 < boardSize; k1++) { //grid column iterate
-        for (int k2 = 0; k2 < boardSize; k2++) {//small grid row iterate
-          for (int k3 = 0; k3 < boardSize; k3++) {//small grid column iterate
+        for (int k2 = 0; k2 < boardSize; k2++) { //small grid row iterate
+          for (int k3 = 0; k3 < boardSize; k3++) { //small grid column iterate
             if (cellFilled[k0][k1][k2][k3]) {
-              if (numberPresentRC[0][board[k0][k1][k2][k3] - 1][k2 + k0*boardSize]) {
-                textFieldAdd("Error in row " + (k2 + k0*boardSize));
+              if (numberPresentRC[0][board[k0][k1][k2][k3] - 1][k2 + k0 * boardSize]) {
+                textFieldAdd("Error in row " + (k2 + k0 * boardSize));
                 return false;
-              } else if (numberPresentRC[1][board[k0][k1][k2][k3] - 1][k3 + k1*boardSize]) {
-                textFieldAdd("Error in column " + (k3 + k1*boardSize));
+              } else if (numberPresentRC[1][board[k0][k1][k2][k3] - 1][k3 + k1 * boardSize]) {
+                textFieldAdd("Error in column " + (k3 + k1 * boardSize));
                 return false;
               } else if (numberPresentG[board[k0][k1][k2][k3] - 1][k0][k1]) {
                 textFieldAdd("Error in grid (R,C): (" + k0 + ", " + k1 + ")");
                 return false;
               } else {
-                numberPresentRC[0][board[k0][k1][k2][k3] - 1][k2 + k0*boardSize] = true;
-                numberPresentRC[1][board[k0][k1][k2][k3] - 1][k3 + k1*boardSize] = true;
+                numberPresentRC[0][board[k0][k1][k2][k3] - 1][k2 + k0 * boardSize] = true;
+                numberPresentRC[1][board[k0][k1][k2][k3] - 1][k3 + k1 * boardSize] = true;
                 numberPresentG[board[k0][k1][k2][k3] - 1][k0][k1] = true;
               }
             }
@@ -346,9 +346,9 @@ public class Sudoku {
           for (int k1 = 0; k1 < boardSize; k1++) {
             if (cellFilled[j0][j1][k0][k1]) {
               if (0 < board[j0][j1][k0][k1] && board[j0][j1][k0][k1] <= (boardSize * boardSize)) {
-                appearsTimes[0][j0*boardSize + j1][board[j0][j1][k0][k1]-1]++;
-                appearsTimes[1][j0*boardSize + k0][board[j0][j1][k0][k1]-1]++;
-                appearsTimes[2][j1*boardSize + k1][board[j0][j1][k0][k1]-1]++;
+                appearsTimes[0][j0 * boardSize + j1][board[j0][j1][k0][k1] - 1]++;
+                appearsTimes[1][j0 * boardSize + k0][board[j0][j1][k0][k1] - 1]++;
+                appearsTimes[2][j1 * boardSize + k1][board[j0][j1][k0][k1] - 1]++;
               }
             }
           }
@@ -360,7 +360,7 @@ public class Sudoku {
         for (int k0 = 0; k0 < boardSize; k0++) {
           for (int k1 = 0; k1 < boardSize; k1++) {
             if (0 < board[j0][j1][k0][k1] && board[j0][j1][k0][k1] <= (boardSize * boardSize)) {
-              if (appearsTimes[0][j0*3 + j1][board[j0][j1][k0][k1]-1] > 1 || appearsTimes[1][j0*3 + k0][board[j0][j1][k0][k1]-1] > 1 || appearsTimes[2][j1*3 + k1][board[j0][j1][k0][k1]-1] > 1) {
+              if (appearsTimes[0][j0 * 3 + j1][board[j0][j1][k0][k1] - 1] > 1 || appearsTimes[1][j0 * 3 + k0][board[j0][j1][k0][k1] - 1] > 1 || appearsTimes[2][j1 * 3 + k1][board[j0][j1][k0][k1] - 1] > 1) {
                 errorInSquare[j0][j1][k0][k1] = true;
               } else {
                 errorInSquare[j0][j1][k0][k1] = false;
@@ -377,8 +377,8 @@ public class Sudoku {
     boolean check = false;
     for (int k0 = 0; k0 < boardSize; k0++) { //grid row iterate
       for (int k1 = 0; k1 < boardSize; k1++) { //grid column iterate
-        for (int k2 = 0; k2 < boardSize; k2++) {//small grid row iterate
-          for (int k3 = 0; k3 < boardSize; k3++) {//small grid column iterate
+        for (int k2 = 0; k2 < boardSize; k2++) { //small grid row iterate
+          for (int k3 = 0; k3 < boardSize; k3++) { //small grid column iterate
             if (errorInSquare[k0][k1][k2][k3]) {
               check = true;
             }
@@ -392,8 +392,8 @@ public class Sudoku {
   public boolean boardCheckComplete() {
     for (int k0 = 0; k0 < boardSize; k0++) { //grid row iterate
       for (int k1 = 0; k1 < boardSize; k1++) { //grid column iterate
-        for (int k2 = 0; k2 < boardSize; k2++) {//small grid row iterate
-          for (int k3 = 0; k3 < boardSize; k3++) {//small grid column iterate
+        for (int k2 = 0; k2 < boardSize; k2++) { //small grid row iterate
+          for (int k3 = 0; k3 < boardSize; k3++) { //small grid column iterate
             if (!cellFilled[k0][k1][k2][k3]) {
               return false;
             } 
@@ -408,8 +408,8 @@ public class Sudoku {
     int count = 0;
     for (int k0 = 0; k0 < boardSize; k0++) { //grid row iterate
       for (int k1 = 0; k1 < boardSize; k1++) { //grid column iterate
-        for (int k2 = 0; k2 < boardSize; k2++) {//small grid row iterate
-          for (int k3 = 0; k3 < boardSize; k3++) {//small grid column iterate
+        for (int k2 = 0; k2 < boardSize; k2++) { //small grid row iterate
+          for (int k3 = 0; k3 < boardSize; k3++) { //small grid column iterate
             if (cellFilled[k0][k1][k2][k3]) {
               count++;
             } 
@@ -469,21 +469,21 @@ public class Sudoku {
       textFieldAdd("Board already solved");
       return true;
     }
-    int unsolvedSquares = (boardSize * boardSize)*(boardSize * boardSize) - boardCheckPlacesFilled();
+    int unsolvedSquares = (boardSize * boardSize) * (boardSize * boardSize) - boardCheckPlacesFilled();
     int countSoleCandidates = 0;
     int countUniqueCandidates = 0;
     for (int q = 0; q < unsolvedSquares; q++) {
-      countSoleCandidates +=iterateSoleCandidate();
+      countSoleCandidates += iterateSoleCandidate();
       if (countSoleCandidates == unsolvedSquares) {
         break;
       } else {
-        unsolvedSquares-=countSoleCandidates;
+        unsolvedSquares -= countSoleCandidates;
       }
-      countUniqueCandidates +=iterateUniqueCandidate();
+      countUniqueCandidates += iterateUniqueCandidate();
       if (countUniqueCandidates == unsolvedSquares) {
         break;
       } else {
-        unsolvedSquares-=countUniqueCandidates;
+        unsolvedSquares -= countUniqueCandidates;
       }
       if ((countSoleCandidates == 0) && (countUniqueCandidates == 0)) {
         break;
@@ -505,26 +505,26 @@ public class Sudoku {
     if (boardCheckComplete()) {
       return true;
     }
-    int unsolvedSquares = (boardSize * boardSize)*(boardSize * boardSize) - boardCheckPlacesFilled();
+    int unsolvedSquares = (boardSize * boardSize) * (boardSize * boardSize) - boardCheckPlacesFilled();
     int countSoleCandidates = 0;
     int countUniqueCandidates = 0;
     int countReduceRCByG = 0;
     int countReduceGByRC = 0;
     for (int q = 0; q < unsolvedSquares; q++) {
-      countSoleCandidates +=iterateSoleCandidate();
+      countSoleCandidates += iterateSoleCandidate();
       if (countSoleCandidates == unsolvedSquares) {
         break;
       } else {
-        unsolvedSquares-=countSoleCandidates;
+        unsolvedSquares -= countSoleCandidates;
       }
-      countUniqueCandidates +=iterateUniqueCandidate();
+      countUniqueCandidates += iterateUniqueCandidate();
       if (countUniqueCandidates == unsolvedSquares) {
         break;
       } else {
-        unsolvedSquares-=countUniqueCandidates;
+        unsolvedSquares -= countUniqueCandidates;
       }
-      countReduceRCByG +=iterateReductionOfCanContainInRCByG();
-      countReduceGByRC +=iterateReductionOfCanContainInGByRC();
+      countReduceRCByG += iterateReductionOfCanContainInRCByG();
+      countReduceGByRC += iterateReductionOfCanContainInGByRC();
     }
     if (boardCheckComplete()) {
       textFieldAdd("Board was moderate!");
@@ -546,7 +546,7 @@ public class Sudoku {
     if (boardCheckComplete()) {
       return true;
     }
-    int unsolvedSquares = (boardSize * boardSize)*(boardSize * boardSize) - boardCheckPlacesFilled();
+    int unsolvedSquares = (boardSize * boardSize) * (boardSize * boardSize) - boardCheckPlacesFilled();
     int countSoleCandidates = 0;
     int countUniqueCandidates = 0;
     int countReduceRCByG = 0;
@@ -554,22 +554,22 @@ public class Sudoku {
     int countReduceSubVis = 0;
     int countReduceSubHid = 0;
     for (int q = 0; q < unsolvedSquares; q++) {
-      countSoleCandidates +=iterateSoleCandidate();
+      countSoleCandidates += iterateSoleCandidate();
       if (countSoleCandidates == unsolvedSquares) {
         break;
       } else {
-        unsolvedSquares-=countSoleCandidates;
+        unsolvedSquares -= countSoleCandidates;
       }
-      countUniqueCandidates +=iterateUniqueCandidate();
+      countUniqueCandidates += iterateUniqueCandidate();
       if (countUniqueCandidates == unsolvedSquares) {
         break;
       } else {
-        unsolvedSquares-=countUniqueCandidates;
+        unsolvedSquares -= countUniqueCandidates;
       }
-      countReduceRCByG +=iterateReductionOfCanContainInRCByG();
-      countReduceGByRC +=iterateReductionOfCanContainInGByRC();
-      countReduceSubVis +=iterateReductionOfCanContainSubsetVisible();
-      countReduceSubHid +=iterateReductionOfCanContainSubsetHidden();
+      countReduceRCByG += iterateReductionOfCanContainInRCByG();
+      countReduceGByRC += iterateReductionOfCanContainInGByRC();
+      countReduceSubVis += iterateReductionOfCanContainSubsetVisible();
+      countReduceSubHid += iterateReductionOfCanContainSubsetHidden();
     }
     if (boardCheckComplete()) {
       textFieldAdd("Board was hard!");
@@ -594,7 +594,7 @@ public class Sudoku {
   public int iterateSoleCandidate() {
     //System.out.println("Called: IterateSinglePossibility");
     int count = 0;
-    while(checkSoleCandidate()) {
+    while (checkSoleCandidate()) {
       //System.out.println("Looped: IterateSinglePossibility");
       count++;
     }
@@ -613,7 +613,7 @@ public class Sudoku {
               for (int k4 = 0; k4 < (boardSize * boardSize); k4++) {
                 if (placeCanContain[k0][k1][k2][k3][k4]) {
                   candidate = k4;
-                  candidates +=1;
+                  candidates += 1;
                 }
               }
               if (candidates == 1) {
@@ -633,7 +633,7 @@ public class Sudoku {
   public int iterateUniqueCandidate() {
     //System.out.println("Called: IterateSinglePossibility");
     int count = 0;
-    while(checkUniqueCandidate()) {
+    while (checkUniqueCandidate()) {
       //System.out.println("Looped: IterateSinglePossibility");
       count++;
     }
@@ -647,16 +647,16 @@ public class Sudoku {
     for (int val = 0; val < (boardSize * boardSize); val++) {
       for (int OuterGRC = 0; OuterGRC < (boardSize * boardSize); OuterGRC++) { //Which G,R,C
         GRCY = OuterGRC % boardSize;
-        GRCX = (OuterGRC - GRCY)/boardSize;
+        GRCX = (OuterGRC - GRCY) / boardSize;
         //Grid Check
         if (!numberPresentG[val][GRCX][GRCY]) {
           candidates = 0; candR0 = GRCX; candC0 = GRCY; candR1 = 0; candC1 = 0;
           for (int InnerGRC = 0; InnerGRC < (boardSize * boardSize); InnerGRC++) { //Check elements of G,R,C
             grcY = InnerGRC % boardSize;
-            grcX = (InnerGRC - grcY)/boardSize;
+            grcX = (InnerGRC - grcY) / boardSize;
             if (!cellFilled[GRCX][GRCY][grcX][grcY] && placeCanContain[GRCX][GRCY][grcX][grcY][val]) {
               candR1 = grcX; candC1 = grcY;
-              candidates +=1;
+              candidates += 1;
             }
           }
           if (candidates == 1) {
@@ -672,10 +672,10 @@ public class Sudoku {
           candidates = 0; candR0 = GRCX; candC0 = 0; candR1 = GRCY; candC1 = 0;
           for (int InnerGRC = 0; InnerGRC < (boardSize * boardSize); InnerGRC++) { //Check elements of G,R,C
             grcY = InnerGRC % boardSize;
-            grcX = (InnerGRC - grcY)/boardSize;
+            grcX = (InnerGRC - grcY) / boardSize;
             if (!cellFilled[GRCX][grcX][GRCY][grcY] && placeCanContain[GRCX][grcX][GRCY][grcY][val]) {
               candC0 = grcX; candC1 = grcY;
-              candidates +=1;
+              candidates += 1;
             }
           }
           if (candidates == 1) {
@@ -691,10 +691,10 @@ public class Sudoku {
           candidates = 0; candR0 = 0; candC0 = GRCX; candR1 = 0; candC1 = GRCY;
           for (int InnerGRC = 0; InnerGRC < (boardSize * boardSize); InnerGRC++) { //Check elements of G,R,C
             grcY = InnerGRC % boardSize;
-            grcX = (InnerGRC - grcY)/boardSize;
+            grcX = (InnerGRC - grcY) / boardSize;
             if (!cellFilled[grcX][GRCX][grcY][GRCY] && placeCanContain[grcX][GRCX][grcY][GRCY][val]) {
               candR0 = grcX; candR1 = grcY;
-              candidates +=1;
+              candidates += 1;
             }
           }
           if (candidates == 1) {
@@ -712,7 +712,7 @@ public class Sudoku {
 
   public int iterateReductionOfCanContainInRCByG() {
     int count = 0;
-    while(reductionOfCanContainInRCByG()) {
+    while (reductionOfCanContainInRCByG()) {
       count++;
     }
     return count;
@@ -757,7 +757,7 @@ public class Sudoku {
             if (rowsVal == 1) {
               for (int jC = 0; jC < (boardSize * boardSize); jC++) {
                 int jC1 = jC % boardSize;
-                int jC0 = (jC - jC1)/boardSize;
+                int jC0 = (jC - jC1) / boardSize;
                 if (j1 != jC0) {
                   if (!cellFilled[j0][jC0][rowVal][jC1] && placeCanContain[j0][jC0][rowVal][jC1][val]) {
                     deliminatedSquares++;
@@ -772,7 +772,7 @@ public class Sudoku {
             if (colsVal == 1) {
               for (int jR = 0; jR < (boardSize * boardSize); jR++) {
                 int jR1 = jR % boardSize;
-                int jR0 = (jR - jR1)/boardSize;
+                int jR0 = (jR - jR1) / boardSize;
                 if (j0 != jR0) {
                   if (!cellFilled[jR0][j1][jR1][colVal] && placeCanContain[jR0][j1][jR1][colVal][val]) {
                     deliminatedSquares++;
@@ -793,7 +793,7 @@ public class Sudoku {
 
   public int iterateReductionOfCanContainInGByRC() {
     int count = 0;
-    while(reductionOfCanContainInGByRC()) {
+    while (reductionOfCanContainInGByRC()) {
       count++;
     }
     return count;
@@ -806,13 +806,13 @@ public class Sudoku {
       for (int jCheckR = 0; jCheckR < (boardSize * boardSize); jCheckR++) {
         if (!numberPresentRC[0][val][jCheckR]) {
           int jCheckR1 = jCheckR % boardSize;
-          int jCheckR0 = (jCheckR - jCheckR1)/boardSize;
+          int jCheckR0 = (jCheckR - jCheckR1) / boardSize;
           for (int jIgnore = 0; jIgnore < boardSize; jIgnore++) {
             candidates = 0;
             for (int jSelect = 0; jSelect < boardSize; jSelect++) {
               if (jSelect != jIgnore) {
                 for (int jRotate = 0; jRotate < boardSize; jRotate++) {
-                  if (!cellFilled[jCheckR0][jSelect][jCheckR1][jRotate]&&placeCanContain[jCheckR0][jSelect][jCheckR1][jRotate][val]) {
+                  if (!cellFilled[jCheckR0][jSelect][jCheckR1][jRotate] && placeCanContain[jCheckR0][jSelect][jCheckR1][jRotate][val]) {
                     candidates++;
                   }
                 }
@@ -823,7 +823,7 @@ public class Sudoku {
               for (int jRotateR = 0; jRotateR < boardSize; jRotateR++) {
                 for (int jRotateC = 0; jRotateC < boardSize; jRotateC++) {
                   if (jRotateR != jCheckR1) {
-                    if (!cellFilled[jCheckR0][jIgnore][jRotateR][jRotateC]&&placeCanContain[jCheckR0][jIgnore][jRotateR][jRotateC][val]) {
+                    if (!cellFilled[jCheckR0][jIgnore][jRotateR][jRotateC] && placeCanContain[jCheckR0][jIgnore][jRotateR][jRotateC][val]) {
                       placeCanContain[jCheckR0][jIgnore][jRotateR][jRotateC][val] = false;
                       deliminations++;
                     }
@@ -840,13 +840,13 @@ public class Sudoku {
       for (int jCheckC = 0; jCheckC < (boardSize * boardSize); jCheckC++) {
         if (!numberPresentRC[1][val][jCheckC]) {
           int jCheckC1 = jCheckC % boardSize;
-          int jCheckC0 = (jCheckC - jCheckC1)/boardSize;
+          int jCheckC0 = (jCheckC - jCheckC1) / boardSize;
           for (int jIgnore = 0; jIgnore < boardSize; jIgnore++) {
             candidates = 0;
             for (int jSelect = 0; jSelect < boardSize; jSelect++) {
               if (jSelect != jIgnore) {
                 for (int jRotate = 0; jRotate < boardSize; jRotate++) {
-                  if (!cellFilled[jSelect][jCheckC0][jRotate][jCheckC1]&&placeCanContain[jSelect][jCheckC0][jRotate][jCheckC1][val]) {
+                  if (!cellFilled[jSelect][jCheckC0][jRotate][jCheckC1] && placeCanContain[jSelect][jCheckC0][jRotate][jCheckC1][val]) {
                     candidates++;
                   }
                 }
@@ -857,7 +857,7 @@ public class Sudoku {
               for (int jRotateR = 0; jRotateR < boardSize; jRotateR++) {
                 for (int jRotateC = 0; jRotateC < boardSize; jRotateC++) {
                   if (jRotateC != jCheckC1) {
-                    if (!cellFilled[jIgnore][jCheckC0][jRotateR][jRotateC]&&placeCanContain[jIgnore][jCheckC0][jRotateR][jRotateC][val]) {
+                    if (!cellFilled[jIgnore][jCheckC0][jRotateR][jRotateC] && placeCanContain[jIgnore][jCheckC0][jRotateR][jRotateC][val]) {
                       placeCanContain[jIgnore][jCheckC0][jRotateR][jRotateC][val] = false;
                       deliminations++;
                     }
@@ -877,7 +877,7 @@ public class Sudoku {
 
   public int iterateReductionOfCanContainSubsetVisible() {
     int count = 0;
-    while(reductionOfCanContainSubsetVisible()) {
+    while (reductionOfCanContainSubsetVisible()) {
       count++;
     }
     return count;
@@ -929,28 +929,28 @@ public class Sudoku {
                 }
               }
             }
-          }//(starts with subsetSizeTrue == true iff it only has the subset size many possibilities)
+          } //(starts with subsetSizeTrue == true iff it only has the subset size many possibilities)
           //Grid Subset Check
           numberOfTrueSubsets = 0;
           for (int k0 = 0; k0 < boardSize; k0++) {
             for (int k1 = 0; k1 < boardSize; k1++) {
               if (subsetSizeTrue[k0][k1]) {
-                subsetFoundAt[numberOfTrueSubsets] = k0*boardSize + k1;
+                subsetFoundAt[numberOfTrueSubsets] = k0 * boardSize + k1;
                 numberOfTrueSubsets++;
               }
-              visibleSubsetCount[k0*boardSize + k1] = 0;
+              visibleSubsetCount[k0 * boardSize + k1] = 0;
             }
           }
           if (numberOfTrueSubsets >= subsetSize) {
             numberOfVisibleSubsets = 1;
             visibleSubsetIndex = 1;
             s01 = subsetFoundAt[0] % boardSize;
-            s00 = (subsetFoundAt[0] - s01)/boardSize;
+            s00 = (subsetFoundAt[0] - s01) / boardSize;
             visibleSubsets[0] = subsets[s00][s01];
             visibleSubsetCount[0] = 1; 
             outer: for (int q0 = 1; q0 < numberOfTrueSubsets; q0++) {
               s01 = subsetFoundAt[q0] % boardSize;
-              s00 = (subsetFoundAt[q0] - s01)/boardSize;
+              s00 = (subsetFoundAt[q0] - s01) / boardSize;
               inner: for (int q1 = 0; q1 < visibleSubsetIndex; q1++) {
                 //System.out.println("q0 " + q0 + " and q1 " + q1);
                 if (Arrays.equals(subsets[s00][s01], visibleSubsets[q1])) {
@@ -985,7 +985,7 @@ public class Sudoku {
             for (int k0 = 0; k0 < boardSize; k0++) {
               for (int k1 = 0; k1 < boardSize; k1++) {
                 if (!cellFilled[j0][j1][k0][k1]) {
-                  if (Arrays.equals(subsets[k0][k1],theSubset)&&subsetSizeTrue[k0][k1]) {
+                  if (Arrays.equals(subsets[k0][k1],theSubset) && subsetSizeTrue[k0][k1]) {
                     continue;
                   } else {
                     for (int subsetIter = 0; subsetIter < subsetSize; subsetIter++) {
@@ -999,7 +999,7 @@ public class Sudoku {
               }
             }
             if (deliminations > 0) {
-              System.out.println("Visible subset in grid " + (j0*3 + j1) + " of size " + subsetSize + ", " + Arrays.toString(theSubset));
+              System.out.println("Visible subset in grid " + (j0 * 3 + j1) + " of size " + subsetSize + ", " + Arrays.toString(theSubset));
               /*System.out.println(Arrays.toString(subsetSizeTrue[0]) + Arrays.toString(subsetSizeTrue[1]) + Arrays.toString(subsetSizeTrue[2]));
               System.out.println(Arrays.toString(placeCanContain[0][1][1][2]));
               System.out.println(Arrays.toString(placeCanContain[0][1][2][0]));
@@ -1042,22 +1042,22 @@ public class Sudoku {
           for (int k0 = 0; k0 < boardSize; k0++) {
             for (int k1 = 0; k1 < boardSize; k1++) {
               if (subsetSizeTrue[k0][k1]) {
-                subsetFoundAt[numberOfTrueSubsets] = k0*boardSize + k1;
+                subsetFoundAt[numberOfTrueSubsets] = k0 * boardSize + k1;
                 numberOfTrueSubsets++;
               }
-              visibleSubsetCount[k0*boardSize + k1] = 0;
+              visibleSubsetCount[k0 * boardSize + k1] = 0;
             }
           }
           if (numberOfTrueSubsets >= subsetSize) {
             numberOfVisibleSubsets = 1;
             visibleSubsetIndex = 1;
             s01 = subsetFoundAt[0] % boardSize;
-            s00 = (subsetFoundAt[0] - s01)/boardSize;
+            s00 = (subsetFoundAt[0] - s01) / boardSize;
             visibleSubsets[0] = subsets[s00][s01];
             visibleSubsetCount[0] = 1;
             outer: for (int q0 = 1; q0 < numberOfTrueSubsets; q0++) {
               s01 = subsetFoundAt[q0] % boardSize;
-              s00 = (subsetFoundAt[q0] - s01)/boardSize;
+              s00 = (subsetFoundAt[q0] - s01) / boardSize;
               inner: for (int q1 = 0; q1 < visibleSubsetIndex; q1++) {
                 if (Arrays.equals(subsets[s00][s01], visibleSubsets[q1])) {
                   visibleSubsetCount[q1]++;
@@ -1083,7 +1083,7 @@ public class Sudoku {
             for (int k0 = 0; k0 < boardSize; k0++) {
               for (int k1 = 0; k1 < boardSize; k1++) {
                 if (!cellFilled[j0][k0][j1][k1]) {
-                  if (Arrays.equals(subsets[k0][k1],theSubset)&&subsetSizeTrue[k0][k1]) {
+                  if (Arrays.equals(subsets[k0][k1],theSubset) && subsetSizeTrue[k0][k1]) {
                     continue;
                   } else {
                     for (int subsetIter = 0; subsetIter < subsetSize; subsetIter++) {
@@ -1097,7 +1097,7 @@ public class Sudoku {
               }
             }
             if (deliminations > 0) {
-              System.out.println("Visible subset in row " + (j0*3 + j1) + " of size " + subsetSize + ", " + Arrays.toString(theSubset));
+              System.out.println("Visible subset in row " + (j0 * 3 + j1) + " of size " + subsetSize + ", " + Arrays.toString(theSubset));
               return true;
             } else {
               subsetFound = false;
@@ -1136,22 +1136,22 @@ public class Sudoku {
           for (int k0 = 0; k0 < boardSize; k0++) {
             for (int k1 = 0; k1 < boardSize; k1++) {
               if (subsetSizeTrue[k0][k1]) {
-                subsetFoundAt[numberOfTrueSubsets] = k0*boardSize + k1;
+                subsetFoundAt[numberOfTrueSubsets] = k0 * boardSize + k1;
                 numberOfTrueSubsets++;
               }
-              visibleSubsetCount[k0*boardSize + k1] = 0;
+              visibleSubsetCount[k0 * boardSize + k1] = 0;
             }
           }
           if (numberOfTrueSubsets >= subsetSize) {
             numberOfVisibleSubsets = 1;
             visibleSubsetIndex = 1;
             s01 = subsetFoundAt[0] % boardSize;
-            s00 = (subsetFoundAt[0] - s01)/boardSize;
+            s00 = (subsetFoundAt[0] - s01) / boardSize;
             visibleSubsets[0] = subsets[s00][s01];
             visibleSubsetCount[0] = 1;
             outer: for (int q0 = 1; q0 < numberOfTrueSubsets; q0++) {
               s01 = subsetFoundAt[q0] % boardSize;
-              s00 = (subsetFoundAt[q0] - s01)/boardSize;
+              s00 = (subsetFoundAt[q0] - s01) / boardSize;
               inner: for (int q1 = 0; q1 < visibleSubsetIndex; q1++) {
                 if (Arrays.equals(subsets[s00][s01], visibleSubsets[q1])) {
                   visibleSubsetCount[q1]++;
@@ -1177,7 +1177,7 @@ public class Sudoku {
             for (int k0 = 0; k0 < boardSize; k0++) {
               for (int k1 = 0; k1 < boardSize; k1++) {
                 if (!cellFilled[k0][j0][k1][j1]) {
-                  if (Arrays.equals(subsets[k0][k1],theSubset)&&subsetSizeTrue[k0][k1]) {
+                  if (Arrays.equals(subsets[k0][k1],theSubset) && subsetSizeTrue[k0][k1]) {
                     continue;
                   } else {
                     for (int subsetIter = 0; subsetIter < subsetSize; subsetIter++) {
@@ -1191,7 +1191,7 @@ public class Sudoku {
               }
             }
             if (deliminations > 0) {
-              System.out.println("Visible subset in column " + (j0*3 + j1) + " of size " + subsetSize + ", " + Arrays.toString(theSubset));
+              System.out.println("Visible subset in column " + (j0 * 3 + j1) + " of size " + subsetSize + ", " + Arrays.toString(theSubset));
               return true;
             } else {
               subsetFound = false;
@@ -1205,7 +1205,7 @@ public class Sudoku {
 
   public int iterateReductionOfCanContainSubsetHidden() {
     int count = 0;
-    while(reductionOfCanContainSubsetHidden()) {
+    while (reductionOfCanContainSubsetHidden()) {
       count++;
     }
     return count;
@@ -1274,7 +1274,7 @@ public class Sudoku {
                     }
                   }
                   if (valuesIncidental >= subsetSize) {
-                    hiddenSubsetSquares.add(k0*3 + k1);
+                    hiddenSubsetSquares.add(k0 * 3 + k1);
                     subsetSquares++;
                   }
                 }
@@ -1286,7 +1286,7 @@ public class Sudoku {
               for (int square = 0; square < subsetSquares; square++) {
                 for (int vals = 0; vals < hiddenValues.size(); vals++) {
                   s1 = hiddenSubsetSquares.get(square) % boardSize;
-                  s0 = (hiddenSubsetSquares.get(square) - s1)/boardSize;
+                  s0 = (hiddenSubsetSquares.get(square) - s1) / boardSize;
                   if (placeCanContain[j0][j1][s0][s1][hiddenValues.get(vals)]) {
                     subsets[square][vals] = true;
                   } else {
@@ -1328,7 +1328,7 @@ public class Sudoku {
             }
             for (int h = 0; h < subsetSize; h++) {
               s1 = theSquares[h] % boardSize;
-              s0 = (theSquares[h] - s1)/boardSize;
+              s0 = (theSquares[h] - s1) / boardSize;
               for (int val = 0; val < (boardSize * boardSize); val++) {
                 if (placeCanContain[j0][j1][s0][s1][val] && !subVoids.contains(val)) {
                   placeCanContain[j0][j1][s0][s1][val] = false;
@@ -1337,7 +1337,7 @@ public class Sudoku {
               }
             }
             if (deliminations > 0) {
-              System.out.println("Hidden subset in grid " + (j0*3 + j1) + " of size " + subsetSize + ", " + Arrays.toString(theSubset));
+              System.out.println("Hidden subset in grid " + (j0 * 3 + j1) + " of size " + subsetSize + ", " + Arrays.toString(theSubset));
               return true;
             } else {
               subsetChecked = false;
@@ -1391,7 +1391,7 @@ public class Sudoku {
                     }
                   }
                   if (valuesIncidental >= subsetSize) {
-                    hiddenSubsetSquares.add(k0*3 + k1);
+                    hiddenSubsetSquares.add(k0 * 3 + k1);
                     subsetSquares++;
                   }
                 }
@@ -1403,7 +1403,7 @@ public class Sudoku {
               for (int square = 0; square < subsetSquares; square++) {
                 for (int vals = 0; vals < hiddenValues.size(); vals++) {
                   s1 = hiddenSubsetSquares.get(square) % boardSize;
-                  s0 = (hiddenSubsetSquares.get(square) - s1)/boardSize;
+                  s0 = (hiddenSubsetSquares.get(square) - s1) / boardSize;
                   if (placeCanContain[j0][s0][j1][s1][hiddenValues.get(vals)]) {
                     subsets[square][vals] = true;
                   } else {
@@ -1446,7 +1446,7 @@ public class Sudoku {
             }
             for (int h = 0; h < subsetSize; h++) {
               s1 = theSquares[h] % boardSize;
-              s0 = (theSquares[h] - s1)/boardSize;
+              s0 = (theSquares[h] - s1) / boardSize;
               for (int val = 0; val < (boardSize * boardSize); val++) {
                 if (placeCanContain[j0][s0][j1][s1][val] && !subVoids.contains(val)) {
                   placeCanContain[j0][s0][j1][s1][val] = false;
@@ -1455,7 +1455,7 @@ public class Sudoku {
               }
             }
             if (deliminations > 0) {
-              System.out.println("Hidden subset in row " + (j0*3 + j1) + " of size " + subsetSize + ", " + Arrays.toString(theSubset));
+              System.out.println("Hidden subset in row " + (j0 * 3 + j1) + " of size " + subsetSize + ", " + Arrays.toString(theSubset));
               return true;
             } else {
               subsetChecked = false;
@@ -1509,7 +1509,7 @@ public class Sudoku {
                     }
                   }
                   if (valuesIncidental >= subsetSize) {
-                    hiddenSubsetSquares.add(k0*3 + k1);
+                    hiddenSubsetSquares.add(k0 * 3 + k1);
                     subsetSquares++;
                   }
                 }
@@ -1521,7 +1521,7 @@ public class Sudoku {
               for (int square = 0; square < subsetSquares; square++) {
                 for (int vals = 0; vals < hiddenValues.size(); vals++) {
                   s1 = hiddenSubsetSquares.get(square) % boardSize;
-                  s0 = (hiddenSubsetSquares.get(square) - s1)/boardSize;
+                  s0 = (hiddenSubsetSquares.get(square) - s1) / boardSize;
                   if (placeCanContain[s0][j0][s1][j1][hiddenValues.get(vals)]) {
                     subsets[square][vals] = true;
                   } else {
@@ -1563,7 +1563,7 @@ public class Sudoku {
             }
             for (int h = 0; h < subsetSize; h++) {
               s1 = theSquares[h] % boardSize;
-              s0 = (theSquares[h] - s1)/boardSize;
+              s0 = (theSquares[h] - s1) / boardSize;
               for (int val = 0; val < (boardSize * boardSize); val++) {
                 if (placeCanContain[s0][j0][s1][j1][val] && !subVoids.contains(val)) {
                   placeCanContain[s0][j0][s1][j1][val] = false;
@@ -1572,7 +1572,7 @@ public class Sudoku {
               }
             }
             if (deliminations > 0) {
-              System.out.println("Hidden subset in column " + (j0*3 + j1) + " of size " + subsetSize + ", " + Arrays.toString(theSubset));
+              System.out.println("Hidden subset in column " + (j0 * 3 + j1) + " of size " + subsetSize + ", " + Arrays.toString(theSubset));
               return true;
             } else {
               subsetChecked = false;
@@ -1586,8 +1586,8 @@ public class Sudoku {
 
 
   public void deliminatePotential(int k0, int k1, int k2, int k3, int k4) {
-    numberPresentRC[0][k4][k2 + k0*board.length] = true;
-    numberPresentRC[1][k4][k3 + k1*board.length] = true;
+    numberPresentRC[0][k4][k2 + k0 * board.length] = true;
+    numberPresentRC[1][k4][k3 + k1 * board.length] = true;
     numberPresentG[k4][k0][k1] = true;
     for (int j0 = 0; j0 < boardSize; j0++) {
       for (int j1 = 0; j1 < boardSize; j1++) {
@@ -1609,9 +1609,9 @@ public class Sudoku {
   public void subsetCollisionAtRolling(int subsetSize, int numberOfTrueSubsets, int[] subsetFoundAt, int[][][] subsets) {
     int q1 = 0; int q0 = 0;
     for (int q = 0; q < numberOfTrueSubsets; q++) {
-      subsetCollisionAtRolling(subsetSize, numberOfTrueSubsets-1, subsetFoundAt, subsets);
+      subsetCollisionAtRolling(subsetSize, numberOfTrueSubsets - 1, subsetFoundAt, subsets);
       q1 = subsetFoundAt[q] % boardSize;
-      q0 = (subsetFoundAt[q] - q1)/boardSize;
+      q0 = (subsetFoundAt[q] - q1) / boardSize;
       //if (Arrays.equals(subsets[s0j0][s0j1], subsets[s1j0][s1j1])) {
       //    subsetPair1 = q0; subsetPair2 = q1; subsetFound = true;
       //    break;
@@ -1622,7 +1622,7 @@ public class Sudoku {
   public boolean placeCanContainCheckDoesCollide(int j0, int j1, int j2, int j3, int k0, int k1, int k2, int k3, int collisions) {
     int counted = 0;
     for (int q = 0; q < (boardSize * boardSize); q++) {
-      if (placeCanContain[j0][j1][j2][j3][q]&&placeCanContain[k0][k1][k2][k3][q]) {
+      if (placeCanContain[j0][j1][j2][j3][q] && placeCanContain[k0][k1][k2][k3][q]) {
         counted++;
       }
     }
@@ -1635,7 +1635,7 @@ public class Sudoku {
   public boolean[] placeCanContainCheckCollision(int j0, int j1, int j2, int j3, int k0, int k1, int k2, int k3) {
     boolean[] collidingValues = new boolean[(boardSize * boardSize)];
     for (int q = 0; q < (boardSize * boardSize); q++) {
-      if (placeCanContain[j0][j1][j2][j3][q]&&placeCanContain[k0][k1][k2][k3][q]) {
+      if (placeCanContain[j0][j1][j2][j3][q] && placeCanContain[k0][k1][k2][k3][q]) {
         collidingValues[q] = true;
       } else {
         collidingValues[q] = false;

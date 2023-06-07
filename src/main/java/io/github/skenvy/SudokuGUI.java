@@ -20,7 +20,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 
-public class SudokuGUI extends JFrame{
+public class SudokuGUI extends JFrame {
 
   /**
    * 
@@ -59,8 +59,8 @@ public class SudokuGUI extends JFrame{
     left1.add(tit1); left2.add(tit2);
     digestView = new JScrollPane(digest);
     right.add(digestView);
-    selections = new JButton[2][size*size];
-    for (int k = 0; k < size*size; k++) {
+    selections = new JButton[2][size * size];
+    for (int k = 0; k < size * size; k++) {
       selections[0][k] = new JButton("" + (k + 1));
       selections[1][k] = new JButton("" + (k + 1));
       left1.add(selections[0][k]);
@@ -109,10 +109,10 @@ public class SudokuGUI extends JFrame{
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     double width = screenSize.getWidth();
     double height = screenSize.getHeight();
-    double windowWidth = size*size*30 + 400;
-    double windowHeight = size*size*30 + 200;
-    double localWidth = (width-windowWidth)/2;
-    double localHeight = (height-windowHeight)/2;
+    double windowWidth = size * size * 30 + 400;
+    double windowHeight = size * size * 30 + 200;
+    double localWidth = (width - windowWidth) / 2;
+    double localHeight = (height - windowHeight) / 2;
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setSize((int)windowWidth,(int)windowHeight);
     setLocation((int)localWidth, (int)localHeight);
@@ -132,7 +132,7 @@ public class SudokuGUI extends JFrame{
             for (int k0 = 0; k0 < size; k0++) {
               for (int k1 = 0; k1 < size; k1++) {
                 sudokuBoard.board[j0][j1][k0][k1] = Integer.parseInt(grid[j0][j1][k0][k1].getText());
-                if (Integer.parseInt(grid[j0][j1][k0][k1].getText()) > 0 && Integer.parseInt(grid[j0][j1][k0][k1].getText()) <= size*size) {
+                if (Integer.parseInt(grid[j0][j1][k0][k1].getText()) > 0 && Integer.parseInt(grid[j0][j1][k0][k1].getText()) <= size * size) {
                   grid[j0][j1][k0][k1].setBackground(Color.GREEN);
                 } else {
                   if (grid[j0][j1][k0][k1].getBackground() == Color.GREEN) {
@@ -191,7 +191,7 @@ public class SudokuGUI extends JFrame{
       }
     });
     load.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {/*
+      public void actionPerformed(ActionEvent e) { /*
         for (int j0 = 0; j0 < size; j0++) {
           for (int j1 = 0; j1 < size; j1++) {
             for (int k0 = 0; k0 < size; k0++) {
@@ -214,7 +214,7 @@ public class SudokuGUI extends JFrame{
           for (int j1 = 0; j1 < size; j1++) {
             for (int k0 = 0; k0 < size; k0++) {
               for (int k1 = 0; k1 < size; k1++) {
-                if (sudokuBoard.board[j0][j1][k0][k1] > 0 && sudokuBoard.board[j0][j1][k0][k1] <= size*size) {
+                if (sudokuBoard.board[j0][j1][k0][k1] > 0 && sudokuBoard.board[j0][j1][k0][k1] <= size * size) {
                   grid[j0][j1][k0][k1].setBackground(Color.CYAN);
                   grid[j0][j1][k0][k1].setText(sudokuBoard.board[j0][j1][k0][k1] + "");
                 } 
@@ -231,7 +231,7 @@ public class SudokuGUI extends JFrame{
             for (int k0 = 0; k0 < size; k0++) {
               for (int k1 = 0; k1 < size; k1++) {
                 sudokuBoard.board[j0][j1][k0][k1] = Integer.parseInt(grid[j0][j1][k0][k1].getText());
-                if (Integer.parseInt(grid[j0][j1][k0][k1].getText()) > 0 && Integer.parseInt(grid[j0][j1][k0][k1].getText()) <= size*size) {
+                if (Integer.parseInt(grid[j0][j1][k0][k1].getText()) > 0 && Integer.parseInt(grid[j0][j1][k0][k1].getText()) <= size * size) {
                   grid[j0][j1][k0][k1].setBackground(Color.GREEN);
                 } else {
                   if (grid[j0][j1][k0][k1].getBackground() == Color.GREEN) {

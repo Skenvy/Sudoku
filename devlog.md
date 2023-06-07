@@ -48,3 +48,14 @@ A lot of the 3300-ish errors (according to the `sun_checks.xml`) are very simila
     * Negates `^\s+\/**` and `^\s+*`
     * Fixed length `(?<!...)` only
         * Knowing we only have `^\s+*` at one or three indents.
+* Add spaces around single `-` operators
+    * Replace `(?<=[^- ])-(?=[^-=])` with ` -`
+    * Replace `(?<=[^-])-(?=[^- =])` with `- `
+* Add spaces around single `*` operators
+    * Replace `(?<=[^/\* ])\*(?=[^/\*=])` with ` *`
+    * Replace `(?<=[^/\*])\*(?=[^/\* =])` with `* `
+* Add spaces around single `/` operators
+    * Replace `(?<=[^/ \*])/(?=[^/\*])` with ` /`
+    * Replace `(?<=[^/\*])/(?=[^/ \*])` with `/ `
+* Replace `(?<! )&&` with ` &&`
+* Replace `&&(?! )` with `&& `

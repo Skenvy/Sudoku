@@ -27,15 +27,15 @@ public class PermutationComputation {
   }
 
   public void permutationComputationRoll(int subsetSize, int overHowMany, int level, int[] carry) {
-    if(level == subsetSize) {
+    if (level == subsetSize) {
       permutations.add(carry.clone());
     } else {
       for (int k = level; k < overHowMany; k++) {
-        if(level == 0) {
+        if (level == 0) {
           carry[0] = k;
           permutationComputationRoll(subsetSize,overHowMany,1, carry);
         } else {
-          if(k > carry[level-1]) {
+          if (k > carry[level - 1]) {
             carry[level] = k;
             permutationComputationRoll(subsetSize,overHowMany,level + 1, carry);
           }

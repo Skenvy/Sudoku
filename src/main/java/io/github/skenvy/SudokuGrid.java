@@ -38,7 +38,7 @@ public class SudokuGrid {
   /**
    * Initialise an empty sudoku grid for a standard Sudoku board
    */
-  public SudokuGrid() throws SudokuCellGridInvalidGridShapeException, Cell.SudokuCellInvalidInitialValueException{
+  public SudokuGrid() throws SudokuCellGridInvalidGridShapeException, Cell.SudokuCellInvalidInitialValueException {
     this.cells = createCellGrid(new int[3][3][3][3]);
     this.rows = null;
     this.columns = null;
@@ -48,7 +48,7 @@ public class SudokuGrid {
   /**
    * Initialise an empty sudoku grid for a custom sized Sudoku board
    */
-  public SudokuGrid(int boardSize) throws SudokuCellGridInvalidGridShapeException, Cell.SudokuCellInvalidInitialValueException{
+  public SudokuGrid(int boardSize) throws SudokuCellGridInvalidGridShapeException, Cell.SudokuCellInvalidInitialValueException {
     this.cells = createCellGrid(new int[3][3][3][3]);
     int collectionSize = (boardSize * boardSize);
     this.rows = null;
@@ -59,14 +59,14 @@ public class SudokuGrid {
   /**
    * Initialise a grid from one already established.
    */
-  public SudokuGrid(SudokuGrid initialGrid, boolean exactReplica) throws SudokuCellGridInvalidGridShapeException, Cell.SudokuCellInvalidInitialValueException{
+  public SudokuGrid(SudokuGrid initialGrid, boolean exactReplica) throws SudokuCellGridInvalidGridShapeException, Cell.SudokuCellInvalidInitialValueException {
     this.cells = createCellGrid(new int[3][3][3][3]);
     this.rows = initialGrid.getRows();
     this.columns = initialGrid.getColumns();
     this.boxes = initialGrid.getBoxes();
   }
 
-  private Cell[][][][] createCellGrid(int[][] valuesGrid) throws SudokuCellGridInvalidGridShapeException, Cell.SudokuCellInvalidInitialValueException{
+  private Cell[][][][] createCellGrid(int[][] valuesGrid) throws SudokuCellGridInvalidGridShapeException, Cell.SudokuCellInvalidInitialValueException {
     if (valuesGrid.length != valuesGrid[0].length) {
       throw new SudokuCellGridInvalidGridShapeException(valuesGrid.length, valuesGrid[0].length);
     } else if (!Utility.isIntegerSquared(valuesGrid.length)) {
@@ -78,7 +78,7 @@ public class SudokuGrid {
       for (int bC = 0; bC < boardSize; bC++) { // iterate the boardColumn ~ "000111222"
         for (int biR = 0; biR < boardSize; biR++) { // iterate the boxInternalRow ~ "012012012"
           for (int biC = 0; biC < boardSize; biC++) { // iterate the boxInternalColumn ~ "012012012
-            newValuesGrid[bR][bC][biR][biC] = valuesGrid[boardSize*bR + biR][boardSize*bC + biC];
+            newValuesGrid[bR][bC][biR][biC] = valuesGrid[boardSize * bR + biR][boardSize * bC + biC];
           }
         }
       }
@@ -86,7 +86,7 @@ public class SudokuGrid {
     return createCellGrid(newValuesGrid);
   }
 
-  private Cell[][][][] createCellGrid(int[][][][] valuesGrid) throws SudokuCellGridInvalidGridShapeException, Cell.SudokuCellInvalidInitialValueException{
+  private Cell[][][][] createCellGrid(int[][][][] valuesGrid) throws SudokuCellGridInvalidGridShapeException, Cell.SudokuCellInvalidInitialValueException {
     if ((valuesGrid.length != valuesGrid[0].length) || (valuesGrid.length != valuesGrid[0][0].length) || (valuesGrid.length != valuesGrid[0][0][0].length)) {
       throw new SudokuCellGridInvalidGridShapeException(valuesGrid.length, valuesGrid[0].length, valuesGrid[0][0].length, valuesGrid[0][0][0].length);
     }
@@ -100,9 +100,9 @@ public class SudokuGrid {
         for (int biR = 0; biR < boardSize; biR++) { // iterate the boxInternalRow ~ "012012012"
           for (int biC = 0; biC < boardSize; biC++) { // iterate the boxInternalColumn ~ "012012012
             // We must first create the cell with a reference to its row, column, and box
-            int rowIndex = boardSize*bR + biR;
-            int colIndex = boardSize*bC + biC;
-            int boxIndex = boardSize*bR + bC;
+            int rowIndex = boardSize * bR + biR;
+            int colIndex = boardSize * bC + biC;
+            int boxIndex = boardSize * bR + bC;
             tempCells[bR][bC][biR][biC] = new Cell(valuesGrid[bR][bC][biR][biC], boardSize, rows.get(rowIndex), columns.get(colIndex), boxes.get(boxIndex));
             // then add the created cell to that same row, column, and box.
             rows.get(rowIndex).addCellToCollection(tempCells[bR][bC][biR][biC]);
