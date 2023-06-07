@@ -86,8 +86,8 @@ public class SudokuGUI extends JFrame{
                   for (int j1 = 0; j1 < size; j1++) {
                     for (int k0 = 0; k0 < size; k0++) {
                       for (int k1 = 0; k1 < size; k1++) {
-                        if(grid[j0][j1][k0][k1].getBackground() == Color.white) {
-                          if(Integer.parseInt(grid[j0][j1][k0][k1].getText()) != 0) {
+                        if (grid[j0][j1][k0][k1].getBackground() == Color.white) {
+                          if (Integer.parseInt(grid[j0][j1][k0][k1].getText()) != 0) {
                             grid[j0][j1][k0][k1].setBackground(Color.cyan);
                           }
                         }
@@ -132,10 +132,10 @@ public class SudokuGUI extends JFrame{
             for (int k0 = 0; k0 < size; k0++) {
               for (int k1 = 0; k1 < size; k1++) {
                 sudokuBoard.board[j0][j1][k0][k1] = Integer.parseInt(grid[j0][j1][k0][k1].getText());
-                if(Integer.parseInt(grid[j0][j1][k0][k1].getText()) > 0 && Integer.parseInt(grid[j0][j1][k0][k1].getText()) <= size*size) {
+                if (Integer.parseInt(grid[j0][j1][k0][k1].getText()) > 0 && Integer.parseInt(grid[j0][j1][k0][k1].getText()) <= size*size) {
                   grid[j0][j1][k0][k1].setBackground(Color.GREEN);
                 } else {
-                  if(grid[j0][j1][k0][k1].getBackground() == Color.GREEN) {
+                  if (grid[j0][j1][k0][k1].getBackground() == Color.GREEN) {
                     grid[j0][j1][k0][k1].setBackground(Color.white);
                   }
                 }
@@ -144,19 +144,19 @@ public class SudokuGUI extends JFrame{
           }
         }
         sudokuBoard.initialiseBoard();
-        if(!sudokuBoard.errorExists()) {
+        if (!sudokuBoard.errorExists()) {
           sudokuBoard.solveBoard();
           for (int j0 = 0; j0 < size; j0++) {
             for (int j1 = 0; j1 < size; j1++) {
               for (int k0 = 0; k0 < size; k0++) {
                 for (int k1 = 0; k1 < size; k1++) {
                   grid[j0][j1][k0][k1].setText("" + sudokuBoard.board[j0][j1][k0][k1]);
-                  if(grid[j0][j1][k0][k1].getBackground() != Color.GREEN) {
-                    if(sudokuBoard.board[j0][j1][k0][k1] != 0) {
+                  if (grid[j0][j1][k0][k1].getBackground() != Color.GREEN) {
+                    if (sudokuBoard.board[j0][j1][k0][k1] != 0) {
                       grid[j0][j1][k0][k1].setBackground(Color.YELLOW);
                     }
                   }
-                  // if(!sudokuBoard.cellFilled[j0][j1][k0][k1]) {}
+                  // if (!sudokuBoard.cellFilled[j0][j1][k0][k1]) {}
                 }
               }
             }
@@ -166,7 +166,7 @@ public class SudokuGUI extends JFrame{
             for (int j1 = 0; j1 < size; j1++) {
               for (int k0 = 0; k0 < size; k0++) {
                 for (int k1 = 0; k1 < size; k1++) {
-                  if(sudokuBoard.errorInSquare[j0][j1][k0][k1]) {
+                  if (sudokuBoard.errorInSquare[j0][j1][k0][k1]) {
                     grid[j0][j1][k0][k1].setBackground(Color.RED);
                   }
                 }
@@ -214,7 +214,7 @@ public class SudokuGUI extends JFrame{
           for (int j1 = 0; j1 < size; j1++) {
             for (int k0 = 0; k0 < size; k0++) {
               for (int k1 = 0; k1 < size; k1++) {
-                if(sudokuBoard.board[j0][j1][k0][k1] > 0 && sudokuBoard.board[j0][j1][k0][k1] <= size*size) {
+                if (sudokuBoard.board[j0][j1][k0][k1] > 0 && sudokuBoard.board[j0][j1][k0][k1] <= size*size) {
                   grid[j0][j1][k0][k1].setBackground(Color.CYAN);
                   grid[j0][j1][k0][k1].setText(sudokuBoard.board[j0][j1][k0][k1] + "");
                 } 
@@ -231,10 +231,10 @@ public class SudokuGUI extends JFrame{
             for (int k0 = 0; k0 < size; k0++) {
               for (int k1 = 0; k1 < size; k1++) {
                 sudokuBoard.board[j0][j1][k0][k1] = Integer.parseInt(grid[j0][j1][k0][k1].getText());
-                if(Integer.parseInt(grid[j0][j1][k0][k1].getText()) > 0 && Integer.parseInt(grid[j0][j1][k0][k1].getText()) <= size*size) {
+                if (Integer.parseInt(grid[j0][j1][k0][k1].getText()) > 0 && Integer.parseInt(grid[j0][j1][k0][k1].getText()) <= size*size) {
                   grid[j0][j1][k0][k1].setBackground(Color.GREEN);
                 } else {
-                  if(grid[j0][j1][k0][k1].getBackground() == Color.GREEN) {
+                  if (grid[j0][j1][k0][k1].getBackground() == Color.GREEN) {
                     grid[j0][j1][k0][k1].setBackground(Color.white);
                   }
                 }
@@ -243,15 +243,15 @@ public class SudokuGUI extends JFrame{
           }
         }
         sudokuBoard.initialiseBoard();
-        if(!sudokuBoard.errorExists()) {
+        if (!sudokuBoard.errorExists()) {
           sudokuBoard.solveBoard();
           for (int j0 = 0; j0 < size; j0++) {
             for (int j1 = 0; j1 < size; j1++) {
               for (int k0 = 0; k0 < size; k0++) {
                 for (int k1 = 0; k1 < size; k1++) {
                   grid[j0][j1][k0][k1].setText("" + sudokuBoard.board[j0][j1][k0][k1]);
-                  if(grid[j0][j1][k0][k1].getBackground() != Color.GREEN) {
-                    if(sudokuBoard.board[j0][j1][k0][k1] != 0) {
+                  if (grid[j0][j1][k0][k1].getBackground() != Color.GREEN) {
+                    if (sudokuBoard.board[j0][j1][k0][k1] != 0) {
                       grid[j0][j1][k0][k1].setBackground(Color.YELLOW);
                     }
                   }
@@ -264,7 +264,7 @@ public class SudokuGUI extends JFrame{
             for (int j1 = 0; j1 < size; j1++) {
               for (int k0 = 0; k0 < size; k0++) {
                 for (int k1 = 0; k1 < size; k1++) {
-                  if(sudokuBoard.errorInSquare[j0][j1][k0][k1]) {
+                  if (sudokuBoard.errorInSquare[j0][j1][k0][k1]) {
                     grid[j0][j1][k0][k1].setBackground(Color.RED);
                   }
                 }

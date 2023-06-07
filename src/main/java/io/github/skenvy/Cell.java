@@ -54,7 +54,7 @@ public class Cell {
     this.initialValue = initialValue;
     this.value = initialValue;
     this.possibleValues = initialisePossibleValues(3);
-    if(initialValue < 0 || initialValue > 9) {
+    if (initialValue < 0 || initialValue > 9) {
       throw new SudokuCellInvalidInitialValueException(initialValue,3);
     }
   }
@@ -69,7 +69,7 @@ public class Cell {
     this.initialValue = initialValue;
     this.value = initialValue;
     this.possibleValues = initialisePossibleValues(boardSize);
-    if(initialValue < 0 || initialValue > boardSize*boardSize) {
+    if (initialValue < 0 || initialValue > (boardSize * boardSize)) {
       throw new SudokuCellInvalidInitialValueException(initialValue,boardSize);
     }
   }
@@ -84,7 +84,7 @@ public class Cell {
     this.initialValue = initialValue;
     this.value = initialValue;
     this.possibleValues = initialisePossibleValues(boardSize);
-    if(initialValue < 0 || initialValue > boardSize*boardSize) {
+    if (initialValue < 0 || initialValue > (boardSize * boardSize)) {
       throw new SudokuCellInvalidInitialValueException(initialValue,boardSize);
     }
     this.row = row;
@@ -97,7 +97,7 @@ public class Cell {
   }
 
   public void setValue(int value) throws SudokuCellCantSetValueOfPredeterminedCellException {
-    if(this.wasCellPredetermined()) {
+    if (this.wasCellPredetermined()) {
       throw new SudokuCellCantSetValueOfPredeterminedCellException();
     }
     this.value = value;
@@ -118,8 +118,8 @@ public class Cell {
   }
 
   boolean[] initialisePossibleValues(int boardSize) {
-    boolean[] possibilities = new boolean[boardSize*boardSize];
-    for (int i = 0; i < boardSize*boardSize; i++) {
+    boolean[] possibilities = new boolean[(boardSize * boardSize)];
+    for (int i = 0; i < (boardSize * boardSize); i++) {
       possibilities[i] = true;
     }
     return possibilities;
@@ -136,7 +136,7 @@ public class Cell {
 
   public final class SudokuCellInvalidInitialValueException extends SudokuCellException {
     public SudokuCellInvalidInitialValueException(int initialValue, int boardSize) {
-      super("Invalid initial value. Board size of " + boardSize + " allows for values from 1 to " + (boardSize*boardSize) + "; was given initial value of " + initialValue);
+      super("Invalid initial value. Board size of " + boardSize + " allows for values from 1 to " + ((boardSize * boardSize)) + "; was given initial value of " + initialValue);
     }
   }
 

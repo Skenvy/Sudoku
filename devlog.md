@@ -43,3 +43,8 @@ A lot of the 3300-ish errors (according to the `sun_checks.xml`) are very simila
 * Chomp all only whitespace lines;
     * Replace `^\s*$` with nothing.
 * Replace `/\*\*\*` with `/**`
+* Replace `if\(` with `if (`
+* Use `(?<!\/\*|\/|^ |^   )\*` to find `*` that aren't part of some Javadoc's left most `*`;
+    * Negates `^\s+\/**` and `^\s+*`
+    * Fixed length `(?<!...)` only
+        * Knowing we only have `^\s+*` at one or three indents.

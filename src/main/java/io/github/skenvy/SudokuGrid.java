@@ -50,7 +50,7 @@ public class SudokuGrid {
    */
   public SudokuGrid(int boardSize) throws SudokuCellGridInvalidGridShapeException, Cell.SudokuCellInvalidInitialValueException{
     this.cells = createCellGrid(new int[3][3][3][3]);
-    int collectionSize = boardSize*boardSize;
+    int collectionSize = (boardSize * boardSize);
     this.rows = null;
     this.columns = null;
     this.boxes = null;
@@ -67,7 +67,7 @@ public class SudokuGrid {
   }
 
   private Cell[][][][] createCellGrid(int[][] valuesGrid) throws SudokuCellGridInvalidGridShapeException, Cell.SudokuCellInvalidInitialValueException{
-    if(valuesGrid.length != valuesGrid[0].length) {
+    if (valuesGrid.length != valuesGrid[0].length) {
       throw new SudokuCellGridInvalidGridShapeException(valuesGrid.length, valuesGrid[0].length);
     } else if (!Utility.isIntegerSquared(valuesGrid.length)) {
       throw new SudokuCellGridInvalidGridShapeException(valuesGrid.length);
@@ -87,7 +87,7 @@ public class SudokuGrid {
   }
 
   private Cell[][][][] createCellGrid(int[][][][] valuesGrid) throws SudokuCellGridInvalidGridShapeException, Cell.SudokuCellInvalidInitialValueException{
-    if((valuesGrid.length != valuesGrid[0].length) || (valuesGrid.length != valuesGrid[0][0].length) || (valuesGrid.length != valuesGrid[0][0][0].length)) {
+    if ((valuesGrid.length != valuesGrid[0].length) || (valuesGrid.length != valuesGrid[0][0].length) || (valuesGrid.length != valuesGrid[0][0][0].length)) {
       throw new SudokuCellGridInvalidGridShapeException(valuesGrid.length, valuesGrid[0].length, valuesGrid[0][0].length, valuesGrid[0][0][0].length);
     }
     int boardSize = valuesGrid.length;
@@ -116,8 +116,8 @@ public class SudokuGrid {
   }
 
   List<CellCollection> initialiseEmptyCellCollections(int boardSize) {
-    List<CellCollection> tempCollections = new ArrayList<CellCollection>(boardSize*boardSize);
-    for (int k = 0; k < boardSize*boardSize; k++) {
+    List<CellCollection> tempCollections = new ArrayList<CellCollection>((boardSize * boardSize));
+    for (int k = 0; k < (boardSize * boardSize); k++) {
       tempCollections.add(new CellCollection(boardSize));
     }
     return tempCollections;

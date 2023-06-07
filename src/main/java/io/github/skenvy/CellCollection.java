@@ -21,7 +21,7 @@ public class CellCollection {
    * Initialise an empty collection to reference N*N cells in a row, column, or box
    */
   public CellCollection(int boardSize) {
-    this.cells = new ArrayList<Cell>(boardSize*boardSize);
+    this.cells = new ArrayList<Cell>((boardSize * boardSize));
   }
 
   /**

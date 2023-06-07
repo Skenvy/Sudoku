@@ -21,6 +21,9 @@ test:
 # First check for, and fail on, default of errors. If there aren't
 # any errors, then check without failing for warnings.
 # https://maven.apache.org/plugins/maven-checkstyle-plugin/check-mojo.html
+# Something that prints the style violations line by line is desired for CI,
+# but, when there are thousands of errors, running `mvn checkstyle:checkstyle`
+# and opening and reading the html it generates is better locally.
 lint:
 	$(MVN) checkstyle:check
 	$(MVN) checkstyle:check -Dcheckstyle.violationSeverity="warning" -Dcheckstyle.failOnViolation=false
