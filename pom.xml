@@ -10,8 +10,9 @@
 
   <name>Sudoku</name>
   <description>
-    An implementation of a Sudoku solver, with the intent of formalising how easy a particlar sudoku puzzle would
-    be to solve by determining what moves can be made deterministically, rather than just iterating guesses.
+    An implementation of a Sudoku solver, with the intent of formalising how easy a
+    particlar sudoku puzzle would be to solve by determining what moves can be made
+    deterministically, rather than just iterating guesses.
   </description>
   <url>https://github.com/Skenvy/Sudoku</url>
 
@@ -34,7 +35,7 @@
   <scm>
     <connection>scm:git:git://github.com/Skenvy/Sudoku.git</connection>
     <developerConnection>scm:git:ssh://github.com:Skenvy/Sudoku.git</developerConnection>
-    <url>http://github.com/Skenvy/Sudoku/tree/master</url>
+    <url>http://github.com/Skenvy/Sudoku/tree/main</url>
   </scm>
 
   <properties>
@@ -53,7 +54,7 @@
   </dependencies>
 
   <build>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+    <pluginManagement>
       <plugins>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
