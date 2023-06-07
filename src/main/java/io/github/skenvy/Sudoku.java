@@ -162,7 +162,7 @@ public class Sudoku {
         //Find the next value between two instances of the delimiter
         int stringIntStartIndex = boardRows[j0].indexOf('_', previousIndex) + 1;
         int stringIntEndIndex   = boardRows[j0].indexOf('_', stringIntStartIndex);
-        String stringInt = boardRows[j0].substring(stringIntStartIndex,stringIntEndIndex);
+        String stringInt = boardRows[j0].substring(stringIntStartIndex, stringIntEndIndex);
         int parsedInt = Integer.parseInt(stringInt);
         //Assign the value to the location on the board and record a message
         board[boardRow][boardColumn][gridRow][gridColumn] = parsedInt;
@@ -819,7 +819,7 @@ public class Sudoku {
               }
             }
             if (candidates == 0) {
-              //In Grid (jCheckR0,jIgnore)
+              //In Grid (jCheckR0, jIgnore)
               for (int jRotateR = 0; jRotateR < boardSize; jRotateR++) {
                 for (int jRotateC = 0; jRotateC < boardSize; jRotateC++) {
                   if (jRotateR != jCheckR1) {
@@ -853,7 +853,7 @@ public class Sudoku {
               }
             }
             if (candidates == 0) {
-              //In Grid (jIgnore,jCheckC0)
+              //In Grid (jIgnore, jCheckC0)
               for (int jRotateR = 0; jRotateR < boardSize; jRotateR++) {
                 for (int jRotateC = 0; jRotateC < boardSize; jRotateC++) {
                   if (jRotateC != jCheckC1) {
@@ -985,7 +985,7 @@ public class Sudoku {
             for (int k0 = 0; k0 < boardSize; k0++) {
               for (int k1 = 0; k1 < boardSize; k1++) {
                 if (!cellFilled[j0][j1][k0][k1]) {
-                  if (Arrays.equals(subsets[k0][k1],theSubset) && subsetSizeTrue[k0][k1]) {
+                  if (Arrays.equals(subsets[k0][k1], theSubset) && subsetSizeTrue[k0][k1]) {
                     continue;
                   } else {
                     for (int subsetIter = 0; subsetIter < subsetSize; subsetIter++) {
@@ -1083,7 +1083,7 @@ public class Sudoku {
             for (int k0 = 0; k0 < boardSize; k0++) {
               for (int k1 = 0; k1 < boardSize; k1++) {
                 if (!cellFilled[j0][k0][j1][k1]) {
-                  if (Arrays.equals(subsets[k0][k1],theSubset) && subsetSizeTrue[k0][k1]) {
+                  if (Arrays.equals(subsets[k0][k1], theSubset) && subsetSizeTrue[k0][k1]) {
                     continue;
                   } else {
                     for (int subsetIter = 0; subsetIter < subsetSize; subsetIter++) {
@@ -1177,7 +1177,7 @@ public class Sudoku {
             for (int k0 = 0; k0 < boardSize; k0++) {
               for (int k1 = 0; k1 < boardSize; k1++) {
                 if (!cellFilled[k0][j0][k1][j1]) {
-                  if (Arrays.equals(subsets[k0][k1],theSubset) && subsetSizeTrue[k0][k1]) {
+                  if (Arrays.equals(subsets[k0][k1], theSubset) && subsetSizeTrue[k0][k1]) {
                     continue;
                   } else {
                     for (int subsetIter = 0; subsetIter < subsetSize; subsetIter++) {

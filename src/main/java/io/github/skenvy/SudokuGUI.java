@@ -68,18 +68,18 @@ public class SudokuGUI extends JFrame {
     }
     grid = new JTextField[size][size][size][size];
     sudokuBoard = new Sudoku(size);
-    board.setLayout(new GridLayout(size,size));
+    board.setLayout(new GridLayout(size, size));
     subBoards = new JPanel[size][size];
     for (int j0 = 0; j0 < size; j0++) {
       for (int j1 = 0; j1 < size; j1++) {
-        subBoards[j0][j1] = new JPanel(new GridLayout(size,size));
+        subBoards[j0][j1] = new JPanel(new GridLayout(size, size));
       }
     }
     for (int j0 = 0; j0 < size; j0++) {
       for (int j1 = 0; j1 < size; j1++) {
         for (int k0 = 0; k0 < size; k0++) {
           for (int k1 = 0; k1 < size; k1++) {
-            grid[j0][j1][k0][k1] = new JTextField("0",1);
+            grid[j0][j1][k0][k1] = new JTextField("0", 1);
             /*grid[j0][j1][k0][k1].addActionListener(new ActionListener() {
               public void actionPerformed(ActionEvent e) {
                 for (int j0 = 0; j0 < size; j0++) {
@@ -114,8 +114,8 @@ public class SudokuGUI extends JFrame {
     double localWidth = (width - windowWidth) / 2;
     double localHeight = (height - windowHeight) / 2;
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setSize((int)windowWidth,(int)windowHeight);
-    setLocation((int)localWidth, (int)localHeight);
+    setSize((int) windowWidth, (int) windowHeight);
+    setLocation((int) localWidth, (int) localHeight);
     setVisible(true);
     bottom.add(candidate);
     top.add(solve); top.add(new1); top.add(load); top.add(address);

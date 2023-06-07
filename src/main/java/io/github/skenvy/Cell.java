@@ -55,7 +55,7 @@ public class Cell {
     this.value = initialValue;
     this.possibleValues = initialisePossibleValues(3);
     if (initialValue < 0 || initialValue > 9) {
-      throw new SudokuCellInvalidInitialValueException(initialValue,3);
+      throw new SudokuCellInvalidInitialValueException(initialValue, 3);
     }
   }
 
@@ -70,7 +70,7 @@ public class Cell {
     this.value = initialValue;
     this.possibleValues = initialisePossibleValues(boardSize);
     if (initialValue < 0 || initialValue > (boardSize * boardSize)) {
-      throw new SudokuCellInvalidInitialValueException(initialValue,boardSize);
+      throw new SudokuCellInvalidInitialValueException(initialValue, boardSize);
     }
   }
 
@@ -85,7 +85,7 @@ public class Cell {
     this.value = initialValue;
     this.possibleValues = initialisePossibleValues(boardSize);
     if (initialValue < 0 || initialValue > (boardSize * boardSize)) {
-      throw new SudokuCellInvalidInitialValueException(initialValue,boardSize);
+      throw new SudokuCellInvalidInitialValueException(initialValue, boardSize);
     }
     this.row = row;
     this.column = column;

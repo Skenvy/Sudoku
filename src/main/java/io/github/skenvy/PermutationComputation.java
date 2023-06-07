@@ -23,7 +23,7 @@ public class PermutationComputation {
 
   public void permutationCompute(int subsetSize, int overHowMany) {
     int[] carry = new int[subsetSize];
-    permutationComputationRoll(subsetSize,overHowMany,0, carry);
+    permutationComputationRoll(subsetSize, overHowMany, 0, carry);
   }
 
   public void permutationComputationRoll(int subsetSize, int overHowMany, int level, int[] carry) {
@@ -33,11 +33,11 @@ public class PermutationComputation {
       for (int k = level; k < overHowMany; k++) {
         if (level == 0) {
           carry[0] = k;
-          permutationComputationRoll(subsetSize,overHowMany,1, carry);
+          permutationComputationRoll(subsetSize, overHowMany, 1, carry);
         } else {
           if (k > carry[level - 1]) {
             carry[level] = k;
-            permutationComputationRoll(subsetSize,overHowMany,level + 1, carry);
+            permutationComputationRoll(subsetSize, overHowMany, level + 1, carry);
           }
         }
       }
