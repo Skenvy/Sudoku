@@ -1,12 +1,16 @@
 HUSH=-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
 MVN=mvn clean
 MVN_NONINTERACTIVE=mvn -B -U clean
+DOCS_PUBLISH_GOALS=site:site site:stage scm-publish:publish-scm -P deploy-ossrh -Dscmpublish.checkinComment=
 .PHONY: clean docs test build run
 SHELL:=/bin/bash
 
 clean:
 	$(MVN)
 
+# http://localhost:8080
+# http://localhost:8080/apidocs/io/github/skenvy/package-summary.html
+# http://localhost:8080/checkstyle.html
 docs:
 	$(MVN) site:site site:run -P deploy-ossrh
 
@@ -31,11 +35,11 @@ run:
 # $(MVN_NONINTERACTIVE) and removing the "downloading" info output via $(HUSH)
 .PHONY: docs_noninteractive
 docs_noninteractive:
-	$(MVN_NONINTERACTIVE) site:site site:stage scm-publish:publish-scm -P deploy-ossrh -Dscmpublish.checkinComment="build based on $(SHORTSHA)" $(HUSH) -Dscmpublish.dryRun=true
+	$(MVN_NONINTERACTIVE) $(DOCS_PUBLISH_GOALS)"build based on $(SHORTSHA)" $(HUSH) -Dscmpublish.dryRun=true
 
 .PHONY: docs_deploy
 docs_deploy:
-	$(MVN_NONINTERACTIVE) site:site site:stage scm-publish:publish-scm -P deploy-ossrh -Dscmpublish.checkinComment="build based on $(SHORTSHA)" $(HUSH) -Dpassword=$(PASSWORD)
+	$(MVN_NONINTERACTIVE) $(DOCS_PUBLISH_GOALS)"build based on $(SHORTSHA)" $(HUSH) -Dpassword=$(PASSWORD)
 
 .PHONY: test_noninteractive
 test_noninteractive:

@@ -18,6 +18,7 @@ implementation 'io.github.skenvy:sudoku'
 
 ## [Maven-Site generated docs](https://skenvy.github.io/Sudoku/)
 ## [JavaDoc generated docs](https://skenvy.github.io/Sudoku/apidocs/io/github/skenvy/package-summary.html)
+## [Checkstyle generated docs](https://skenvy.github.io/Sudoku/checkstyle.html)
 ## What it is at the moment
 An implementation of a Sudoku solver (currently with Java JFrame), that I made during uni, as the first project I really enjoyed, with the intent of formalising how easy a particlar sudoku puzzle would be to solve by determining what moves can be made deterministically, rather than just iterating guesses.
 ## What I'd like to make it
@@ -27,7 +28,7 @@ The goal of this is to eventually create something similar to [opensudoku](https
 _There is no one time setup required as each maven command will dynamically fetch its dependencies._
 ### Iterative development
 * `make test` will do nothing magical, but is helpful
-* `make docs` will create the site and then run it on [localhost](http://localhost:8080) with [javadoc here](http://localhost:8080/apidocs/io/github/skenvy/package-summary.html).
+* `make docs` will create the site and then run it on [localhost](http://localhost:8080) with [javadoc here](http://localhost:8080/apidocs/io/github/skenvy/package-summary.html), and the [Checkstyle report here](http://localhost:8080/checkstyle.html).
 ### Run on Desktop
 On any setup that has **make**, `make run` will be your friend. Otherwise, `mvn clean compile exec:java` will do the same job.
 ## [Open Source Insights](https://deps.dev/maven/io.github.skenvy%3Asudoku)
