@@ -115,7 +115,7 @@
             </dependency>
           </dependencies>
           <configuration>
-            <configLocation>sun_checks.xml</configLocation>
+            <configLocation>checkstyle.xml</configLocation>
           </configuration>
         </plugin>
         <plugin>
