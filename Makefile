@@ -33,7 +33,7 @@ build:
 	$(MVN) package
 
 # Something like the actual java invocation; (for the default gen'd)
-# java -cp ./target/sudoku-0.0.1.jar io.github.skenvy.SudokuGUI
+# java -cp ./target/sudoku-0.0.1.jar io.github.skenvy.SudokuGui
 # (OR) java -jar ./target/sudoku-0.0.1.jar
 # would be usable if it could discover the jar by name. Instead use
 # https://www.mojohaus.org/exec-maven-plugin/java-mojo.html

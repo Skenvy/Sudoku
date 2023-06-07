@@ -1,5 +1,6 @@
 package io.github.skenvy;
 
+// awt
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -8,7 +9,7 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+// swing
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -19,13 +20,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+/**
+ * A JFrame implementation of a GUI to use the Sudoku class to solve puzzles.
+ */
+public class SudokuGui extends JFrame {
 
-public class SudokuGUI extends JFrame {
-
-  /**
-   * 
-   */
-  private static final long serialVersionUID = 1269307511176122701L;
   JPanel mainPanel = new JPanel();
   JPanel top = new JPanel();
   JPanel board = new JPanel();
@@ -49,14 +48,15 @@ public class SudokuGUI extends JFrame {
   Sudoku sudokuBoard;
 
 
-  SudokuGUI(final int size) {
+  SudokuGui(final int size) {
     setTitle("Sudoku Solver");
     mainPanel.setLayout(new BorderLayout());
     top.setLayout(new FlowLayout());
     left.setLayout(new BoxLayout(left, BoxLayout.LINE_AXIS));
     left1.setLayout(new BoxLayout(left1, BoxLayout.PAGE_AXIS));
     left2.setLayout(new BoxLayout(left2, BoxLayout.PAGE_AXIS));
-    left1.add(tit1); left2.add(tit2);
+    left1.add(tit1);
+    left2.add(tit2);
     digestView = new JScrollPane(digest);
     right.add(digestView);
     selections = new JButton[2][size * size];
@@ -118,8 +118,12 @@ public class SudokuGUI extends JFrame {
     setLocation((int) localWidth, (int) localHeight);
     setVisible(true);
     bottom.add(candidate);
-    top.add(solve); top.add(new1); top.add(load); top.add(address);
-    left.add(left1); left.add(left2);
+    top.add(solve);
+    top.add(new1);
+    top.add(load);
+    top.add(address);
+    left.add(left1);
+    left.add(left2);
     mainPanel.add(top, BorderLayout.NORTH);
     mainPanel.add(board, BorderLayout.CENTER);
     mainPanel.add(bottom, BorderLayout.SOUTH);
@@ -278,6 +282,6 @@ public class SudokuGUI extends JFrame {
   }
 
   public static void main(String[] args) {
-    SudokuGUI a = new SudokuGUI(3);
+    SudokuGui a = new SudokuGui(3);
   }
 }
