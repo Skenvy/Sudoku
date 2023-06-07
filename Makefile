@@ -2,7 +2,7 @@ HUSH=-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransf
 MVN=mvn clean
 MVN_NONINTERACTIVE=mvn -B -U clean
 DOCS_PUBLISH_GOALS=site:site site:stage scm-publish:publish-scm -P deploy-ossrh -Dscmpublish.checkinComment=
-.PHONY: clean docs test build run
+.PHONY: clean docs test lint build run
 SHELL:=/bin/bash
 
 clean:
@@ -17,6 +17,13 @@ docs:
 # the clean phase can be included in a single invocation
 test:
 	$(MVN) test
+
+# First check for, and fail on, default of errors. If there aren't
+# any errors, then check without failing for warnings.
+# https://maven.apache.org/plugins/maven-checkstyle-plugin/check-mojo.html
+lint:
+	$(MVN) checkstyle:check
+	$(MVN) checkstyle:check -Dcheckstyle.violationSeverity="warning" -Dcheckstyle.failOnViolation=false
 
 # package > test in mvn phases, so no need for test to be a prerequisite
 build:
@@ -44,6 +51,11 @@ docs_deploy:
 .PHONY: test_noninteractive
 test_noninteractive:
 	$(MVN_NONINTERACTIVE) test $(HUSH)
+
+.PHONY: lint_noninteractive
+lint_noninteractive:
+	$(MVN_NONINTERACTIVE) checkstyle:check $(HUSH)
+	$(MVN_NONINTERACTIVE) checkstyle:check -Dcheckstyle.violationSeverity="warning" -Dcheckstyle.failOnViolation=false $(HUSH)
 
 .PHONY: build_noninteractive
 build_noninteractive:
