@@ -3,16 +3,16 @@ package io.github.skenvy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class permutationComputation {
+public class PermutationComputation {
 
   ArrayList<int[]> permutations;
 
-  public permutationComputation() {
+  public PermutationComputation() {
     permutations = new ArrayList<int[]>();
   }
 
   public static void main(String[] args) {
-    permutationComputation pc = new permutationComputation();
+    PermutationComputation pc = new PermutationComputation();
     pc.permutationCompute(1, 5);
     pc.clear();
     pc.permutationCompute(2, 5);

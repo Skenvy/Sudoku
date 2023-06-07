@@ -1218,8 +1218,8 @@ public class Sudoku {
     boolean subsetCaptured; boolean subsetChecked;
     ArrayList<Integer> hiddenValues = new ArrayList<Integer>();
     ArrayList<Integer> hiddenSubsetSquares = new ArrayList<Integer>();
-    permutationComputation permVals = new permutationComputation();
-    permutationComputation permSquares = new permutationComputation();
+    PermutationComputation permVals = new PermutationComputation();
+    PermutationComputation permSquares = new PermutationComputation();
     int deliminations = 0;
     for (int subsetSize = 2; subsetSize < boardSize*boardSize - 1; subsetSize++) {
       int[] theSubset = new int[subsetSize];
