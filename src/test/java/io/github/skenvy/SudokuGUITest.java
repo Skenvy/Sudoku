@@ -9,12 +9,12 @@ import org.junit.Test;
  */
 public class SudokuGUITest 
 {
-    /**
-     * Rigorous Test :-)
-     */
+  /**
+   * Rigorous Test :-)
+   */
     @Test
-    public void shouldAnswerWithTrue()
+  public void shouldAnswerWithTrue()
     {
-        assertTrue( true );
-    }
+    assertTrue( true );
+  }
 }

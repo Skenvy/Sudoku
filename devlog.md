@@ -37,8 +37,8 @@ A lot of the 3300-ish errors (according to the `sun_checks.xml`) are very simila
     * Fix a whoopsie by replacing `\+ =` with `+=`
 * Replace `\t` (tab) with "`    `" (four spaces)
 * Halve all leading spaces indentation; (spaces followed by a letter, right curly, forward slash, or space and asterisk)
-    * Replace `^    (?=[\w}/( *)])` with "`  `" (two spaces)
-    * Replace `^        (?=[\w}/( *)])` with "`    `" (four spaces)
-    * _etc._ (up to 56 spaces apparently)
+    * Replace `^ {4}(?=[\w}/]|( \*))` with "`  `" (two spaces)
+    * Replace `^ {8}(?=[\w}/]|( \*))` with "`    `" (four spaces)
+    * _etc._ (up to `^ {56}(?=[\w}/]|( \*))` with 28 spaces, apparently)
 * Chomp all only whitespace lines;
     * Replace `^\s*$` with nothing.
