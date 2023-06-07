@@ -4,56 +4,56 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Sudoku {
-    
-  /***
+
+  /**
    * The individual cell width/length of a single inner grid. For a normal
    * sudoku board, this is 3. A grid/row/column has "boardSize^2" many cells,
    * and the overall board has "(boardSize^2)^2" ~ "boardSize^4" many cells.
    */
   final private int boardSize;
-    
-  /***
+
+  /**
    * The known and determined values that populate the grid. Is initialised
    * with the already known cell values, and is then populated with those
    * determined through solving.
    */
   public int[][][][] board;
-    
-  /***
+
+  /**
    * Whether a cell is filled or not
    */
   public boolean[][][][] cellFilled;
-    
+
   //Stores what numbers can go in what squares.
   boolean[][][][][] placeCanContain;
-    
+
   //whether a small grid contains a number
   boolean[/*#*/][][] numberPresentG;
-    
+
   //whether a row/column contains a number
   boolean[/*R|C*/][/*#*/][/*RC-#*/] numberPresentRC;
-    
+
   //Records if a square that is entered is in error.
   public boolean[][][][] errorInSquare;
-    
+
   //
   ArrayList<String> digest = new ArrayList<String>();
-    
+
   //
   ArrayList<String> operations = new ArrayList<String>();
-    
+
   //Default is to make the board with the standard 3*3*3*3
   public Sudoku() {
     this.boardSize = 3;
     initialiseBoardVariables();
   }
-    
+
   //Specify some size k to make a k*k*k*k size board!
   public Sudoku(int size) {
     this.boardSize = size;
     initialiseBoardVariables();
   }
-    
+
   //You set up a new instance using an already setup board
   public Sudoku(int[][][][] boardIn) throws InvlalidSudokuCongiguration{
     this.boardSize = boardIn.length;
@@ -64,8 +64,8 @@ public class Sudoku {
       throw new InvlalidSudokuCongiguration("Invalid board lengths in incoming array, not a proper matrix of grids, each a matrix of cells");
     }
   }
-    
-  /***
+
+  /**
    * Used for sudoku related exceptions.
    */
   public final class InvlalidSudokuCongiguration extends Exception {
@@ -73,9 +73,9 @@ public class Sudoku {
     public InvlalidSudokuCongiguration(String string) {
       super(string);
     }
-        
+
   }
-    
+
   //Used after assigning the boardSize to appropriately size all member variables.
   private void initialiseBoardVariables() {
     board = new int[boardSize][boardSize][boardSize][boardSize];
@@ -87,7 +87,7 @@ public class Sudoku {
   }
 
   public static void main(String[] args) {
-    Sudoku puzzle = new Sudoku(2);
+    final Sudoku puzzle = new Sudoku(2);
     String[] boardContents = new String[4];
     //Zero Refill "S_0_0_0_0_0_0_0_0_0_E"
     ////XY                 000102101112202122
@@ -120,7 +120,7 @@ public class Sudoku {
     //boardContents[6] = "S_0_6_0_2_0_0_0_0_0_E"; /*2,X,0,Y*/
     //boardContents[7] = "S_0_9_8_6_0_0_0_0_0_E"; /*2,X,1,Y*/
     //boardContents[8] = "S_4_7_0_0_8_0_0_0_0_E"; /*2,X,2,Y*/
-        
+
     boardContents[0] = "S_1_2_3_4_E"; /*0,X,0,Y*/
     boardContents[1] = "S_4_3_2_1_E"; /*0,X,1,Y*/
     boardContents[2] = "S_2_0_0_0_E"; /*0,X,2,Y*/
@@ -133,7 +133,7 @@ public class Sudoku {
     puzzle.printDigest();
     puzzle.printOperations();
   }
-    
+
   //Read in the stringy form of the board; i.e.
   //    boardContents[0] = "S_1_2_3_4_E";
   //    boardContents[1] = "S_4_3_2_1_E";
@@ -173,7 +173,7 @@ public class Sudoku {
       }
     }
   }
-    
+
   //The corollary to "readBoardIn"
   public void printBoardOut() {
     int boardRow = 0;
@@ -194,7 +194,7 @@ public class Sudoku {
       textFieldAdd(mess);
     }
   }
-    
+
   //Checks board is valid and generates list of possibilities
   public boolean initialiseBoard() { 
     digest.add("Digest Start");
@@ -207,7 +207,7 @@ public class Sudoku {
     initialisePlaceCanContain(false);
     return true;
   }
-    
+
   public void initialisePlaceFilled() {
     for (int k0 = 0; k0 < boardSize; k0++) { //grid row iterate
       for (int k1 = 0; k1 < boardSize; k1++) { //grid column iterate
@@ -225,7 +225,7 @@ public class Sudoku {
       }
     }
   }
-    
+
   public void initialisePlaceCanContain(boolean clear) {
     if(clear) {
       for (int k0 = 0; k0 < boardSize; k0++) {
@@ -245,7 +245,7 @@ public class Sudoku {
       updatePlaceCanContain();
     }
   }
-    
+
   public void updatePlaceCanContain() {
     for (int k0 = 0; k0 < boardSize; k0++) {
       for (int k1 = 0; k1 < boardSize; k1++) {
@@ -263,7 +263,7 @@ public class Sudoku {
       }
     }
   }
-    
+
   public void initialiseNumberPresentGRC(boolean clear) {
     if(clear) {
       for (int k0 = 0; k0 < boardSize*boardSize; k0++) {
@@ -284,7 +284,7 @@ public class Sudoku {
       updateNumberPresentGRC();
     }
   }
-    
+
   public void updateNumberPresentGRC() {
     for (int k0 = 0; k0 < boardSize; k0++) {
       for (int k1 = 0; k1 < boardSize; k1++) {
@@ -300,7 +300,7 @@ public class Sudoku {
       }
     }
   }
-    
+
   public boolean boardCheckValid() {
     initialisePlaceFilled();
     initialiseNumberPresentGRC(true);
@@ -330,7 +330,7 @@ public class Sudoku {
     }
     return true;
   }
-    
+
   public void boardCheckErrors() {
     int[/*GRC*/][/*#-GRC*/][/*#*/] appearsTimes = new int[3][boardSize*boardSize][boardSize*boardSize];
     for (int j0 = 0; j0 < 3; j0++) {
@@ -371,7 +371,7 @@ public class Sudoku {
       }
     }
   }
-    
+
   public boolean errorExists() {
     boardCheckErrors();
     boolean check = false;
@@ -388,7 +388,7 @@ public class Sudoku {
     }
     return check;
   }
-    
+
   public boolean boardCheckComplete() {
     for (int k0 = 0; k0 < boardSize; k0++) { //grid row iterate
       for (int k1 = 0; k1 < boardSize; k1++) { //grid column iterate
@@ -403,7 +403,7 @@ public class Sudoku {
     }
     return true;
   }
-    
+
   public int boardCheckPlacesFilled() {
     int count = 0;
     for (int k0 = 0; k0 < boardSize; k0++) { //grid row iterate
@@ -419,13 +419,13 @@ public class Sudoku {
     }
     return count;
   }
-    
+
   public void printDigest() {
     for (int k = 0; k < digest.size(); k++) {
       System.out.println(digest.get(k));
     }
   }
-    
+
   public String[] digestAsArray() {
     String[] out = new String[digest.size()];
     for (int k = 0; k < digest.size(); k++) {
@@ -433,13 +433,13 @@ public class Sudoku {
     }
     return out;
   }
-    
+
   public void printOperations() {
     for (int k = 0; k < operations.size(); k++) {
       System.out.println(operations.get(k));
     }
   }
-    
+
   public String[] operationsAsArray() {
     String[] out = new String[operations.size()];
     for (int k = 0; k < operations.size(); k++) {
@@ -447,23 +447,23 @@ public class Sudoku {
     }
     return out;
   }
-    
+
   public void textFieldAdd(String a) {
     digest.add(a);
     operations.add(a);
   }
-    
+
   public void solveBoard() {
     if(!solveBoardEasy()) {
       if(!solveBoardModerate()) {
         printBoardOut();
         if(!solveBoardHard()) {
-                    
+          textFieldAdd("Couldn't solve this board with existing techniques.");
         }
       }
     }
   }
-    
+
   public boolean solveBoardEasy() {
     if(boardCheckComplete()) {
       textFieldAdd("Board already solved");
@@ -500,7 +500,7 @@ public class Sudoku {
     textFieldAdd("Board Unsolved; Performed " + countUniqueCandidates + " unique candidate steps");
     return false;
   }
-    
+
   public boolean solveBoardModerate() {
     if(boardCheckComplete()) {
       return true;
@@ -541,7 +541,7 @@ public class Sudoku {
     textFieldAdd("Board Unsolved; Performed a further " + countUniqueCandidates + " unique candidate steps");
     return false;
   }
-    
+
   public boolean solveBoardHard() {
     if(boardCheckComplete()) {
       return true;
@@ -590,7 +590,7 @@ public class Sudoku {
     textFieldAdd("Board Unsolved; Performed a further " + countUniqueCandidates + " unique candidate steps");
     return false;
   }
-    
+
   public int iterateSoleCandidate() {
     //System.out.println("Called: IterateSinglePossibility");
     int count = 0;
@@ -600,7 +600,7 @@ public class Sudoku {
     }
     return count;
   }
-    
+
   public boolean checkSoleCandidate() {
     int candidates = 0;
     int candidate = 0;
@@ -629,7 +629,7 @@ public class Sudoku {
     }
     return false;
   }
-    
+
   public int iterateUniqueCandidate() {
     //System.out.println("Called: IterateSinglePossibility");
     int count = 0;
@@ -639,7 +639,7 @@ public class Sudoku {
     }
     return count;
   }
-    
+
   public boolean checkUniqueCandidate() {
     int GRCX = 0, GRCY = 0, grcX = 0, grcY = 0;
     int candidates = 0;
@@ -709,7 +709,7 @@ public class Sudoku {
     }
     return false;
   }
-    
+
   public int iterateReductionOfCanContainInRCByG() {
     int count = 0;
     while(reductionOfCanContainInRCByG()) {
@@ -717,7 +717,7 @@ public class Sudoku {
     }
     return count;
   }
-    
+
   public boolean reductionOfCanContainInRCByG() { //Block and column / Row Interaction
     int rowVal = 0; boolean[] rows = new boolean[boardSize]; int rowsVal = 0;
     int colVal = 0; boolean[] cols = new boolean[boardSize]; int colsVal = 0;
@@ -790,7 +790,7 @@ public class Sudoku {
     }
     return false;
   }
-    
+
   public int iterateReductionOfCanContainInGByRC() {
     int count = 0;
     while(reductionOfCanContainInGByRC()) {
@@ -798,7 +798,7 @@ public class Sudoku {
     }
     return count;
   }
-    
+
   public boolean reductionOfCanContainInGByRC() { //Block / Block Interaction
     int deliminations = 0;
     int candidates = 0;
@@ -874,7 +874,7 @@ public class Sudoku {
     }
     return false;
   }
-    
+
   public int iterateReductionOfCanContainSubsetVisible() {
     int count = 0;
     while(reductionOfCanContainSubsetVisible()) {
@@ -882,8 +882,8 @@ public class Sudoku {
     }
     return count;
   }
-    
-    
+
+
   public boolean reductionOfCanContainSubsetVisible() {
     int minimumSubsetPresent = 0;
     int numberOfTrueSubsets = 0;
@@ -1202,7 +1202,7 @@ public class Sudoku {
     }
     return false;
   }
-    
+
   public int iterateReductionOfCanContainSubsetHidden() {
     int count = 0;
     while(reductionOfCanContainSubsetHidden()) {
@@ -1210,7 +1210,7 @@ public class Sudoku {
     }
     return count;
   }
-    
+
   public boolean reductionOfCanContainSubsetHidden() { //if there are n values that can only be found in n squares those squares can contain no other values
     int[] valueIncidence = new int[boardSize*boardSize];
     int valuesIncidental = 0; int subsetSquares = 0; int s0 = 0, s1 = 0;
@@ -1436,7 +1436,7 @@ public class Sudoku {
                 }
               }
             }
-                        
+
           }
           //Row Action
           if(subsetChecked) {
@@ -1583,8 +1583,8 @@ public class Sudoku {
     }
     return false;
   }
-    
-    
+
+
   public void deliminatePotential(int k0, int k1, int k2, int k3, int k4) {
     numberPresentRC[0][k4][k2 + k0*board.length] = true;
     numberPresentRC[1][k4][k3 + k1*board.length] = true;
@@ -1597,15 +1597,15 @@ public class Sudoku {
       }
     }
   }
-    
+
   public int[] subsetCollisionAt(int subsetSize, int numberOfTrueSubsets, int[] subsetFoundAt, int[][][] subsets) {
     int[] collisionsAt = new int[subsetSize];
     int numberOfPerfectCollisions = 0;
     subsetCollisionAtRolling(subsetSize, numberOfTrueSubsets, subsetFoundAt, subsets);
-        
+
     return collisionsAt;
   }
-    
+
   public void subsetCollisionAtRolling(int subsetSize, int numberOfTrueSubsets, int[] subsetFoundAt, int[][][] subsets) {
     int q1 = 0; int q0 = 0;
     for (int q = 0; q < numberOfTrueSubsets; q++) {
@@ -1618,7 +1618,7 @@ public class Sudoku {
       //}
     }
   }
-    
+
   public boolean placeCanContainCheckDoesCollide(int j0, int j1, int j2, int j3, int k0, int k1, int k2, int k3, int collisions) {
     int counted = 0;
     for (int q = 0; q < boardSize*boardSize; q++) {
@@ -1631,7 +1631,7 @@ public class Sudoku {
     }
     return false;
   }
-    
+
   public boolean[] placeCanContainCheckCollision(int j0, int j1, int j2, int j3, int k0, int k1, int k2, int k3) {
     boolean[] collidingValues = new boolean[boardSize*boardSize];
     for (int q = 0; q < boardSize*boardSize; q++) {
@@ -1643,5 +1643,5 @@ public class Sudoku {
     }
     return collidingValues;
   }
-    
+
 }

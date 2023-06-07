@@ -1,42 +1,42 @@
 package io.github.skenvy;
 
-/***
+/**
  * An individual cell in the whole grid.
  */
 public class Cell {
-    
-  /***
+
+  /**
    * The initial value that a cell starts with. 0 for empty cells.
    */
   final private int initialValue;
-    
-  /***
+
+  /**
    * The current value of a cell, whether assigned at the start, or
    * determined through solving. 0 for empty cells.
    */
   private int value;
-    
-  /***
+
+  /**
    * An array to track the possibilities for an individual cell. 
    */
   final private boolean[] possibleValues;
 
-  /***
+  /**
    * The row that this cell is a member of.
    */
   private CellCollection row;
 
-  /***
+  /**
    * The column that this cell is a member of.
    */
   private CellCollection column;
 
-  /***
+  /**
    * The box that this cell is a member of.
    */
   private CellCollection box;
-    
-  /***
+
+  /**
    * Initialise an empty cell for a standard sudoku board of size 3*3*3*3
    */
   public Cell() {
@@ -44,8 +44,8 @@ public class Cell {
     this.value = 0;
     this.possibleValues = initialisePossibleValues(3);
   }
-    
-  /***
+
+  /**
    * Initialise a non-empty cell for a standard sudoku board of size 3*3*3*3
    * @param initialValue
    * @throws SudokuCellInvalidInitialValueException 
@@ -58,8 +58,8 @@ public class Cell {
       throw new SudokuCellInvalidInitialValueException(initialValue,3);
     }
   }
-    
-  /***
+
+  /**
    * Initialise a non-empty cell for a sudoku board of arbitrary size.
    * @param initialValue
    * @param boardSize
@@ -74,7 +74,7 @@ public class Cell {
     }
   }
 
-  /***
+  /**
    * Initialise a non-empty cell for a sudoku board of arbitrary size.
    * @param initialValue
    * @param boardSize
@@ -103,20 +103,20 @@ public class Cell {
     this.value = value;
   }
 
-  /***
+  /**
    * True if the cell was not originally blank.
    */
   boolean wasCellPredetermined() {
     return (this.initialValue != 0);
   }
 
-  /***
+  /**
    * True if the cell is not currently blank.
    */
   boolean isCellFilled() {
     return (this.value != 0);
   }
-    
+
   boolean[] initialisePossibleValues(int boardSize) {
     boolean[] possibilities = new boolean[boardSize*boardSize];
     for (int i = 0; i < boardSize*boardSize; i++) {
@@ -124,8 +124,8 @@ public class Cell {
     }
     return possibilities;
   }
-    
-  /***
+
+  /**
    * Used for cell related exceptions.
    */
   public class SudokuCellException extends Exception {
@@ -133,7 +133,7 @@ public class Cell {
       super(string);
     }
   }
-    
+
   public final class SudokuCellInvalidInitialValueException extends SudokuCellException {
     public SudokuCellInvalidInitialValueException(int initialValue, int boardSize) {
       super("Invalid initial value. Board size of " + boardSize + " allows for values from 1 to " + (boardSize*boardSize) + "; was given initial value of " + initialValue);

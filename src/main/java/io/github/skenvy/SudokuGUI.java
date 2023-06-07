@@ -47,8 +47,8 @@ public class SudokuGUI extends JFrame{
   JTextField address = new JTextField("File Name (.extension)", 12);
   JTextField[][][][] grid;
   Sudoku sudokuBoard;
-    
-    
+
+
   SudokuGUI(final int size) {
     setTitle("Sudoku Solver");
     mainPanel.setLayout(new BorderLayout());
@@ -156,9 +156,7 @@ public class SudokuGUI extends JFrame{
                       grid[j0][j1][k0][k1].setBackground(Color.YELLOW);
                     }
                   }
-                  if(!sudokuBoard.cellFilled[j0][j1][k0][k1]) {
-                                        
-                  }
+                  // if(!sudokuBoard.cellFilled[j0][j1][k0][k1]) {}
                 }
               }
             }
@@ -223,8 +221,8 @@ public class SudokuGUI extends JFrame{
               }
             }
           }
-        }
-            */}
+        }*/
+      }
     });
     solve.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {

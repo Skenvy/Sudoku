@@ -42,3 +42,4 @@ A lot of the 3300-ish errors (according to the `sun_checks.xml`) are very simila
     * _etc._ (up to `^ {56}(?=[\w}/]|( \*))` with 28 spaces, apparently)
 * Chomp all only whitespace lines;
     * Replace `^\s*$` with nothing.
+* Replace `/\*\*\*` with `/**`

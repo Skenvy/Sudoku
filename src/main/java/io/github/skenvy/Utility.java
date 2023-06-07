@@ -1,5 +1,9 @@
 package io.github.skenvy;
 
+/**
+ * A stubbed utility class that is WIP.
+ *
+ */
 public class Utility {
   protected Utility() {
     throw new UnsupportedOperationException();

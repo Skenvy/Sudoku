@@ -9,33 +9,33 @@ import io.github.skenvy.Utility;
 
 import java.util.ArrayList;
 
-/***
+/**
  * A Sudoku Grid ~ the whole "board" with N rows, columns, and boxes.
  */
 public class SudokuGrid {
 
-  /***
+  /**
    * A list of the rows ~ from top to bottom
    */
   final private List<CellCollection> rows;
 
-  /***
+  /**
    * A list of the columns ~ from left to right
    */
   final private List<CellCollection> columns;
 
-  /***
+  /**
    * A list of the boxes [or blocks|regions] ~
    * from top left across and then down to bottom right.
    */
   final private List<CellCollection> boxes;
 
-  /***
+  /**
    * A 2d array of the cells, first indexing by row, then by column
    */
   final private Cell[][][][] cells;
 
-  /***
+  /**
    * Initialise an empty sudoku grid for a standard Sudoku board
    */
   public SudokuGrid() throws SudokuCellGridInvalidGridShapeException, Cell.SudokuCellInvalidInitialValueException{
@@ -45,7 +45,7 @@ public class SudokuGrid {
     this.boxes = null;
   }
 
-  /***
+  /**
    * Initialise an empty sudoku grid for a custom sized Sudoku board
    */
   public SudokuGrid(int boardSize) throws SudokuCellGridInvalidGridShapeException, Cell.SudokuCellInvalidInitialValueException{
@@ -56,7 +56,7 @@ public class SudokuGrid {
     this.boxes = null;
   }
 
-  /***
+  /**
    * Initialise a grid from one already established.
    */
   public SudokuGrid(SudokuGrid initialGrid, boolean exactReplica) throws SudokuCellGridInvalidGridShapeException, Cell.SudokuCellInvalidInitialValueException{
@@ -135,7 +135,7 @@ public class SudokuGrid {
     return this.boxes;
   }
 
-  /***
+  /**
    * Used for cell related exceptions.
    */
   public class SudokuCellGridException extends Exception {
@@ -143,7 +143,7 @@ public class SudokuGrid {
     public SudokuCellGridException(String string) {
       super(string);
     }
-        
+
   }
 
   public class SudokuCellGridInvalidGridShapeException extends Exception {
@@ -159,7 +159,7 @@ public class SudokuGrid {
     public SudokuCellGridInvalidGridShapeException(int rows) {
       super(String.format("The shape of the input grid was not a valid square, received non square value for collections count, received %d", rows));
     }
-        
+
   }
 
 }
