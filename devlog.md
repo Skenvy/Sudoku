@@ -17,5 +17,7 @@ The code is pretty gross at the moment, so we'll need to add a linter. [VS Code'
 A lot of the 3300-ish errors (according to the `sun_checks.xml`) are very similar. What are some quick find and replaces?
 * Replace `){` with `) {`
 * Replace `for(` with `for (`
-* Replace `(?<=[^\+ ])\+(?=[^\+])` with ` +`
-* Replace `(?<=[^\+])\+(?=[^\+ ])` with `+ `
+* Add spaces around single `+` operators
+    * Replace `(?<=[^\+ ])\+(?=[^\+])` with ` +`
+    * Replace `(?<=[^\+])\+(?=[^\+ ])` with `+ `
+    * Fix a whoopsie by replacing `\+ =` with `+=`

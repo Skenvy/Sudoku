@@ -473,13 +473,13 @@ public class Sudoku {
 		int countSoleCandidates = 0;
 		int countUniqueCandidates = 0;
 		for (int q = 0; q < unsolvedSquares; q++) {
-			countSoleCandidates + =iterateSoleCandidate();
+			countSoleCandidates +=iterateSoleCandidate();
 			if(countSoleCandidates == unsolvedSquares) {
 				break;
 			} else {
 				unsolvedSquares-=countSoleCandidates;
 			}
-			countUniqueCandidates + =iterateUniqueCandidate();
+			countUniqueCandidates +=iterateUniqueCandidate();
 			if(countUniqueCandidates == unsolvedSquares) {
 				break;
 			} else {
@@ -511,20 +511,20 @@ public class Sudoku {
 		int countReduceRCByG = 0;
 		int countReduceGByRC = 0;
 		for (int q = 0; q < unsolvedSquares; q++) {
-			countSoleCandidates + =iterateSoleCandidate();
+			countSoleCandidates +=iterateSoleCandidate();
 			if(countSoleCandidates == unsolvedSquares) {
 				break;
 			} else {
 				unsolvedSquares-=countSoleCandidates;
 			}
-			countUniqueCandidates + =iterateUniqueCandidate();
+			countUniqueCandidates +=iterateUniqueCandidate();
 			if(countUniqueCandidates == unsolvedSquares) {
 				break;
 			} else {
 				unsolvedSquares-=countUniqueCandidates;
 			}
-			countReduceRCByG + =iterateReductionOfCanContainInRCByG();
-			countReduceGByRC + =iterateReductionOfCanContainInGByRC();
+			countReduceRCByG +=iterateReductionOfCanContainInRCByG();
+			countReduceGByRC +=iterateReductionOfCanContainInGByRC();
 		}
 		if(boardCheckComplete()) {
 			textFieldAdd("Board was moderate!");
@@ -554,22 +554,22 @@ public class Sudoku {
 		int countReduceSubVis = 0;
 		int countReduceSubHid = 0;
 		for (int q = 0; q < unsolvedSquares; q++) {
-			countSoleCandidates + =iterateSoleCandidate();
+			countSoleCandidates +=iterateSoleCandidate();
 			if(countSoleCandidates == unsolvedSquares) {
 				break;
 			} else {
 				unsolvedSquares-=countSoleCandidates;
 			}
-			countUniqueCandidates + =iterateUniqueCandidate();
+			countUniqueCandidates +=iterateUniqueCandidate();
 			if(countUniqueCandidates == unsolvedSquares) {
 				break;
 			} else {
 				unsolvedSquares-=countUniqueCandidates;
 			}
-			countReduceRCByG + =iterateReductionOfCanContainInRCByG();
-			countReduceGByRC + =iterateReductionOfCanContainInGByRC();
-			countReduceSubVis + =iterateReductionOfCanContainSubsetVisible();
-			countReduceSubHid + =iterateReductionOfCanContainSubsetHidden();
+			countReduceRCByG +=iterateReductionOfCanContainInRCByG();
+			countReduceGByRC +=iterateReductionOfCanContainInGByRC();
+			countReduceSubVis +=iterateReductionOfCanContainSubsetVisible();
+			countReduceSubHid +=iterateReductionOfCanContainSubsetHidden();
 		}
 		if(boardCheckComplete()) {
 			textFieldAdd("Board was hard!");
@@ -613,7 +613,7 @@ public class Sudoku {
 							for (int k4 = 0; k4 < boardSize*boardSize; k4++) {
 								if(placeCanContain[k0][k1][k2][k3][k4]) {
 									candidate = k4;
-									candidates + =1;
+									candidates +=1;
 								}
 							}
 							if(candidates == 1) {
@@ -656,7 +656,7 @@ public class Sudoku {
 						grcX = (InnerGRC - grcY)/boardSize;
 						if(!cellFilled[GRCX][GRCY][grcX][grcY] && placeCanContain[GRCX][GRCY][grcX][grcY][val]) {
 							candR1 = grcX; candC1 = grcY;
-							candidates + =1;
+							candidates +=1;
 						}
 					}
 					if(candidates == 1) {
@@ -675,7 +675,7 @@ public class Sudoku {
 						grcX = (InnerGRC - grcY)/boardSize;
 						if(!cellFilled[GRCX][grcX][GRCY][grcY] && placeCanContain[GRCX][grcX][GRCY][grcY][val]) {
 							candC0 = grcX; candC1 = grcY;
-							candidates + =1;
+							candidates +=1;
 						}
 					}
 					if(candidates == 1) {
@@ -694,7 +694,7 @@ public class Sudoku {
 						grcX = (InnerGRC - grcY)/boardSize;
 						if(!cellFilled[grcX][GRCX][grcY][GRCY] && placeCanContain[grcX][GRCX][grcY][GRCY][val]) {
 							candR0 = grcX; candR1 = grcY;
-							candidates + =1;
+							candidates +=1;
 						}
 					}
 					if(candidates == 1) {
