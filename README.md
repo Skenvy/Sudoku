@@ -1,8 +1,15 @@
 # [Sudoku](https://github.com/Skenvy/Sudoku)
 Application of [specific techniques](https://sudoku.com/sudoku-rules/) to the solving of [sudokus](https://en.wikipedia.org/wiki/Sudoku), implemented in [Java](https://www.java.com/) ([OpenJDK](https://openjdk.org/)).
 ## Getting Started
+### Using the executable JAR
+[latest-jar]: https://repo1.maven.org/maven2/io/github/skenvy/sudoku/0.2.0/sudoku-0.2.0.jar
+Starting from release `v0.2.0`, the released JAR will be an executable JAR targetting version 8, which will run the default 9*9 sized sudoku. Most recent JAR [_here_][latest-jar]. To build against a different version, you can;
+```sh
+git clone https://github.com/Skenvy/Sudoku.git && cd Sudoku
+mvn clean package -Dmaven.compiler.release <desired_release_version>
+```
 ### Source distribuitons
-[To install the latest from Maven Central](https://repo1.maven.org/maven2/io/github/skenvy/sudoku/) ([sonatype.org source mirror](https://s01.oss.sonatype.org/content/repositories/releases/io/github/skenvy/sudoku/)) (also see [mvnrepository](https://mvnrepository.com/artifact/io.github.skenvy/sudoku) or the [sonatype package index](https://search.maven.org/artifact/io.github.skenvy/sudoku));
+To install the latest from [Maven Central](https://repo1.maven.org/maven2/io/github/skenvy/sudoku/) source (mirror [sonatype.org](https://s01.oss.sonatype.org/content/repositories/releases/io/github/skenvy/sudoku/)) (also see the package indexes, [mvnrepository](https://mvnrepository.com/artifact/io.github.skenvy/sudoku) or [sonatype](https://search.maven.org/artifact/io.github.skenvy/sudoku));
 ### Add to the pom `<dependencies>`
 ```xml
 <dependency>
@@ -26,10 +33,12 @@ An implementation of a Sudoku solver (currently with Java JFrame), that I made d
 The goal of this is to eventually create something similar to [opensudoku](https://github.com/romario333/opensudoku), or the [newer, current](https://github.com/ogarcia/opensudoku), version of it, as well as putting it on the playstore [similar to ~](https://play.google.com/store/apps/details?id=org.moire.opensudoku), with the inclusion of the originally intended feature/purpose of the JFrame app of determining available moves and how complex a particular game is.
 ## Developing
 ### The first time setup
-_There is no one time setup required as each maven command will dynamically fetch its dependencies._
+_There is no one time setup required as each maven command will dynamically fetch its dependencies._ All you need to do is fork / clone it;
 ### Iterative development
-* `make test` will do nothing magical, but is helpful
+* `make run` is the simplest test, compiling and executing the JFrame GUI.
+* `make test` will run the JUnit tests.
+* `make lint` will evaluate the [Checkstyle rules](https://github.com/Skenvy/Sudoku/blob/main/checkstyle.xml).
 * `make docs` will create the site and then run it on [localhost](http://localhost:8080) with [javadoc here](http://localhost:8080/apidocs/io/github/skenvy/package-summary.html), and the [Checkstyle report here](http://localhost:8080/checkstyle.html).
 ### Run on Desktop
-On any setup that has **make**, `make run` will be your friend. Otherwise, `mvn clean compile exec:java` will do the same job.
+On any setup that has **make**, `make run` will be your friend. If you are in an environment where you can't install `make`, its recipe should be `mvn clean compile exec:java`.
 ## [Open Source Insights](https://deps.dev/maven/io.github.skenvy%3Asudoku)
