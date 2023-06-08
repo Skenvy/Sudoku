@@ -1,7 +1,7 @@
 package io.github.skenvy;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A collection of cells ~ can be a row, column, or box|region|block.
