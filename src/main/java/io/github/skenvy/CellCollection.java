@@ -11,14 +11,14 @@ public class CellCollection {
   private final List<Cell> cells;
 
   /**
-   * Initialise an empty collection to reference 9 cells in a row, column, or box
+   * Initialise an empty collection to reference 9 cells in a row, column, or box.
    */
   public CellCollection() {
     this.cells = new ArrayList<Cell>(9);
   }
 
   /**
-   * Initialise an empty collection to reference N*N cells in a row, column, or box
+   * Initialise an empty collection to reference N*N cells in a row, column, or box.
    */
   public CellCollection(int boardSize) {
     this.cells = new ArrayList<Cell>((boardSize * boardSize));

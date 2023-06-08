@@ -37,7 +37,7 @@ public class Cell {
   private CellCollection box;
 
   /**
-   * Initialise an empty cell for a standard sudoku board of size 3*3*3*3
+   * Initialise an empty cell for a standard sudoku board of size 3*3*3*3.
    */
   public Cell() {
     this.initialValue = 0;
@@ -46,9 +46,11 @@ public class Cell {
   }
 
   /**
-   * Initialise a non-empty cell for a standard sudoku board of size 3*3*3*3
-   * @param initialValue
-   * @throws SudokuCellInvalidInitialValueException 
+   * Initialise a non-empty cell for a standard sudoku board of size 3*3*3*3.
+   *
+   * @param initialValue is used to provide an initial value.
+   * @throws SudokuCellInvalidInitialValueException when attempting to create a
+   *     new Cell with an invalid value
    */
   public Cell(int initialValue) throws SudokuCellInvalidInitialValueException {
     this.initialValue = initialValue;
@@ -61,9 +63,11 @@ public class Cell {
 
   /**
    * Initialise a non-empty cell for a sudoku board of arbitrary size.
-   * @param initialValue
-   * @param boardSize
-   * @throws SudokuCellInvalidInitialValueException 
+   *
+   * @param initialValue is used to provide an initial value.
+   * @param boardSize is used to specify a row / column length other than 9.
+   * @throws SudokuCellInvalidInitialValueException when attempting to create a
+   *     new Cell with an invalid value
    */
   public Cell(int initialValue, int boardSize) throws SudokuCellInvalidInitialValueException {
     this.initialValue = initialValue;
@@ -76,9 +80,11 @@ public class Cell {
 
   /**
    * Initialise a non-empty cell for a sudoku board of arbitrary size.
-   * @param initialValue
-   * @param boardSize
-   * @throws SudokuCellInvalidInitialValueException 
+   *
+   * @param initialValue is used to provide an initial value.
+   * @param boardSize is used to specify a row / column length other than 9.
+   * @throws SudokuCellInvalidInitialValueException when attempting to create a
+   *     new Cell with an invalid value
    */
   public Cell(int initialValue, int boardSize, CellCollection row, CellCollection column, CellCollection box) throws SudokuCellInvalidInitialValueException {
     this.initialValue = initialValue;

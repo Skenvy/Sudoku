@@ -20,7 +20,7 @@ public class Sudoku {
   public int[][][][] board;
 
   /**
-   * Whether a cell is filled or not
+   * Whether a cell is filled or not.
    */
   public boolean[][][][] cellFilled;
 

@@ -15,12 +15,12 @@ import io.github.skenvy.Utility;
 public class SudokuGrid {
 
   /**
-   * A list of the rows ~ from top to bottom
+   * A list of the rows ~ from top to bottom.
    */
   private final List<CellCollection> rows;
 
   /**
-   * A list of the columns ~ from left to right
+   * A list of the columns ~ from left to right.
    */
   private final List<CellCollection> columns;
 
@@ -31,12 +31,12 @@ public class SudokuGrid {
   private final List<CellCollection> boxes;
 
   /**
-   * A 2d array of the cells, first indexing by row, then by column
+   * A 2d array of the cells, first indexing by row, then by column.
    */
   private final Cell[][][][] cells;
 
   /**
-   * Initialise an empty sudoku grid for a standard Sudoku board
+   * Initialise an empty sudoku grid for a standard Sudoku board.
    */
   public SudokuGrid() throws SudokuCellGridInvalidGridShapeException, Cell.SudokuCellInvalidInitialValueException {
     this.cells = createCellGrid(new int[3][3][3][3]);
@@ -46,7 +46,7 @@ public class SudokuGrid {
   }
 
   /**
-   * Initialise an empty sudoku grid for a custom sized Sudoku board
+   * Initialise an empty sudoku grid for a custom sized Sudoku board.
    */
   public SudokuGrid(int boardSize) throws SudokuCellGridInvalidGridShapeException, Cell.SudokuCellInvalidInitialValueException {
     this.cells = createCellGrid(new int[3][3][3][3]);
