@@ -1,6 +1,7 @@
 # [Sudoku](https://github.com/Skenvy/Sudoku)
 Application of [specific techniques](https://sudoku.com/sudoku-rules/) to the solving of [sudokus](https://en.wikipedia.org/wiki/Sudoku), implemented in [Java](https://www.java.com/) ([OpenJDK](https://openjdk.org/)).
 ## Getting Started
+### Source distribuitons
 [To install the latest from Maven Central](https://repo1.maven.org/maven2/io/github/skenvy/sudoku/) ([sonatype.org source mirror](https://s01.oss.sonatype.org/content/repositories/releases/io/github/skenvy/sudoku/)) (also see [mvnrepository](https://mvnrepository.com/artifact/io.github.skenvy/sudoku) or the [sonatype package index](https://search.maven.org/artifact/io.github.skenvy/sudoku));
 ### Add to the pom `<dependencies>`
 ```xml
