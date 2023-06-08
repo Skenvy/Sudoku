@@ -31,7 +31,7 @@ public class Sudoku {
   boolean[/*#*/][][] numberPresentG;
 
   //whether a row/column contains a number
-  boolean[/*R|C*/][/*#*/][/*RC-#*/] numberPresentRC;
+  boolean[/*R|C*/][/*#*/][/*RC-#*/] numberPresentRowCol;
 
   //Records if a square that is entered is in error.
   public boolean[][][][] errorInSquare;
@@ -82,7 +82,7 @@ public class Sudoku {
     cellFilled = new boolean[boardSize][boardSize][boardSize][boardSize];
     placeCanContain = new boolean[boardSize][boardSize][boardSize][boardSize][(boardSize * boardSize)];
     numberPresentG = new boolean[(boardSize * boardSize)][boardSize][boardSize];
-    numberPresentRC = new boolean[2][(boardSize * boardSize)][(boardSize * boardSize)];
+    numberPresentRowCol = new boolean[2][(boardSize * boardSize)][(boardSize * boardSize)];
     errorInSquare = new boolean[boardSize][boardSize][boardSize][boardSize];
   }
 
@@ -241,7 +241,7 @@ public class Sudoku {
       }
     } else {
       initialisePlaceCanContain(true);
-      initialiseNumberPresentGRC(false);
+      initialiseNumberPresentGridRowCol(false);
       updatePlaceCanContain();
     }
   }
@@ -253,7 +253,7 @@ public class Sudoku {
           for (int k3 = 0; k3 < boardSize; k3++) {
             if (!cellFilled[k0][k1][k2][k3]) {
               for (int k4 = 0; k4 < (boardSize * boardSize); k4++) {
-                if (numberPresentRC[0][k4][k2 + k0 * board.length] || numberPresentRC[1][k4][k3 + k1 * board.length] || numberPresentG[k4][k0][k1]) {
+                if (numberPresentRowCol[0][k4][k2 + k0 * board.length] || numberPresentRowCol[1][k4][k3 + k1 * board.length] || numberPresentG[k4][k0][k1]) {
                   placeCanContain[k0][k1][k2][k3][k4] = false;
                 }
               }
@@ -264,7 +264,7 @@ public class Sudoku {
     }
   }
 
-  public void initialiseNumberPresentGRC(boolean clear) {
+  public void initialiseNumberPresentGridRowCol(boolean clear) {
     if (clear) {
       for (int k0 = 0; k0 < (boardSize * boardSize); k0++) {
         for (int k1 = 0; k1 < boardSize; k1++) {
@@ -276,23 +276,23 @@ public class Sudoku {
       for (int k0 = 0; k0 < 2; k0++) {
         for (int k1 = 0; k1 < (boardSize * boardSize); k1++) {
           for (int k2 = 0; k2 < (boardSize * boardSize); k2++) {
-            numberPresentRC[k0][k1][k2] = false;
+            numberPresentRowCol[k0][k1][k2] = false;
           }
         }
       }
     } else {
-      updateNumberPresentGRC();
+      updateNumberPresentGridRowCol();
     }
   }
 
-  public void updateNumberPresentGRC() {
+  public void updateNumberPresentGridRowCol() {
     for (int k0 = 0; k0 < boardSize; k0++) {
       for (int k1 = 0; k1 < boardSize; k1++) {
         for (int k2 = 0; k2 < boardSize; k2++) {
           for (int k3 = 0; k3 < boardSize; k3++) {
             if (cellFilled[k0][k1][k2][k3]) {
-              numberPresentRC[0][board[k0][k1][k2][k3] - 1][k2 + k0 * board.length] = true;
-              numberPresentRC[1][board[k0][k1][k2][k3] - 1][k3 + k1 * board.length] = true;
+              numberPresentRowCol[0][board[k0][k1][k2][k3] - 1][k2 + k0 * board.length] = true;
+              numberPresentRowCol[1][board[k0][k1][k2][k3] - 1][k3 + k1 * board.length] = true;
               numberPresentG[board[k0][k1][k2][k3] - 1][k0][k1] = true;
             }
           }
@@ -303,24 +303,24 @@ public class Sudoku {
 
   public boolean boardCheckValid() {
     initialisePlaceFilled();
-    initialiseNumberPresentGRC(true);
+    initialiseNumberPresentGridRowCol(true);
     for (int k0 = 0; k0 < boardSize; k0++) { //grid row iterate
       for (int k1 = 0; k1 < boardSize; k1++) { //grid column iterate
         for (int k2 = 0; k2 < boardSize; k2++) { //small grid row iterate
           for (int k3 = 0; k3 < boardSize; k3++) { //small grid column iterate
             if (cellFilled[k0][k1][k2][k3]) {
-              if (numberPresentRC[0][board[k0][k1][k2][k3] - 1][k2 + k0 * boardSize]) {
+              if (numberPresentRowCol[0][board[k0][k1][k2][k3] - 1][k2 + k0 * boardSize]) {
                 textFieldAdd("Error in row " + (k2 + k0 * boardSize));
                 return false;
-              } else if (numberPresentRC[1][board[k0][k1][k2][k3] - 1][k3 + k1 * boardSize]) {
+              } else if (numberPresentRowCol[1][board[k0][k1][k2][k3] - 1][k3 + k1 * boardSize]) {
                 textFieldAdd("Error in column " + (k3 + k1 * boardSize));
                 return false;
               } else if (numberPresentG[board[k0][k1][k2][k3] - 1][k0][k1]) {
                 textFieldAdd("Error in grid (R,C): (" + k0 + ", " + k1 + ")");
                 return false;
               } else {
-                numberPresentRC[0][board[k0][k1][k2][k3] - 1][k2 + k0 * boardSize] = true;
-                numberPresentRC[1][board[k0][k1][k2][k3] - 1][k3 + k1 * boardSize] = true;
+                numberPresentRowCol[0][board[k0][k1][k2][k3] - 1][k2 + k0 * boardSize] = true;
+                numberPresentRowCol[1][board[k0][k1][k2][k3] - 1][k3 + k1 * boardSize] = true;
                 numberPresentG[board[k0][k1][k2][k3] - 1][k0][k1] = true;
               }
             }
@@ -332,7 +332,7 @@ public class Sudoku {
   }
 
   public void boardCheckErrors() {
-    int[/*GRC*/][/*#-GRC*/][/*#*/] appearsTimes = new int[3][(boardSize * boardSize)][(boardSize * boardSize)];
+    int[/*GridRowCol*/][/*#-GridRowCol*/][/*#*/] appearsTimes = new int[3][(boardSize * boardSize)][(boardSize * boardSize)];
     for (int j0 = 0; j0 < 3; j0++) {
       for (int j1 = 0; j1 < (boardSize * boardSize); j1++) {
         for (int j2 = 0; j2 < (boardSize * boardSize); j2++) {
@@ -508,8 +508,8 @@ public class Sudoku {
     int unsolvedSquares = (boardSize * boardSize) * (boardSize * boardSize) - boardCheckPlacesFilled();
     int countSoleCandidates = 0;
     int countUniqueCandidates = 0;
-    int countReduceRCByG = 0;
-    int countReduceGByRC = 0;
+    int countReduceRowColByGrid = 0;
+    int countReduceGridByRowCol = 0;
     for (int q = 0; q < unsolvedSquares; q++) {
       countSoleCandidates += iterateSoleCandidate();
       if (countSoleCandidates == unsolvedSquares) {
@@ -523,20 +523,20 @@ public class Sudoku {
       } else {
         unsolvedSquares -= countUniqueCandidates;
       }
-      countReduceRCByG += iterateReductionOfCanContainInRCByG();
-      countReduceGByRC += iterateReductionOfCanContainInGByRC();
+      countReduceRowColByGrid += iterateReductionOfCanContainInRowColByGrid();
+      countReduceGridByRowCol += iterateReductionOfCanContainInGridByRowCol();
     }
     if (boardCheckComplete()) {
       textFieldAdd("Board was moderate!");
-      textFieldAdd("Board solved with " + countReduceRCByG + " row/column reductions by grid steps");
-      textFieldAdd("Board solved with " + countReduceGByRC + " grid reductions by grid steps");
+      textFieldAdd("Board solved with " + countReduceRowColByGrid + " row/column reductions by grid steps");
+      textFieldAdd("Board solved with " + countReduceGridByRowCol + " grid reductions by grid steps");
       textFieldAdd("Board solved in a further " + countSoleCandidates + " solo candidate steps");
       textFieldAdd("Board solved in a further " + countUniqueCandidates + " unique candidate steps");
       return true;
     }
     textFieldAdd("Board was not moderate!");
-    textFieldAdd("Board Unsolved; Performed " + countReduceRCByG + " row/column reductions by grid steps");
-    textFieldAdd("Board Unsolved; Performed " + countReduceGByRC + " grid reductions by grid steps");
+    textFieldAdd("Board Unsolved; Performed " + countReduceRowColByGrid + " row/column reductions by grid steps");
+    textFieldAdd("Board Unsolved; Performed " + countReduceGridByRowCol + " grid reductions by grid steps");
     textFieldAdd("Board Unsolved; Performed a further " + countSoleCandidates + " solo candidate steps");
     textFieldAdd("Board Unsolved; Performed a further " + countUniqueCandidates + " unique candidate steps");
     return false;
@@ -549,8 +549,8 @@ public class Sudoku {
     int unsolvedSquares = (boardSize * boardSize) * (boardSize * boardSize) - boardCheckPlacesFilled();
     int countSoleCandidates = 0;
     int countUniqueCandidates = 0;
-    int countReduceRCByG = 0;
-    int countReduceGByRC = 0;
+    int countReduceRowColByGrid = 0;
+    int countReduceGridByRowCol = 0;
     int countReduceSubVis = 0;
     int countReduceSubHid = 0;
     for (int q = 0; q < unsolvedSquares; q++) {
@@ -566,8 +566,8 @@ public class Sudoku {
       } else {
         unsolvedSquares -= countUniqueCandidates;
       }
-      countReduceRCByG += iterateReductionOfCanContainInRCByG();
-      countReduceGByRC += iterateReductionOfCanContainInGByRC();
+      countReduceRowColByGrid += iterateReductionOfCanContainInRowColByGrid();
+      countReduceGridByRowCol += iterateReductionOfCanContainInGridByRowCol();
       countReduceSubVis += iterateReductionOfCanContainSubsetVisible();
       countReduceSubHid += iterateReductionOfCanContainSubsetHidden();
     }
@@ -575,8 +575,8 @@ public class Sudoku {
       textFieldAdd("Board was hard!");
       textFieldAdd("Board solved with " + countReduceSubVis + " subset reductions by visible subsets steps");
       textFieldAdd("Board solved with " + countReduceSubHid + " subset reductions by hidden subsets steps");
-      textFieldAdd("Board solved in a further " + countReduceRCByG + " row/column reductions by grid steps");
-      textFieldAdd("Board solved in a further " + countReduceGByRC + " grid reductions by grid steps");
+      textFieldAdd("Board solved in a further " + countReduceRowColByGrid + " row/column reductions by grid steps");
+      textFieldAdd("Board solved in a further " + countReduceGridByRowCol + " grid reductions by grid steps");
       textFieldAdd("Board solved in a further " + countSoleCandidates + " solo candidate steps");
       textFieldAdd("Board solved in a further " + countUniqueCandidates + " unique candidate steps");
       return true;
@@ -584,8 +584,8 @@ public class Sudoku {
     textFieldAdd("Board was not hard!");
     textFieldAdd("Board Unsolved; Performed " + countReduceSubVis + " subset reductions by visible subsets steps");
     textFieldAdd("Board Unsolved; Performed " + countReduceSubHid + " subset reductions by hidden subsets steps");
-    textFieldAdd("Board Unsolved; Performed a further " + countReduceRCByG + " row/column reductions by grid steps");
-    textFieldAdd("Board Unsolved; Performed a further " + countReduceGByRC + " grid reductions by grid steps");
+    textFieldAdd("Board Unsolved; Performed a further " + countReduceRowColByGrid + " row/column reductions by grid steps");
+    textFieldAdd("Board Unsolved; Performed a further " + countReduceGridByRowCol + " grid reductions by grid steps");
     textFieldAdd("Board Unsolved; Performed a further " + countSoleCandidates + " solo candidate steps");
     textFieldAdd("Board Unsolved; Performed a further " + countUniqueCandidates + " unique candidate steps");
     return false;
@@ -641,8 +641,8 @@ public class Sudoku {
   }
 
   public boolean checkUniqueCandidate() {
-    int GRCX = 0;
-    int GRCY = 0;
+    int GridRowColX = 0;
+    int GridRowColY = 0;
     int grcX = 0;
     int grcY = 0;
     int candidates = 0;
@@ -651,20 +651,20 @@ public class Sudoku {
     int candR1 = 0;
     int candC1 = 0;
     for (int val = 0; val < (boardSize * boardSize); val++) {
-      for (int OuterGRC = 0; OuterGRC < (boardSize * boardSize); OuterGRC++) { //Which G,R,C
-        GRCY = OuterGRC % boardSize;
-        GRCX = (OuterGRC - GRCY) / boardSize;
+      for (int OuterGridRowCol = 0; OuterGridRowCol < (boardSize * boardSize); OuterGridRowCol++) { //Which G,R,C
+        GridRowColY = OuterGridRowCol % boardSize;
+        GridRowColX = (OuterGridRowCol - GridRowColY) / boardSize;
         //Grid Check
-        if (!numberPresentG[val][GRCX][GRCY]) {
+        if (!numberPresentG[val][GridRowColX][GridRowColY]) {
           candidates = 0;
-          candR0 = GRCX;
-          candC0 = GRCY;
+          candR0 = GridRowColX;
+          candC0 = GridRowColY;
           candR1 = 0;
           candC1 = 0;
-          for (int InnerGRC = 0; InnerGRC < (boardSize * boardSize); InnerGRC++) { //Check elements of G,R,C
-            grcY = InnerGRC % boardSize;
-            grcX = (InnerGRC - grcY) / boardSize;
-            if (!cellFilled[GRCX][GRCY][grcX][grcY] && placeCanContain[GRCX][GRCY][grcX][grcY][val]) {
+          for (int InnerGridRowCol = 0; InnerGridRowCol < (boardSize * boardSize); InnerGridRowCol++) { //Check elements of G,R,C
+            grcY = InnerGridRowCol % boardSize;
+            grcX = (InnerGridRowCol - grcY) / boardSize;
+            if (!cellFilled[GridRowColX][GridRowColY][grcX][grcY] && placeCanContain[GridRowColX][GridRowColY][grcX][grcY][val]) {
               candR1 = grcX;
               candC1 = grcY;
               candidates += 1;
@@ -679,16 +679,16 @@ public class Sudoku {
           }
         }
         //Row Check
-        if (!numberPresentRC[0][val][OuterGRC]) {
+        if (!numberPresentRowCol[0][val][OuterGridRowCol]) {
           candidates = 0;
-          candR0 = GRCX;
+          candR0 = GridRowColX;
           candC0 = 0;
-          candR1 = GRCY;
+          candR1 = GridRowColY;
           candC1 = 0;
-          for (int InnerGRC = 0; InnerGRC < (boardSize * boardSize); InnerGRC++) { //Check elements of G,R,C
-            grcY = InnerGRC % boardSize;
-            grcX = (InnerGRC - grcY) / boardSize;
-            if (!cellFilled[GRCX][grcX][GRCY][grcY] && placeCanContain[GRCX][grcX][GRCY][grcY][val]) {
+          for (int InnerGridRowCol = 0; InnerGridRowCol < (boardSize * boardSize); InnerGridRowCol++) { //Check elements of G,R,C
+            grcY = InnerGridRowCol % boardSize;
+            grcX = (InnerGridRowCol - grcY) / boardSize;
+            if (!cellFilled[GridRowColX][grcX][GridRowColY][grcY] && placeCanContain[GridRowColX][grcX][GridRowColY][grcY][val]) {
               candC0 = grcX;
               candC1 = grcY;
               candidates += 1;
@@ -703,16 +703,16 @@ public class Sudoku {
           }
         }
         //Column Check
-        if (!numberPresentRC[1][val][OuterGRC]) {
+        if (!numberPresentRowCol[1][val][OuterGridRowCol]) {
           candidates = 0;
           candR0 = 0;
-          candC0 = GRCX;
+          candC0 = GridRowColX;
           candR1 = 0;
-          candC1 = GRCY;
-          for (int InnerGRC = 0; InnerGRC < (boardSize * boardSize); InnerGRC++) { //Check elements of G,R,C
-            grcY = InnerGRC % boardSize;
-            grcX = (InnerGRC - grcY) / boardSize;
-            if (!cellFilled[grcX][GRCX][grcY][GRCY] && placeCanContain[grcX][GRCX][grcY][GRCY][val]) {
+          candC1 = GridRowColY;
+          for (int InnerGridRowCol = 0; InnerGridRowCol < (boardSize * boardSize); InnerGridRowCol++) { //Check elements of G,R,C
+            grcY = InnerGridRowCol % boardSize;
+            grcX = (InnerGridRowCol - grcY) / boardSize;
+            if (!cellFilled[grcX][GridRowColX][grcY][GridRowColY] && placeCanContain[grcX][GridRowColX][grcY][GridRowColY][val]) {
               candR0 = grcX;
               candR1 = grcY;
               candidates += 1;
@@ -731,15 +731,15 @@ public class Sudoku {
     return false;
   }
 
-  public int iterateReductionOfCanContainInRCByG() {
+  public int iterateReductionOfCanContainInRowColByGrid() {
     int count = 0;
-    while (reductionOfCanContainInRCByG()) {
+    while (reductionOfCanContainInRowColByGrid()) {
       count++;
     }
     return count;
   }
 
-  public boolean reductionOfCanContainInRCByG() { //Block and column / Row Interaction
+  public boolean reductionOfCanContainInRowColByGrid() { //Block and column / Row Interaction
     int rowVal = 0;
     boolean[] rows = new boolean[boardSize];
     int rowsVal = 0;
@@ -816,20 +816,20 @@ public class Sudoku {
     return false;
   }
 
-  public int iterateReductionOfCanContainInGByRC() {
+  public int iterateReductionOfCanContainInGridByRowCol() {
     int count = 0;
-    while (reductionOfCanContainInGByRC()) {
+    while (reductionOfCanContainInGridByRowCol()) {
       count++;
     }
     return count;
   }
 
-  public boolean reductionOfCanContainInGByRC() { //Block / Block Interaction
+  public boolean reductionOfCanContainInGridByRowCol() { //Block / Block Interaction
     int deliminations = 0;
     int candidates = 0;
     for (int val = 0; val < (boardSize * boardSize); val++) {
       for (int jCheckR = 0; jCheckR < (boardSize * boardSize); jCheckR++) {
-        if (!numberPresentRC[0][val][jCheckR]) {
+        if (!numberPresentRowCol[0][val][jCheckR]) {
           int jCheckR1 = jCheckR % boardSize;
           int jCheckR0 = (jCheckR - jCheckR1) / boardSize;
           for (int jIgnore = 0; jIgnore < boardSize; jIgnore++) {
@@ -863,7 +863,7 @@ public class Sudoku {
         }
       }
       for (int jCheckC = 0; jCheckC < (boardSize * boardSize); jCheckC++) {
-        if (!numberPresentRC[1][val][jCheckC]) {
+        if (!numberPresentRowCol[1][val][jCheckC]) {
           int jCheckC1 = jCheckC % boardSize;
           int jCheckC0 = (jCheckC - jCheckC1) / boardSize;
           for (int jIgnore = 0; jIgnore < boardSize; jIgnore++) {
@@ -1624,8 +1624,8 @@ public class Sudoku {
 
 
   public void deliminatePotential(int k0, int k1, int k2, int k3, int k4) {
-    numberPresentRC[0][k4][k2 + k0 * board.length] = true;
-    numberPresentRC[1][k4][k3 + k1 * board.length] = true;
+    numberPresentRowCol[0][k4][k2 + k0 * board.length] = true;
+    numberPresentRowCol[1][k4][k3 + k1 * board.length] = true;
     numberPresentG[k4][k0][k1] = true;
     for (int j0 = 0; j0 < boardSize; j0++) {
       for (int j1 = 0; j1 < boardSize; j1++) {
