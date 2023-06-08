@@ -7,6 +7,7 @@
   <groupId>io.github.skenvy</groupId>
   <artifactId>sudoku</artifactId>
   <version>0.1.0</version>
+  <packaging>jar</packaging>
 
   <name>Sudoku</name>
   <description>
@@ -42,6 +43,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.release>8</maven.compiler.release>
   </properties>
   
   <dependencies>
@@ -69,6 +71,12 @@
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.11.0</version>
+          <configuration>
+            <source>${maven.compiler.source}</source>
+            <target>${maven.compiler.target}</target>
+            <encoding>${project.build.sourceEncoding}</encoding>
+            <release>${maven.compiler.release}</release>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
@@ -77,6 +85,14 @@
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.3.0</version>
+          <configuration>
+            <archive>
+              <manifest>
+                <addClasspath>true</addClasspath>
+                <mainClass>io.github.skenvy.SudokuGui</mainClass>
+              </manifest>
+            </archive>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
