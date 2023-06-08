@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!-- https://maven.apache.org/pom.html -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.github.skenvy</groupId>
   <artifactId>sudoku</artifactId>
-  <version>0.1.0</version>
+  <version>0.2.0</version>
+  <packaging>jar</packaging>
 
   <name>Sudoku</name>
   <description>
-    An implementation of a Sudoku solver, with the intent of formalising how easy a particlar sudoku puzzle would
-    be to solve by determining what moves can be made deterministically, rather than just iterating guesses.
+    An implementation of a Sudoku solver, with the intent of formalising how easy a
+    particlar sudoku puzzle would be to solve by determining what moves can be made
+    deterministically, rather than just iterating guesses.
   </description>
   <url>https://github.com/Skenvy/Sudoku</url>
 
   <licenses>
     <license>
-      <name>The Apache License, Version 2.0</name>
+      <name>Apache-2.0</name> <!-- https://spdx.org/licenses/ -->
       <url>https://github.com/Skenvy/Sudoku/blob/main/LICENSE</url>
     </license>
   </licenses>
@@ -34,15 +36,34 @@
   <scm>
     <connection>scm:git:git://github.com/Skenvy/Sudoku.git</connection>
     <developerConnection>scm:git:ssh://github.com:Skenvy/Sudoku.git</developerConnection>
-    <url>http://github.com/Skenvy/Sudoku/tree/master</url>
+    <url>http://github.com/Skenvy/Sudoku/tree/main</url>
   </scm>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.release>8</maven.compiler.release>
   </properties>
+
+  <issueManagement>
+    <system>GitHub Issues</system>
+    <url>https://github.com/Skenvy/Sudoku/issues</url>
+  </issueManagement>
+
+  <ciManagement>
+    <system>GitHub Actions</system>
+    <url>https://github.com/Skenvy/Sudoku/actions</url>
+  </ciManagement>
+
+  <organization>
+    <name>Skenvy</name>
+    <url>http://github.com/Skenvy</url>
+  </organization>
   
+  <contributors>
+  </contributors>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -53,7 +74,7 @@
   </dependencies>
 
   <build>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+    <pluginManagement>
       <plugins>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
@@ -68,6 +89,12 @@
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.11.0</version>
+          <configuration>
+            <source>${maven.compiler.source}</source>
+            <target>${maven.compiler.target}</target>
+            <encoding>${project.build.sourceEncoding}</encoding>
+            <release>${maven.compiler.release}</release>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
@@ -76,6 +103,14 @@
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.3.0</version>
+          <configuration>
+            <archive>
+              <manifest>
+                <addClasspath>true</addClasspath>
+                <mainClass>io.github.skenvy.SudokuGui</mainClass>
+              </manifest>
+            </archive>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
@@ -99,7 +134,24 @@
           <artifactId>maven-scm-publish-plugin</artifactId>
           <version>3.2.1</version>
           <configuration>
+            <pubScmUrl>scm:git:https://git@github.com/Skenvy/Sudoku.git</pubScmUrl>
             <scmBranch>gh-pages</scmBranch>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>3.3.0</version>
+          <dependencies>
+            <dependency>
+              <groupId>com.puppycrawl.tools</groupId>
+              <artifactId>checkstyle</artifactId>
+              <version>10.12.0</version>
+            </dependency>
+          </dependencies>
+          <configuration>
+            <configLocation>checkstyle.xml</configLocation>
+            <includeTestSourceDirectory>true</includeTestSourceDirectory>
           </configuration>
         </plugin>
         <plugin>
@@ -107,7 +159,7 @@
           <artifactId>exec-maven-plugin</artifactId>
           <version>3.0.0</version>
           <configuration>
-            <mainClass>io.github.skenvy.SudokuGUI</mainClass>
+            <mainClass>io.github.skenvy.SudokuGui</mainClass>
           </configuration>
         </plugin>
       </plugins>
@@ -126,7 +178,7 @@
     </repository>
     <site>
       <id>github</id>
-      <url>scm:git:https://git@github.com/Skenvy/Sudoku.git</url>
+      <url>https://skenvy.github.io/Sudoku/</url>
     </site>
   </distributionManagement>
 
@@ -134,8 +186,24 @@
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <version>3.3.0</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>3.5.0</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>checkstyle</report>
+            </reports>
+          </reportSet>
+        </reportSets>
       </plugin>
     </plugins>
   </reporting>

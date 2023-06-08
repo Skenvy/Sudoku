@@ -1,16 +1,20 @@
 package io.github.skenvy;
 
-import java.lang.Math;
-
+/**
+ * A stubbed utility class that is WIP.
+ *
+ */
 public class Utility {
+  protected Utility() {
+    throw new UnsupportedOperationException();
+  }
 
-    public static boolean isIntegerSquared(int square){
-        double root = Math.sqrt(square);
-        return (Math.floor(root) == Math.ceil(root));
-    }
+  public static boolean isIntegerSquared(final int square) {
+    double root = Math.sqrt(square);
+    return (Math.floor(root) == Math.ceil(root));
+  }
 
-    public static int integerSquareRoot(int square){
-        return (int) (Math.sqrt(square));
-    }
-
+  public static int integerSquareRoot(final int square) {
+    return (int) (Math.sqrt(square));
+  }
 }
