@@ -780,13 +780,13 @@ public class Sudoku {
               }
             }
             if (rowsVal == 1) {
-              for (int jC = 0; jC < (boardSize * boardSize); jC++) {
-                int jC1 = jC % boardSize;
-                int jC0 = (jC - jC1) / boardSize;
-                if (j1 != jC0) {
-                  if (!cellFilled[j0][jC0][rowVal][jC1] && placeCanContain[j0][jC0][rowVal][jC1][val]) {
+              for (int jthC = 0; jthC < (boardSize * boardSize); jthC++) {
+                int jthC1 = jthC % boardSize;
+                int jthC0 = (jthC - jthC1) / boardSize;
+                if (j1 != jthC0) {
+                  if (!cellFilled[j0][jthC0][rowVal][jthC1] && placeCanContain[j0][jthC0][rowVal][jthC1][val]) {
                     deliminatedSquares++;
-                    placeCanContain[j0][jC0][rowVal][jC1][val] = false;
+                    placeCanContain[j0][jthC0][rowVal][jthC1][val] = false;
                   }
                 }
               }
@@ -795,13 +795,13 @@ public class Sudoku {
               }
             }
             if (colsVal == 1) {
-              for (int jR = 0; jR < (boardSize * boardSize); jR++) {
-                int jR1 = jR % boardSize;
-                int jR0 = (jR - jR1) / boardSize;
-                if (j0 != jR0) {
-                  if (!cellFilled[jR0][j1][jR1][colVal] && placeCanContain[jR0][j1][jR1][colVal][val]) {
+              for (int jthR = 0; jthR < (boardSize * boardSize); jthR++) {
+                int jthR1 = jthR % boardSize;
+                int jthR0 = (jthR - jthR1) / boardSize;
+                if (j0 != jthR0) {
+                  if (!cellFilled[jthR0][j1][jthR1][colVal] && placeCanContain[jthR0][j1][jthR1][colVal][val]) {
                     deliminatedSquares++;
-                    placeCanContain[jR0][j1][jR1][colVal][val] = false;
+                    placeCanContain[jthR0][j1][jthR1][colVal][val] = false;
                   }
                 }
               }
@@ -828,28 +828,28 @@ public class Sudoku {
     int deliminations = 0;
     int candidates = 0;
     for (int val = 0; val < (boardSize * boardSize); val++) {
-      for (int jCheckR = 0; jCheckR < (boardSize * boardSize); jCheckR++) {
-        if (!numberPresentRowCol[0][val][jCheckR]) {
-          int jCheckR1 = jCheckR % boardSize;
-          int jCheckR0 = (jCheckR - jCheckR1) / boardSize;
-          for (int jIgnore = 0; jIgnore < boardSize; jIgnore++) {
+      for (int jthCheckRow = 0; jthCheckRow < (boardSize * boardSize); jthCheckRow++) {
+        if (!numberPresentRowCol[0][val][jthCheckRow]) {
+          int jthCheckRow1 = jthCheckRow % boardSize;
+          int jthCheckRow0 = (jthCheckRow - jthCheckRow1) / boardSize;
+          for (int jthIgnore = 0; jthIgnore < boardSize; jthIgnore++) {
             candidates = 0;
-            for (int jSelect = 0; jSelect < boardSize; jSelect++) {
-              if (jSelect != jIgnore) {
-                for (int jRotate = 0; jRotate < boardSize; jRotate++) {
-                  if (!cellFilled[jCheckR0][jSelect][jCheckR1][jRotate] && placeCanContain[jCheckR0][jSelect][jCheckR1][jRotate][val]) {
+            for (int jthSelect = 0; jthSelect < boardSize; jthSelect++) {
+              if (jthSelect != jthIgnore) {
+                for (int jthRotate = 0; jthRotate < boardSize; jthRotate++) {
+                  if (!cellFilled[jthCheckRow0][jthSelect][jthCheckRow1][jthRotate] && placeCanContain[jthCheckRow0][jthSelect][jthCheckRow1][jthRotate][val]) {
                     candidates++;
                   }
                 }
               }
             }
             if (candidates == 0) {
-              //In Grid (jCheckR0, jIgnore)
-              for (int jRotateR = 0; jRotateR < boardSize; jRotateR++) {
-                for (int jRotateC = 0; jRotateC < boardSize; jRotateC++) {
-                  if (jRotateR != jCheckR1) {
-                    if (!cellFilled[jCheckR0][jIgnore][jRotateR][jRotateC] && placeCanContain[jCheckR0][jIgnore][jRotateR][jRotateC][val]) {
-                      placeCanContain[jCheckR0][jIgnore][jRotateR][jRotateC][val] = false;
+              //In Grid (jthCheckRow0, jthIgnore)
+              for (int jthRotateR = 0; jthRotateR < boardSize; jthRotateR++) {
+                for (int jthRotateC = 0; jthRotateC < boardSize; jthRotateC++) {
+                  if (jthRotateR != jthCheckRow1) {
+                    if (!cellFilled[jthCheckRow0][jthIgnore][jthRotateR][jthRotateC] && placeCanContain[jthCheckRow0][jthIgnore][jthRotateR][jthRotateC][val]) {
+                      placeCanContain[jthCheckRow0][jthIgnore][jthRotateR][jthRotateC][val] = false;
                       deliminations++;
                     }
                   }
@@ -862,28 +862,28 @@ public class Sudoku {
           }
         }
       }
-      for (int jCheckC = 0; jCheckC < (boardSize * boardSize); jCheckC++) {
-        if (!numberPresentRowCol[1][val][jCheckC]) {
-          int jCheckC1 = jCheckC % boardSize;
-          int jCheckC0 = (jCheckC - jCheckC1) / boardSize;
-          for (int jIgnore = 0; jIgnore < boardSize; jIgnore++) {
+      for (int jthCheckC = 0; jthCheckC < (boardSize * boardSize); jthCheckC++) {
+        if (!numberPresentRowCol[1][val][jthCheckC]) {
+          int jthCheckC1 = jthCheckC % boardSize;
+          int jthCheckC0 = (jthCheckC - jthCheckC1) / boardSize;
+          for (int jthIgnore = 0; jthIgnore < boardSize; jthIgnore++) {
             candidates = 0;
-            for (int jSelect = 0; jSelect < boardSize; jSelect++) {
-              if (jSelect != jIgnore) {
-                for (int jRotate = 0; jRotate < boardSize; jRotate++) {
-                  if (!cellFilled[jSelect][jCheckC0][jRotate][jCheckC1] && placeCanContain[jSelect][jCheckC0][jRotate][jCheckC1][val]) {
+            for (int jthSelect = 0; jthSelect < boardSize; jthSelect++) {
+              if (jthSelect != jthIgnore) {
+                for (int jthRotate = 0; jthRotate < boardSize; jthRotate++) {
+                  if (!cellFilled[jthSelect][jthCheckC0][jthRotate][jthCheckC1] && placeCanContain[jthSelect][jthCheckC0][jthRotate][jthCheckC1][val]) {
                     candidates++;
                   }
                 }
               }
             }
             if (candidates == 0) {
-              //In Grid (jIgnore, jCheckC0)
-              for (int jRotateR = 0; jRotateR < boardSize; jRotateR++) {
-                for (int jRotateC = 0; jRotateC < boardSize; jRotateC++) {
-                  if (jRotateC != jCheckC1) {
-                    if (!cellFilled[jIgnore][jCheckC0][jRotateR][jRotateC] && placeCanContain[jIgnore][jCheckC0][jRotateR][jRotateC][val]) {
-                      placeCanContain[jIgnore][jCheckC0][jRotateR][jRotateC][val] = false;
+              //In Grid (jthIgnore, jthCheckC0)
+              for (int jthRotateR = 0; jthRotateR < boardSize; jthRotateR++) {
+                for (int jthRotateC = 0; jthRotateC < boardSize; jthRotateC++) {
+                  if (jthRotateC != jthCheckC1) {
+                    if (!cellFilled[jthIgnore][jthCheckC0][jthRotateR][jthRotateC] && placeCanContain[jthIgnore][jthCheckC0][jthRotateR][jthRotateC][val]) {
+                      placeCanContain[jthIgnore][jthCheckC0][jthRotateR][jthRotateC][val] = false;
                       deliminations++;
                     }
                   }
