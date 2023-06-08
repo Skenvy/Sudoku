@@ -641,8 +641,8 @@ public class Sudoku {
   }
 
   public boolean checkUniqueCandidate() {
-    int GridRowColX = 0;
-    int GridRowColY = 0;
+    int gridRowColX = 0;
+    int gridRowColY = 0;
     int grcX = 0;
     int grcY = 0;
     int candidates = 0;
@@ -651,20 +651,20 @@ public class Sudoku {
     int candR1 = 0;
     int candC1 = 0;
     for (int val = 0; val < (boardSize * boardSize); val++) {
-      for (int OuterGridRowCol = 0; OuterGridRowCol < (boardSize * boardSize); OuterGridRowCol++) { //Which G,R,C
-        GridRowColY = OuterGridRowCol % boardSize;
-        GridRowColX = (OuterGridRowCol - GridRowColY) / boardSize;
+      for (int outerGridRowCol = 0; outerGridRowCol < (boardSize * boardSize); outerGridRowCol++) { //Which G,R,C
+        gridRowColY = outerGridRowCol % boardSize;
+        gridRowColX = (outerGridRowCol - gridRowColY) / boardSize;
         //Grid Check
-        if (!numberPresentG[val][GridRowColX][GridRowColY]) {
+        if (!numberPresentG[val][gridRowColX][gridRowColY]) {
           candidates = 0;
-          candR0 = GridRowColX;
-          candC0 = GridRowColY;
+          candR0 = gridRowColX;
+          candC0 = gridRowColY;
           candR1 = 0;
           candC1 = 0;
-          for (int InnerGridRowCol = 0; InnerGridRowCol < (boardSize * boardSize); InnerGridRowCol++) { //Check elements of G,R,C
-            grcY = InnerGridRowCol % boardSize;
-            grcX = (InnerGridRowCol - grcY) / boardSize;
-            if (!cellFilled[GridRowColX][GridRowColY][grcX][grcY] && placeCanContain[GridRowColX][GridRowColY][grcX][grcY][val]) {
+          for (int innerGridRowCol = 0; innerGridRowCol < (boardSize * boardSize); innerGridRowCol++) { //Check elements of G,R,C
+            grcY = innerGridRowCol % boardSize;
+            grcX = (innerGridRowCol - grcY) / boardSize;
+            if (!cellFilled[gridRowColX][gridRowColY][grcX][grcY] && placeCanContain[gridRowColX][gridRowColY][grcX][grcY][val]) {
               candR1 = grcX;
               candC1 = grcY;
               candidates += 1;
@@ -679,16 +679,16 @@ public class Sudoku {
           }
         }
         //Row Check
-        if (!numberPresentRowCol[0][val][OuterGridRowCol]) {
+        if (!numberPresentRowCol[0][val][outerGridRowCol]) {
           candidates = 0;
-          candR0 = GridRowColX;
+          candR0 = gridRowColX;
           candC0 = 0;
-          candR1 = GridRowColY;
+          candR1 = gridRowColY;
           candC1 = 0;
-          for (int InnerGridRowCol = 0; InnerGridRowCol < (boardSize * boardSize); InnerGridRowCol++) { //Check elements of G,R,C
-            grcY = InnerGridRowCol % boardSize;
-            grcX = (InnerGridRowCol - grcY) / boardSize;
-            if (!cellFilled[GridRowColX][grcX][GridRowColY][grcY] && placeCanContain[GridRowColX][grcX][GridRowColY][grcY][val]) {
+          for (int innerGridRowCol = 0; innerGridRowCol < (boardSize * boardSize); innerGridRowCol++) { //Check elements of G,R,C
+            grcY = innerGridRowCol % boardSize;
+            grcX = (innerGridRowCol - grcY) / boardSize;
+            if (!cellFilled[gridRowColX][grcX][gridRowColY][grcY] && placeCanContain[gridRowColX][grcX][gridRowColY][grcY][val]) {
               candC0 = grcX;
               candC1 = grcY;
               candidates += 1;
@@ -703,16 +703,16 @@ public class Sudoku {
           }
         }
         //Column Check
-        if (!numberPresentRowCol[1][val][OuterGridRowCol]) {
+        if (!numberPresentRowCol[1][val][outerGridRowCol]) {
           candidates = 0;
           candR0 = 0;
-          candC0 = GridRowColX;
+          candC0 = gridRowColX;
           candR1 = 0;
-          candC1 = GridRowColY;
-          for (int InnerGridRowCol = 0; InnerGridRowCol < (boardSize * boardSize); InnerGridRowCol++) { //Check elements of G,R,C
-            grcY = InnerGridRowCol % boardSize;
-            grcX = (InnerGridRowCol - grcY) / boardSize;
-            if (!cellFilled[grcX][GridRowColX][grcY][GridRowColY] && placeCanContain[grcX][GridRowColX][grcY][GridRowColY][val]) {
+          candC1 = gridRowColY;
+          for (int innerGridRowCol = 0; innerGridRowCol < (boardSize * boardSize); innerGridRowCol++) { //Check elements of G,R,C
+            grcY = innerGridRowCol % boardSize;
+            grcX = (innerGridRowCol - grcY) / boardSize;
+            if (!cellFilled[grcX][gridRowColX][grcY][gridRowColY] && placeCanContain[grcX][gridRowColX][grcY][gridRowColY][val]) {
               candR0 = grcX;
               candR1 = grcY;
               candidates += 1;
