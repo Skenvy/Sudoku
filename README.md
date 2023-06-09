@@ -25,7 +25,8 @@ implementation 'io.github.skenvy:sudoku'
 <TODO>
 
 ## [Maven-Site generated docs](https://skenvy.github.io/Sudoku/)
-## [JavaDoc generated docs](https://skenvy.github.io/Sudoku/apidocs/io/github/skenvy/package-summary.html)
+## [JXR generated XRef docs](https://skenvy.github.io/Sudoku/xref/index.html) | [_Test XRef_](https://skenvy.github.io/Sudoku/xref-test/index.html)
+## [JavaDoc generated docs](https://skenvy.github.io/Sudoku/apidocs/io/github/skenvy/package-summary.html) | [_Test JavaDoc_](https://skenvy.github.io/Sudoku/testapidocs/io/github/skenvy/package-summary.html)
 ## [Checkstyle generated docs](https://skenvy.github.io/Sudoku/checkstyle.html)
 ## What it is at the moment
 An implementation of a Sudoku solver (currently with Java JFrame), that I made during uni, as the first project I really enjoyed, with the intent of formalising how easy a particlar sudoku puzzle would be to solve by determining what moves can be made deterministically, rather than just iterating guesses.

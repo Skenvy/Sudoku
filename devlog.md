@@ -59,3 +59,6 @@ A lot of the 3300-ish errors (according to the `sun_checks.xml`) are very simila
     * Replace `(?<=[^/\*])/(?=[^/ \*])` with `/ `
 * Replace `(?<! )&&` with ` &&`
 * Replace `&&(?! )` with `&& `
+## OpenSSF Scorecard
+The results of an [OpenSSF Scorecard](https://github.com/ossf/scorecard) evaluation, possibly run via the [`ossf/scorecard-action`](https://github.com/ossf/scorecard-action), can be displayed on the [sonatype package index](https://search.maven.org/artifact/io.github.skenvy/sudoku). If we go to our actions, select new action, and view all security workflows, we can find the `OSSF Scorecard` workflow. We can then add this action.
+
