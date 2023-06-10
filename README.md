@@ -7,6 +7,7 @@ For a "Maven Project" badge, see https://github.com/softwaremill/maven-badges
 [![Java CI with Maven](https://github.com/Skenvy/Sudoku/actions/workflows/build.yaml/badge.svg)](https://github.com/Skenvy/Sudoku/actions/workflows/build.yaml)
 [![javadoc](https://javadoc.io/badge2/io.github.skenvy/sudoku/javadoc.svg)](https://javadoc.io/doc/io.github.skenvy/sudoku)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.skenvy/sudoku/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.skenvy/sudoku)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Application of [specific techniques](https://sudoku.com/sudoku-rules/) to the solving of [sudokus](https://en.wikipedia.org/wiki/Sudoku), implemented in [Java](https://www.java.com/) ([OpenJDK](https://openjdk.org/)).
 ## Getting Started
