@@ -1,4 +1,13 @@
 # [Sudoku](https://github.com/Skenvy/Sudoku)
+<!---
+For a workflow status badge, see https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/adding-a-workflow-status-badge
+For a JavaDoc badge, see https://javadoc.io/
+For a "Maven Project" badge, see https://github.com/softwaremill/maven-badges
+--->
+[![Java CI with Maven](https://github.com/Skenvy/Sudoku/actions/workflows/build.yaml/badge.svg)](https://github.com/Skenvy/Sudoku/actions/workflows/build.yaml)
+[![javadoc](https://javadoc.io/badge2/io.github.skenvy/sudoku/javadoc.svg)](https://javadoc.io/doc/io.github.skenvy/sudoku)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.skenvy/sudoku/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.skenvy/sudoku)
+
 Application of [specific techniques](https://sudoku.com/sudoku-rules/) to the solving of [sudokus](https://en.wikipedia.org/wiki/Sudoku), implemented in [Java](https://www.java.com/) ([OpenJDK](https://openjdk.org/)).
 ## Getting Started
 ### Using the executable JAR
@@ -9,7 +18,7 @@ git clone https://github.com/Skenvy/Sudoku.git && cd Sudoku
 mvn clean package -Dmaven.compiler.release <desired_release_version>
 ```
 ### Source distribuitons
-To install the latest from [Maven Central](https://repo1.maven.org/maven2/io/github/skenvy/sudoku/) source (mirror [sonatype.org](https://s01.oss.sonatype.org/content/repositories/releases/io/github/skenvy/sudoku/)) (also see the package indexes, [mvnrepository](https://mvnrepository.com/artifact/io.github.skenvy/sudoku) or [sonatype](https://search.maven.org/artifact/io.github.skenvy/sudoku));
+To install the latest from [Maven Central](https://repo1.maven.org/maven2/io/github/skenvy/sudoku/) source (mirror [sonatype.org](https://s01.oss.sonatype.org/content/repositories/releases/io/github/skenvy/sudoku/)) (also see the package indexes, [mvnrepository](https://mvnrepository.com/artifact/io.github.skenvy/sudoku) or, [sonatype](https://search.maven.org/artifact/io.github.skenvy/sudoku), or [_search_](https://search.maven.org/artifact/io.github.skenvy/sudoku));
 ### Add to the pom `<dependencies>`
 ```xml
 <dependency>

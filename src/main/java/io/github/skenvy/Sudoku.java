@@ -913,12 +913,9 @@ public class Sudoku {
     int minimumSubsetPresent = 0;
     int numberOfTrueSubsets = 0;
     int deliminations = 0;
-    int numberOfVisibleSubsets = 0;
     int visibleSubsetIndex = 0;
     int s00 = 0;
     int s01 = 0;
-    int s10 = 0;
-    int s11 = 0;
     for (int subsetSize = 2; subsetSize < (boardSize * boardSize) - 1; subsetSize++) {
       int[] theSubset = new int[subsetSize];
       boolean subsetFound = false;
@@ -970,13 +967,12 @@ public class Sudoku {
             }
           }
           if (numberOfTrueSubsets >= subsetSize) {
-            numberOfVisibleSubsets = 1;
             visibleSubsetIndex = 1;
             s01 = subsetFoundAt[0] % boardSize;
             s00 = (subsetFoundAt[0] - s01) / boardSize;
             visibleSubsets[0] = subsets[s00][s01];
             visibleSubsetCount[0] = 1; 
-            outer: for (int q0 = 1; q0 < numberOfTrueSubsets; q0++) {
+            for (int q0 = 1; q0 < numberOfTrueSubsets; q0++) {
               s01 = subsetFoundAt[q0] % boardSize;
               s00 = (subsetFoundAt[q0] - s01) / boardSize;
               inner: for (int q1 = 0; q1 < visibleSubsetIndex; q1++) {
@@ -1077,13 +1073,12 @@ public class Sudoku {
             }
           }
           if (numberOfTrueSubsets >= subsetSize) {
-            numberOfVisibleSubsets = 1;
             visibleSubsetIndex = 1;
             s01 = subsetFoundAt[0] % boardSize;
             s00 = (subsetFoundAt[0] - s01) / boardSize;
             visibleSubsets[0] = subsets[s00][s01];
             visibleSubsetCount[0] = 1;
-            outer: for (int q0 = 1; q0 < numberOfTrueSubsets; q0++) {
+            for (int q0 = 1; q0 < numberOfTrueSubsets; q0++) {
               s01 = subsetFoundAt[q0] % boardSize;
               s00 = (subsetFoundAt[q0] - s01) / boardSize;
               inner: for (int q1 = 0; q1 < visibleSubsetIndex; q1++) {
@@ -1171,13 +1166,12 @@ public class Sudoku {
             }
           }
           if (numberOfTrueSubsets >= subsetSize) {
-            numberOfVisibleSubsets = 1;
             visibleSubsetIndex = 1;
             s01 = subsetFoundAt[0] % boardSize;
             s00 = (subsetFoundAt[0] - s01) / boardSize;
             visibleSubsets[0] = subsets[s00][s01];
             visibleSubsetCount[0] = 1;
-            outer: for (int q0 = 1; q0 < numberOfTrueSubsets; q0++) {
+            for (int q0 = 1; q0 < numberOfTrueSubsets; q0++) {
               s01 = subsetFoundAt[q0] % boardSize;
               s00 = (subsetFoundAt[q0] - s01) / boardSize;
               inner: for (int q1 = 0; q1 < visibleSubsetIndex; q1++) {
@@ -1633,28 +1627,6 @@ public class Sudoku {
         placeCanContain[j0][k1][j1][k3][k4] = false; //column assertion
         placeCanContain[k0][k1][j0][j1][k4] = false; //grid assertion
       }
-    }
-  }
-
-  public int[] subsetCollisionAt(int subsetSize, int numberOfTrueSubsets, int[] subsetFoundAt, int[][][] subsets) {
-    int[] collisionsAt = new int[subsetSize];
-    int numberOfPerfectCollisions = 0;
-    subsetCollisionAtRolling(subsetSize, numberOfTrueSubsets, subsetFoundAt, subsets);
-
-    return collisionsAt;
-  }
-
-  public void subsetCollisionAtRolling(int subsetSize, int numberOfTrueSubsets, int[] subsetFoundAt, int[][][] subsets) {
-    int q1 = 0;
-    int q0 = 0;
-    for (int q = 0; q < numberOfTrueSubsets; q++) {
-      subsetCollisionAtRolling(subsetSize, numberOfTrueSubsets - 1, subsetFoundAt, subsets);
-      q1 = subsetFoundAt[q] % boardSize;
-      q0 = (subsetFoundAt[q] - q1) / boardSize;
-      //if (Arrays.equals(subsets[s0j0][s0j1], subsets[s1j0][s1j1])) {
-      //    subsetPair1 = q0; subsetPair2 = q1; subsetFound = true;
-      //    break;
-      //}
     }
   }
 
