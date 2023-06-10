@@ -3,6 +3,10 @@ package io.github.skenvy;
 import java.util.ArrayList;
 import java.util.List;
 
+////////////////////////////////////////////////////////////////////////////////
+// New classes; WIP rebuild of Sudoku, SudokuGui, and PermutationComputation. //
+////////////////////////////////////////////////////////////////////////////////
+
 /**
  * A collection of cells ~ can be a row, column, or box|region|block.
  */

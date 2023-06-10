@@ -2,12 +2,10 @@ package io.github.skenvy;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.text.Utilities;
 
-import io.github.skenvy.CellCollection;
-import io.github.skenvy.Utility;
-
-
+////////////////////////////////////////////////////////////////////////////////
+// New classes; WIP rebuild of Sudoku, SudokuGui, and PermutationComputation. //
+////////////////////////////////////////////////////////////////////////////////
 
 /**
  * A Sudoku Grid ~ the whole "board" with N rows, columns, and boxes.
