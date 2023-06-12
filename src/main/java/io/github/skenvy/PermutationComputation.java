@@ -3,6 +3,10 @@ package io.github.skenvy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+////////////////////////////////////////////////////////////////////////////////
+// OLD classes; Sudoku, SudokuGui, and PermutationComputation.                //
+////////////////////////////////////////////////////////////////////////////////
+
 public class PermutationComputation {
 
   ArrayList<int[]> permutations;

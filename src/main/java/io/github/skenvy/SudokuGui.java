@@ -20,6 +20,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+////////////////////////////////////////////////////////////////////////////////
+// OLD classes; Sudoku, SudokuGui, and PermutationComputation.                //
+////////////////////////////////////////////////////////////////////////////////
+
 /**
  * A JFrame implementation of a GUI to use the Sudoku class to solve puzzles.
  */
