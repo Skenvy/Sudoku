@@ -19,7 +19,7 @@ git clone https://github.com/Skenvy/Sudoku.git && cd Sudoku
 mvn clean package -Dmaven.compiler.release <desired_release_version>
 ```
 ### Source distribuitons
-To install the latest from [Maven Central](https://repo1.maven.org/maven2/io/github/skenvy/sudoku/) source (mirror [sonatype.org](https://s01.oss.sonatype.org/content/repositories/releases/io/github/skenvy/sudoku/)) (also see the package indexes, [mvnrepository](https://mvnrepository.com/artifact/io.github.skenvy/sudoku) or, [sonatype](https://search.maven.org/artifact/io.github.skenvy/sudoku), or [_search_](https://search.maven.org/artifact/io.github.skenvy/sudoku));
+To install the latest from [Maven Central](https://repo1.maven.org/maven2/io/github/skenvy/sudoku/) source (mirror [sonatype.org](https://s01.oss.sonatype.org/content/repositories/releases/io/github/skenvy/sudoku/)) (also see the package indexes, [mvnrepository](https://mvnrepository.com/artifact/io.github.skenvy/sudoku) or, [sonatype](https://central.sonatype.com/artifact/io.github.skenvy/sudoku), or [_search_](https://search.maven.org/artifact/io.github.skenvy/sudoku));
 ### Add to the pom `<dependencies>`
 ```xml
 <dependency>
