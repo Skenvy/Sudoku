@@ -9,7 +9,7 @@ For a "Maven Project" badge, see https://github.com/softwaremill/maven-badges
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.skenvy/sudoku/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.skenvy/sudoku)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Application of [specific techniques](https://sudoku.com/sudoku-rules/) to the solving of [sudokus](https://en.wikipedia.org/wiki/Sudoku), implemented in [Java](https://www.java.com/) ([OpenJDK](https://openjdk.org/)).
+Application of [specific techniques](https://sudoku.com/sudoku-rules/) to the solving of [sudokus](https://en.wikipedia.org/wiki/Sudoku), implemented in [Java](https://www.java.com/) ([OpenJDK](https://openjdk.org/)). Refer to [this glossary](https://en.wikipedia.org/wiki/Glossary_of_Sudoku) of terms.
 ## Getting Started
 ### Using the executable JAR
 [latest-jar]: https://repo1.maven.org/maven2/io/github/skenvy/sudoku/0.2.0/sudoku-0.2.0.jar

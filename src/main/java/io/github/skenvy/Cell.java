@@ -5,7 +5,10 @@ package io.github.skenvy;
 ////////////////////////////////////////////////////////////////////////////////
 
 /**
- * An individual cell in the whole grid.
+ * A cell is the smallest unit of a Sudoku; it is a single space with a specific
+ * row and column. In the standard sudoku with 9 rows and 9 columns, there're 81
+ * cells. Each cell can have an initial value that is either given, or be empty,
+ * and one final value after solving the sudoku. It can track "possibilites".
  */
 public class Cell {
 
