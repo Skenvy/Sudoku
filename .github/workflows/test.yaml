@@ -88,14 +88,14 @@ jobs:
     - name: 🏁 Checkout
       uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
     - name: 🛡👨‍💻🛡 Init CodeQL
-      uses: github/codeql-action/init@cdcdbb579706841c47f7063dda365e292e5cad7a # v2.13.4
+      uses: github/codeql-action/init@b611370bb5703a7efb587f9d136a52ea24c5c38c # v3.25.11
       with:
         languages: java # currently, 'java' includes kotlin
         queries: +security-extended,security-and-quality
     - name: 🛠 Autobuild
-      uses: github/codeql-action/autobuild@cdcdbb579706841c47f7063dda365e292e5cad7a # v2.13.4
+      uses: github/codeql-action/autobuild@b611370bb5703a7efb587f9d136a52ea24c5c38c # v3.25.11
     - name: 🛡👨‍💻🛡 Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@cdcdbb579706841c47f7063dda365e292e5cad7a # v2.13.4
+      uses: github/codeql-action/analyze@b611370bb5703a7efb587f9d136a52ea24c5c38c # v3.25.11
   docs:
     name: Docs 📄 Quick Test 🦂
     runs-on: ubuntu-latest
