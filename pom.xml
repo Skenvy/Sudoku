@@ -224,8 +224,8 @@
     <profile>
       <id>deploy-central</id>
       <properties>
-        <repo-id>ossrh</repo-id>
-        <repo-name>Central Repository OSSRH</repo-name>
+        <repo-id>central</repo-id>
+        <repo-name>Central Portal</repo-name>
         <repo-url>https://central.sonatype.com/</repo-url>
         <snap-url>https://central.sonatype.com/repository/maven-snapshots/</snap-url>
       </properties>
