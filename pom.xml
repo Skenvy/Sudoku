@@ -222,13 +222,27 @@
       </properties>
     </profile>
     <profile>
-      <id>deploy-ossrh</id>
+      <id>deploy-central</id>
       <properties>
         <repo-id>ossrh</repo-id>
         <repo-name>Central Repository OSSRH</repo-name>
-        <repo-url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</repo-url>
-        <snap-url>https://s01.oss.sonatype.org/content/repositories/snapshots</snap-url>
+        <repo-url>https://central.sonatype.com/</repo-url>
+        <snap-url>https://central.sonatype.com/repository/maven-snapshots/</snap-url>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
+            <version>0.7.0</version>
+            <extensions>true</extensions>
+            <configuration>
+              <publishingServerId>central</publishingServerId>
+               <autoPublish>true</autoPublish>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>gpg</id>

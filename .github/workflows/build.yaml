@@ -103,6 +103,7 @@ jobs:
     steps:
     - name: 🏁 Checkout
       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+    ### WIP MIGRATE FROM OSSRH TO CENTRAL ### <>
     - name: ☕🦆🌞 Set up Java; for publishing to Maven Central Repository
       uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
       with:
@@ -119,6 +120,7 @@ jobs:
         MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
         MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
         MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+    ### WIP MIGRATE FROM OSSRH TO CENTRAL ### </>
     - name: ☕🦆🌞 Set up Java; for publishing to GitHub Packages
       uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
       with:
