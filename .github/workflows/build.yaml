@@ -62,8 +62,8 @@ jobs:
     - name: ☕🦆🌞 Set up Java
       uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
       with:
-        distribution: 'adopt'
-        java-version: '11'
+        distribution: 'corretto'
+        java-version: '21'
         architecture: x64
         cache: maven
     - name: 🏺 Build jar and source
@@ -107,8 +107,8 @@ jobs:
     - name: ☕🦆🌞 Set up Java; for publishing to Maven Central Repository
       uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
       with:
-        java-version: '11'
-        distribution: 'adopt'
+        java-version: '21'
+        distribution: 'corretto'
         server-id: central
         server-username: MAVEN_USERNAME
         server-password: MAVEN_PASSWORD
@@ -124,8 +124,8 @@ jobs:
     - name: ☕🦆🌞 Set up Java; for publishing to GitHub Packages
       uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
       with:
-        java-version: '11'
-        distribution: 'adopt'
+        java-version: '21'
+        distribution: 'corretto'
         server-id: github
     - name: 📦 Publish to GitHub Packages
       run: make deploy_noninteractive_github
@@ -143,8 +143,8 @@ jobs:
     - name: ☕🦆🌞 Set up Java
       uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
       with:
-        distribution: 'adopt'
-        java-version: '11'
+        distribution: 'corretto'
+        java-version: '21'
         architecture: x64
         cache: maven
     - name: 📄 Docs
