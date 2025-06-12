@@ -6,7 +6,7 @@
 
   <groupId>io.github.skenvy</groupId>
   <artifactId>sudoku</artifactId>
-  <version>0.2.0</version>
+  <version>0.3.0</version>
   <packaging>jar</packaging>
 
   <name>Sudoku</name>
@@ -19,7 +19,7 @@
 
   <licenses>
     <license>
-      <name>Apache-2.0</name> <!-- https://spdx.org/licenses/ -->
+      <name>GPL-3.0-only</name> <!-- https://spdx.org/licenses/ -->
       <url>https://github.com/Skenvy/Sudoku/blob/main/LICENSE</url>
     </license>
   </licenses>
@@ -41,8 +41,9 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
+    <!-- source and target are filled by release ~ -->
+    <!-- <maven.compiler.source>8</maven.compiler.source> -->
+    <!-- <maven.compiler.target>8</maven.compiler.target> -->
     <maven.compiler.release>8</maven.compiler.release>
   </properties>
 
@@ -88,10 +89,11 @@
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.11.0</version>
+          <version>3.13.0</version>
           <configuration>
-            <source>${maven.compiler.source}</source>
-            <target>${maven.compiler.target}</target>
+            <!-- source and target are filled by release ~ -->
+            <!-- <source>${maven.compiler.source}</source> -->
+            <!-- <target>${maven.compiler.target}</target> -->
             <encoding>${project.build.sourceEncoding}</encoding>
             <release>${maven.compiler.release}</release>
           </configuration>
@@ -222,13 +224,28 @@
       </properties>
     </profile>
     <profile>
-      <id>deploy-ossrh</id>
+      <id>deploy-central</id>
       <properties>
-        <repo-id>ossrh</repo-id>
-        <repo-name>Central Repository OSSRH</repo-name>
-        <repo-url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</repo-url>
-        <snap-url>https://s01.oss.sonatype.org/content/repositories/snapshots</snap-url>
+        <repo-id>central</repo-id>
+        <repo-name>Central Portal</repo-name>
+        <!-- this repo-url is just not actually used / relevant -->
+        <repo-url>https://central.sonatype.com/artifact/io.github.skenvy/sudoku</repo-url>
+        <snap-url>https://central.sonatype.com/repository/maven-snapshots/</snap-url>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
+            <version>0.7.0</version>
+            <extensions>true</extensions>
+            <configuration>
+              <publishingServerId>central</publishingServerId>
+               <autoPublish>true</autoPublish>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>gpg</id>

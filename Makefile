@@ -1,7 +1,7 @@
 HUSH=-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
 MVN=mvn clean
 MVN_NONINTERACTIVE=mvn -B -U clean
-DOCS_PUBLISH_GOALS=jxr:jxr site:site site:stage scm-publish:publish-scm -P deploy-ossrh -Dscmpublish.checkinComment=
+DOCS_PUBLISH_GOALS=jxr:jxr site:site site:stage scm-publish:publish-scm -P deploy-central -Dscmpublish.checkinComment=
 .PHONY: clean docs test lint build run
 SHELL:=/bin/bash
 
@@ -12,7 +12,7 @@ clean:
 # http://localhost:8080/apidocs/io/github/skenvy/package-summary.html
 # http://localhost:8080/checkstyle.html
 docs:
-	$(MVN) jxr:jxr site:site site:run -P deploy-ossrh
+	$(MVN) jxr:jxr site:site site:run -P deploy-central
 
 # the clean phase can be included in a single invocation
 test:
@@ -64,9 +64,9 @@ lint_noninteractive:
 build_noninteractive:
 	$(MVN_NONINTERACTIVE) package $(HUSH)
 
-.PHONY: deploy_noninteractive_ossrh
-deploy_noninteractive_ossrh:
-	$(MVN_NONINTERACTIVE) deploy -P deploy-ossrh,release,gpg $(HUSH)
+.PHONY: deploy_noninteractive_central
+deploy_noninteractive_central:
+	$(MVN_NONINTERACTIVE) deploy -P deploy-central,release,gpg $(HUSH)
 
 .PHONY: deploy_noninteractive_github
 deploy_noninteractive_github:
