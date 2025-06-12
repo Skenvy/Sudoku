@@ -62,8 +62,8 @@ jobs:
     - name: ☕🦆🌞 Set up Java
       uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
       with:
-        distribution: 'adopt'
-        java-version: '11'
+        distribution: 'corretto'
+        java-version: '21'
         architecture: x64
         cache: maven
     - name: 🏺 Build jar and source
@@ -106,24 +106,25 @@ jobs:
     - name: ☕🦆🌞 Set up Java; for publishing to Maven Central Repository
       uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
       with:
-        java-version: '11'
-        distribution: 'adopt'
-        server-id: ossrh
+        java-version: '21'
+        distribution: 'corretto'
+        # "Maven Option" to write the settings.xml
+        server-id: central
         server-username: MAVEN_USERNAME
         server-password: MAVEN_PASSWORD
         gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
     - name: 📦 Publish to the Maven Central Repository
-      run: make deploy_noninteractive_ossrh
+      run: make deploy_noninteractive_central
       env:
-        MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-        MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+        MAVEN_USERNAME: ${{ secrets.MVN_CENTRAL_TOKEN_USERNAME }}
+        MAVEN_PASSWORD: ${{ secrets.MVN_CENTRAL_TOKEN_PASSWORD }}
         MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
     - name: ☕🦆🌞 Set up Java; for publishing to GitHub Packages
       uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
       with:
-        java-version: '11'
-        distribution: 'adopt'
+        java-version: '21'
+        distribution: 'corretto'
         server-id: github
     - name: 📦 Publish to GitHub Packages
       run: make deploy_noninteractive_github
@@ -141,8 +142,8 @@ jobs:
     - name: ☕🦆🌞 Set up Java
       uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
       with:
-        distribution: 'adopt'
-        java-version: '11'
+        distribution: 'corretto'
+        java-version: '21'
         architecture: x64
         cache: maven
     - name: 📄 Docs

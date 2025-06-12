@@ -27,8 +27,8 @@ jobs:
     - name: ☕🦆🌞 Set up Java
       uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
       with:
-        distribution: 'adopt'
-        java-version: '11'
+        distribution: 'corretto'
+        java-version: '21'
         architecture: x64
         cache: maven
     - name: 🧹 Lint
@@ -43,8 +43,8 @@ jobs:
     - name: ☕🦆🌞 Set up Java
       uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
       with:
-        distribution: 'adopt'
-        java-version: '11'
+        distribution: 'corretto'
+        java-version: '21'
         architecture: x64
         cache: maven
     - name: 🦂 Test
@@ -58,8 +58,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        java-distribution: ['adopt']
-        java-version: ['11', '13']
+        java-distribution: ['corretto']
+        java-version: ['21']
         os: [ubuntu-latest, macOS-latest, windows-latest]
         arch: [x64]
     steps:
@@ -105,8 +105,8 @@ jobs:
     - name: ☕🦆🌞 Set up Java
       uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
       with:
-        distribution: 'adopt'
-        java-version: '11'
+        distribution: 'corretto'
+        java-version: '21'
         architecture: x64
         cache: maven
     - name: 📄 Docs
