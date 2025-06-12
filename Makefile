@@ -64,8 +64,8 @@ lint_noninteractive:
 build_noninteractive:
 	$(MVN_NONINTERACTIVE) package $(HUSH)
 
-.PHONY: deploy_noninteractive_ossrh
-deploy_noninteractive_ossrh:
+.PHONY: deploy_noninteractive_central
+deploy_noninteractive_central:
 	$(MVN_NONINTERACTIVE) deploy -P deploy-central,release,gpg $(HUSH)
 
 .PHONY: deploy_noninteractive_github

@@ -88,6 +88,11 @@ How to change the current publishing CD step that publishes to OSSRH? The [publi
 Thankfully, a few days later, my `io.github.skenvy` namespace has been tranferred over to my github login on central publishing. I've found [this mojohaus PR](https://github.com/mojohaus/mojo-parent/pull/616) that gives an example of how they're changing their `distributionManagement` keys.
 I also tried `make build` to sanity check my changes as I was going, and spent a little while trying to figure out why I had some weird bugs. It turns out I just apparently hadn't installed the jdk in wsl yet! Previously, the project was being built from source/target 11 with a release version of 8. Once I realised I simply didn't have the jdk installed and fixed that, and then `javac -help`'d to see what it listed the possible `--source`'s as, to make sure they still include a release version of 8 (which we will likely need to keep as libGDX expects to work with version 8), I updated all the references to now use a source/target of 21 and use the coretto build, just because it is the quickest to install with the fewest clicks on windows.
 
+### It's been a few weeks..
+And I finally got around to trying to [extract my old gpg private key](https://gist.github.com/Skenvy/53fcc12ad15f4c10b653eb4711facc64) that I'd previously lost in the years, not realising it was worth keeping, as I had no idea expiry dates could be retroactively updated! Now to follow [the new docs on expired keys](https://central.sonatype.org/publish/requirements/gpg/#dealing-with-expired-keys).
+
+Ok having successfully updated the expiring on the key, sending it to the 3 primary key servers, and uploading the changed private key as a new value for the secret, we can continue setting up the new publishing. Firstly, logging back in to [central publishing and looking at namespaces](https://central.sonatype.com/publishing/namespaces) I now had an option to enable snapshots, which I did.
+
 ## [libGDX](https://libgdx.com/)
 The tentative plan going forward is to try and align what already exists with something that could be made into a libGDX built game.
 At the moment I'm just dumping links here until I write this.
@@ -97,9 +102,8 @@ At the moment I'm just dumping links here until I write this.
 * [libgdx is still using java 8](https://github.com/libgdx/gdx-liftoff/blob/v1.13.5.0/build.gradle#L33-L34)
 * [corretto-8](https://docs.aws.amazon.com/corretto/latest/corretto-8-ug/downloads-list.html)
 
-##### WIP NOTES TO REMOVE BEFORE MERGE
+##### WIP NOTES TODO
 1. Reposition stuff in the repo so that there's two halves to it;
     * the part that packages the `swing`/`awt` based jar
     * and a new half for libGDX parallel to it that imports from it.
-1. Find my old gpg key and try renew the old one.
 1. Update the publishing in build to use the new publishing method.
