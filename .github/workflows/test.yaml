@@ -95,7 +95,7 @@ jobs:
     - name: 🛠 Autobuild
       uses: github/codeql-action/autobuild@68bde559dea0fdcac2102bfdf6230c5f70eb485e # v4.35.4
     - name: 🛡👨‍💻🛡 Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@68bde559dea0fdcac2102bfdf6230c5f70eb485e # v4.35.4
+      uses: github/codeql-action/analyze@db488ddef3bf6cb639b32c2e9a7c0a7ea8271d28 # v4.37.8
   docs:
     name: Docs 📄 Quick Test 🦂
     runs-on: ubuntu-latest
