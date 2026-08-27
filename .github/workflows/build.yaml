@@ -42,7 +42,7 @@ jobs:
       run: |
         git fetch --tags
         export VER=$(mvn help:evaluate -Dexpression="project.version" -q -DforceStdout)
-        [ -z "$(git tag -l "java-v$VER")" ] && echo "version-tag-exists=${{toJSON(false)}}" >> $GITHUB_OUTPUT || echo "version-tag-exists=${{toJSON(true)}}" >> $GITHUB_OUTPUT
+        [ -z "$(git tag -l "v$VER")" ] && echo "version-tag-exists=${{toJSON(false)}}" >> $GITHUB_OUTPUT || echo "version-tag-exists=${{toJSON(true)}}" >> $GITHUB_OUTPUT
     - name: Notify on version-tag-exists
       run: echo "::Notice::version-tag-exists is ${{ fromJSON(steps.version-tag-exists.outputs.version-tag-exists) }}"
   # Now any step that should only run on the version change can use
